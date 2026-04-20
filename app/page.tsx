@@ -1158,6 +1158,46 @@ export default function TeacherMarker() {
       </header>
 
       <main className="max-w-4xl mx-auto px-4 py-8">
+        {/* PickleNickAI Banner */}
+        <a
+          href="/picklenickai"
+          style={{
+            display: "block",
+            background: "linear-gradient(135deg, #1a1f3d, #141627)",
+            border: `1px solid ${C.primary}40`,
+            borderRadius: 16,
+            padding: "20px 24px",
+            marginBottom: 24,
+            textDecoration: "none",
+            boxShadow: "0 4px 20px rgba(99,102,241,0.1)",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              <div style={{
+                background: "linear-gradient(135deg, #6366f1, #22d3ee)",
+                width: 44, height: 44, borderRadius: 12,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: 22, flexShrink: 0,
+              }}>
+                🤖
+              </div>
+              <div>
+                <p style={{ color: C.text, fontSize: 15, fontWeight: 800, margin: 0 }}>PickleNickAI</p>
+                <p style={{ color: C.text2, fontSize: 12, margin: "3px 0 0" }}>Your AI teaching assistant — chat to get lesson plans, rubrics, worksheets and more</p>
+              </div>
+            </div>
+            <div style={{
+              background: "linear-gradient(135deg, #6366f1, #818cf8)",
+              color: "#fff", fontSize: 12, fontWeight: 700,
+              padding: "8px 16px", borderRadius: 10, flexShrink: 0,
+              whiteSpace: "nowrap",
+            }}>
+              Open Chat →
+            </div>
+          </div>
+        </a>
+
         {/* Tab Switcher */}
         <div style={{ background: C.surface, border: `1px solid ${C.border}` }}
           className="rounded-xl p-1.5 flex gap-1 mb-8">
