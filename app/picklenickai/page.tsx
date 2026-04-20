@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import TeacherOnboarding from "@/components/TeacherOnboarding";
+import PlanGenerator from "@/components/PlanGenerator";
 import ChatInterface from "@/components/ChatInterface";
 
 const SESSION_KEY = "picklenickai-session";
@@ -21,12 +22,12 @@ interface Tab {
 }
 
 const TABS: Tab[] = [
-  { id: "chat", label: "Chat", icon: "💬" },
-  { id: "plans", label: "Lesson Plans", icon: "📚" },
-  { id: "assessments", label: "Assessments", icon: "📝" },
-  { id: "docs", label: "Doc Control", icon: "📄" },
-  { id: "admin", label: "Admin Tasks", icon: "⚙️" },
-  { id: "profile", label: "Profile", icon: "👤" },
+  { id: "chat", label: "Chat", icon: "聊" },
+  { id: "plans", label: "Lesson Plans", icon: "計劃" },
+  { id: "assessments", label: "Assessments", icon: "評估" },
+  { id: "docs", label: "Doc Control", icon: "文檔" },
+  { id: "admin", label: "Admin Tasks", icon: "設定" },
+  { id: "profile", label: "Profile", icon: "個人" },
 ];
 
 function getOrCreateSessionId(): string {
@@ -40,26 +41,8 @@ function getOrCreateSessionId(): string {
 }
 
 // Placeholder components for each tab
-function PlansTab() {
-  return (
-    <div style={{ padding: "1.5rem" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
-        <h2 style={{ color: "#e8eaf6", fontSize: "1.25rem", fontWeight: 600 }}>Lesson Plans</h2>
-        <button style={{ background: "#6366f1", color: "#fff", border: "none", padding: "0.5rem 1rem", borderRadius: 8, fontSize: "0.875rem", cursor: "pointer" }}>
-          + Create New Plan
-        </button>
-      </div>
-      <div style={{ display: "grid", gap: "1rem" }}>
-        {["Year 5 Mathematics - Fractions", "Year 7 English - Narrative Writing", "Year 4 Science - Human Body Systems"].map((title, i) => (
-          <div key={i} style={{ background: "#141627", border: "1px solid #2a2d45", borderRadius: 12, padding: "1rem 1.25rem" }}>
-            <div style={{ color: "#6366f1", fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.5rem" }}>WIEP • Year 5 • Mathematics</div>
-            <div style={{ color: "#e8eaf6", fontWeight: 500, marginBottom: "0.5rem" }}>{title}</div>
-            <div style={{ color: "#99a3c7", fontSize: "0.875rem" }}>Created 2 days ago • 45 min duration</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+function PlansTab({ sessionId }: { sessionId: string }) {
+  return <PlanGenerator sessionId={sessionId} />;
 }
 
 function AssessmentsTab() {
@@ -246,7 +229,7 @@ export default function PickleNickAIPage() {
         {activeTab === "chat" ? (
           <ChatInterface teacherProfile={profile} sessionId={sessionId} />
         ) : activeTab === "plans" ? (
-          <PlansTab />
+          <PlansTab sessionId={sessionId} />
         ) : activeTab === "assessments" ? (
           <AssessmentsTab />
         ) : activeTab === "docs" ? (
