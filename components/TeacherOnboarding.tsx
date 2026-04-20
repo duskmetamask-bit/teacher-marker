@@ -2,49 +2,14 @@
 
 import { useState } from "react";
 
-const C = {
-  bg: "#0d0f1a",
-  surface: "#141627",
-  surface2: "#1c1f35",
-  border: "#2a2d45",
-  border2: "#353860",
-  text: "#e8eaf6",
-  text2: "#99a3c7",
-  text3: "#5c6490",
-  primary: "#6366f1",
-  primaryHover: "#818cf8",
-  accent: "#22d3ee",
-  success: "#34d399",
-  warning: "#fbbf24",
-  danger: "#f87171",
-  tag: "#1e2145",
-};
-
 const YEAR_LEVELS = [
-  "Pre-Primary",
-  "Year 1",
-  "Year 2",
-  "Year 3",
-  "Year 4",
-  "Year 5",
-  "Year 6",
-  "Year 7",
-  "Year 8",
-  "Year 9",
-  "Year 10",
-  "Year 11",
-  "Year 12",
+  "Pre-Primary", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6",
+  "Year 7", "Year 8", "Year 9", "Year 10", "Year 11", "Year 12",
 ];
 
 const SUBJECTS = [
-  "Mathematics",
-  "English",
-  "Science",
-  "HASS",
-  "Technologies",
-  "The Arts",
-  "HPE",
-  "Languages",
+  "Mathematics", "English", "Science", "HASS",
+  "Technologies", "The Arts", "HPE", "Languages",
 ];
 
 interface TeacherOnboardingProps {
@@ -78,47 +43,63 @@ export default function TeacherOnboarding({ onComplete }: TeacherOnboardingProps
     onComplete({ name: name.trim(), yearLevels: selectedYears, subjects: selectedSubjects });
   }
 
-  const inputCls = `w-full rounded-lg px-3 py-2.5 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-offset-0`;
-  const labelCls = "block text-xs font-semibold mb-1.5 uppercase tracking-wider";
-  const sectionTitleCls = "text-sm font-bold uppercase tracking-wider mb-3 flex items-center gap-2";
+  const inputCls = "w-full rounded-xl px-3 py-2.5 text-sm transition-all";
+  const labelCls = "block text-xs font-semibold uppercase tracking-wider mb-2";
+  const sectionTitleCls = "text-sm font-bold uppercase tracking-wider mb-3";
 
   return (
-    <div style={{ background: C.bg }} className="min-h-screen flex items-center justify-center p-4">
-      <div style={{ background: C.surface, border: `1px solid ${C.border}` }}
-        className="w-full max-w-lg rounded-2xl p-8">
+    <div style={{ background: "var(--bg)" }} className="min-h-screen flex items-center justify-center p-6">
+      <div style={{
+        background: "var(--card)",
+        border: "1px solid var(--border)",
+        boxShadow: "var(--shadow-lg)",
+      }} className="w-full max-w-lg rounded-2xl p-8">
+
         {/* Header */}
         <div className="text-center mb-8">
           <div style={{
-            background: "linear-gradient(135deg, #6366f1, #22d3ee)",
-            width: 56, height: 56,
+            background: "linear-gradient(135deg, var(--primary), var(--accent))",
+            width: 56,
+            height: 56,
             borderRadius: 16,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: 28,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: 14,
+            fontWeight: 700,
+            color: "#fff",
             margin: "0 auto 16px",
           }}>
-            [ Bot ]
+            AI
           </div>
-          <h1 style={{ color: C.text }} className="text-xl font-black mb-2">Welcome to PickleNickAI!</h1>
-          <p style={{ color: C.text2 }} className="text-sm">Before we start, tell me a bit about yourself.</p>
+          <h1 style={{ color: "var(--text)" }} className="text-xl font-black mb-2">Welcome to PickleNickAI!</h1>
+          <p style={{ color: "var(--text2)" }} className="text-sm">Before we start, tell me a bit about yourself.</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Name */}
           <div>
-            <label className={labelCls} style={{ color: C.text2 }}>Your Name</label>
+            <label className={labelCls} style={{ color: "var(--text2)" }}>Your Name</label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Sarah"
-              style={{ background: C.surface2, color: C.text, borderColor: C.border }}
-              className={`${inputCls} border focus:border-indigo-500 focus:ring-indigo-500/30`}
+              style={{
+                background: "var(--surface)",
+                color: "var(--text)",
+                border: "1px solid var(--border)",
+                borderRadius: 12,
+              }}
+              className={`${inputCls} border`}
+              onFocus={(e) => { e.currentTarget.style.borderColor = "var(--primary)"; e.currentTarget.style.boxShadow = "0 0 0 3px rgba(37,99,235,0.12)"; }}
+              onBlur={(e) => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.boxShadow = "none"; }}
             />
           </div>
 
           {/* Year Levels */}
           <div>
-            <label className={labelCls} style={{ color: C.text2 }}>Year Levels You Teach</label>
+            <label className={labelCls} style={{ color: "var(--text2)" }}>Year Levels You Teach</label>
             <div className="grid grid-cols-4 gap-2 mt-2">
               {YEAR_LEVELS.map((level) => {
                 const selected = selectedYears.includes(level);
@@ -128,11 +109,16 @@ export default function TeacherOnboarding({ onComplete }: TeacherOnboardingProps
                     type="button"
                     onClick={() => toggleYear(level)}
                     style={{
-                      background: selected ? C.primary + "30" : C.surface2,
-                      color: selected ? C.primaryHover : C.text2,
-                      border: `1px solid ${selected ? C.primary : C.border}`,
+                      background: selected ? "rgba(37,99,235,0.10)" : "var(--surface)",
+                      color: selected ? "var(--primary)" : "var(--text2)",
+                      border: `1px solid ${selected ? "var(--primary)" : "var(--border)"}`,
+                      borderRadius: 10,
+                      padding: "6px 4px",
+                      fontSize: 12,
+                      fontWeight: selected ? 600 : 400,
+                      cursor: "pointer",
+                      transition: "all var(--transition)",
                     }}
-                    className="rounded-lg px-2 py-1.5 text-xs font-medium transition-all hover:border-indigo-500"
                   >
                     {level}
                   </button>
@@ -143,7 +129,7 @@ export default function TeacherOnboarding({ onComplete }: TeacherOnboardingProps
 
           {/* Subjects */}
           <div>
-            <label className={labelCls} style={{ color: C.text2 }}>Subjects You Teach</label>
+            <label className={labelCls} style={{ color: "var(--text2)" }}>Subjects You Teach</label>
             <div className="grid grid-cols-2 gap-2 mt-2">
               {SUBJECTS.map((subject) => {
                 const selected = selectedSubjects.includes(subject);
@@ -153,11 +139,16 @@ export default function TeacherOnboarding({ onComplete }: TeacherOnboardingProps
                     type="button"
                     onClick={() => toggleSubject(subject)}
                     style={{
-                      background: selected ? C.primary + "30" : C.surface2,
-                      color: selected ? C.primaryHover : C.text2,
-                      border: `1px solid ${selected ? C.primary : C.border}`,
+                      background: selected ? "rgba(37,99,235,0.10)" : "var(--surface)",
+                      color: selected ? "var(--primary)" : "var(--text2)",
+                      border: `1px solid ${selected ? "var(--primary)" : "var(--border)"}`,
+                      borderRadius: 10,
+                      padding: "8px 12px",
+                      fontSize: 13,
+                      fontWeight: selected ? 600 : 400,
+                      cursor: "pointer",
+                      transition: "all var(--transition)",
                     }}
-                    className="rounded-lg px-3 py-2 text-xs font-medium transition-all hover:border-indigo-500"
                   >
                     {subject}
                   </button>
@@ -168,9 +159,15 @@ export default function TeacherOnboarding({ onComplete }: TeacherOnboardingProps
 
           {/* Error */}
           {error && (
-            <div style={{ background: `${C.danger}15`, border: `1px solid ${C.danger}40`, color: C.danger }}
-              className="rounded-lg px-4 py-3 text-sm">
-              ❌ {error}
+            <div style={{
+              background: "rgba(239,68,68,0.08)",
+              border: "1px solid rgba(239,68,68,0.30)",
+              color: "#ef4444",
+              borderRadius: 10,
+              padding: "0.75rem 1rem",
+              fontSize: 13,
+            }}>
+              {error}
             </div>
           )}
 
@@ -178,12 +175,12 @@ export default function TeacherOnboarding({ onComplete }: TeacherOnboardingProps
           <button
             type="submit"
             style={{
-              background: "linear-gradient(135deg, #6366f1, #818cf8)",
-              boxShadow: "0 4px 20px rgba(99,102,241,0.35)",
+              background: "var(--primary)",
+              boxShadow: "var(--shadow)",
             }}
             className="w-full text-white font-bold py-3.5 px-6 rounded-xl text-sm transition-all hover:opacity-90"
           >
-            Let&apos;s get started! 🎉
+            Let&apos;s get started!
           </button>
         </form>
       </div>
