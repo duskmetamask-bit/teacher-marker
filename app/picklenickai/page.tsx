@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TeacherOnboarding from "@/components/TeacherOnboarding";
 import PlanGenerator from "@/components/PlanGenerator";
 import ChatInterface from "@/components/ChatInterface";
@@ -22,12 +22,12 @@ interface Tab {
 }
 
 const TABS: Tab[] = [
-  { id: "chat", label: "Chat", icon: "聊" },
-  { id: "plans", label: "Lesson Plans", icon: "計劃" },
-  { id: "assessments", label: "Assessments", icon: "評估" },
-  { id: "docs", label: "Doc Control", icon: "文檔" },
-  { id: "admin", label: "Admin Tasks", icon: "設定" },
-  { id: "profile", label: "Profile", icon: "個人" },
+  { id: "chat", label: "Chat", icon: "" },
+  { id: "plans", label: "Lesson Plans", icon: "" },
+  { id: "assessments", label: "Assessments", icon: "" },
+  { id: "docs", label: "Doc Control", icon: "" },
+  { id: "admin", label: "Admin Tasks", icon: "" },
+  { id: "profile", label: "Profile", icon: "" },
 ];
 
 function getOrCreateSessionId(): string {
@@ -50,7 +50,7 @@ function AssessmentsTab() {
     <div style={{ padding: "1.5rem" }}>
       <h2 style={{ color: "#e8eaf6", fontSize: "1.25rem", fontWeight: 600, marginBottom: "1.5rem" }}>Assessments</h2>
       <div style={{ background: "#141627", border: "1px solid #2a2d45", borderRadius: 12, padding: "2rem", textAlign: "center", marginBottom: "1rem" }}>
-        <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>📤</div>
+        <div style={{ fontSize: "2.5rem", marginBottom: "1rem", color: "#5c6490" }}>[ ]</div>
         <div style={{ color: "#e8eaf6", fontWeight: 500, marginBottom: "0.5rem" }}>Upload Student Work</div>
         <div style={{ color: "#99a3c7", fontSize: "0.875rem", marginBottom: "1rem" }}>Drag & drop or click to upload</div>
         <button style={{ background: "#6366f1", color: "#fff", border: "none", padding: "0.5rem 1.25rem", borderRadius: 8, fontSize: "0.875rem", cursor: "pointer" }}>Upload File</button>
@@ -84,10 +84,10 @@ function DocsTab() {
 
 function AdminTab() {
   const tasks = [
-    { icon: "📅", title: "Timetables", desc: "View and manage class schedules" },
-    { icon: "📋", title: "Meeting Notes", desc: "Generate structured meeting notes" },
-    { icon: "📧", title: "Parent Comms", desc: "Templates for parent communication" },
-    { icon: "🎓", title: "PD Log", desc: "Track professional development (TRBWA)" },
+    { icon: "[=]", title: "Timetables", desc: "View and manage class schedules" },
+    { icon: "[...]", title: "Meeting Notes", desc: "Generate structured meeting notes" },
+    { icon: "[@]", title: "Parent Comms", desc: "Templates for parent communication" },
+    { icon: "[*]", title: "PD Log", desc: "Track professional development (TRBWA)" },
   ];
   return (
     <div style={{ padding: "1.5rem" }}>
@@ -175,7 +175,7 @@ export default function PickleNickAIPage() {
       <div style={{ background: "#0d0f1a", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <div style={{ textAlign: "center" }}>
           <div style={{ background: "linear-gradient(135deg, #6366f1, #22d3ee)", width: 56, height: 56, borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, margin: "0 auto 16px" }}>
-            🤖
+            <div style={{ fontSize: 20, color: "#e8eaf6" }}>[ Bot ]</div>
           </div>
           <p style={{ color: "#99a3c7", fontSize: "0.875rem" }}>Loading PickleNickAI…</p>
         </div>
@@ -193,7 +193,7 @@ export default function PickleNickAIPage() {
       <div style={{ width: 240, background: "#141627", borderRight: "1px solid #2a2d45", display: "flex", flexDirection: "column", padding: "1rem 0" }}>
         {/* Logo */}
         <div style={{ padding: "0.75rem 1.25rem", marginBottom: "0.5rem" }}>
-          <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#e8eaf6" }}>🤖 PickleNickAI</div>
+          <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#e8eaf6" }}>PickleNickAI</div>
           <div style={{ fontSize: "0.75rem", color: "#5c6490" }}>Cut admin. Boost capability.</div>
         </div>
         <div style={{ borderTop: "1px solid #2a2d45", marginBottom: "0.5rem" }} />

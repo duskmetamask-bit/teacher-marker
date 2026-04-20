@@ -342,7 +342,7 @@ export default function ChatInterface({ teacherProfile, sessionId }: ChatInterfa
               flexShrink: 0,
             }}
           >
-            🤖
+            <div style={{ fontSize: 20, color: "#e8eaf6" }}>[ Bot ]</div>
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>

@@ -96,7 +96,7 @@ export default function TeacherOnboarding({ onComplete }: TeacherOnboardingProps
             fontSize: 28,
             margin: "0 auto 16px",
           }}>
-            🤖
+            [ Bot ]
           </div>
           <h1 style={{ color: C.text }} className="text-xl font-black mb-2">Welcome to PickleNickAI!</h1>
           <p style={{ color: C.text2 }} className="text-sm">Before we start, tell me a bit about yourself.</p>
