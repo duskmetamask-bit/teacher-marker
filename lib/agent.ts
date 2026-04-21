@@ -13,8 +13,9 @@ export interface AgentResponse {
   };
 }
 
-const OPENCLAW_GATEWAY = 'http://localhost:18789';
-const OPENCLAW_TOKEN = '5427075325e3b1f79b8d98df5641fe7e1268e1766c707ae8';
+// Gateway URL: localhost for dev, public IP for Vercel production
+const OPENCLAW_GATEWAY = process.env.OPENCLAW_GATEWAY_URL || 'http://localhost:18789';
+const OPENCLAW_TOKEN = process.env.OPENCLAW_GATEWAY_TOKEN || '5427075325e3b1f79b8d98df5641fe7e1268e1766c707ae8';
 const AGENT_MODEL = 'openclaw/pickle-nick-ai';
 
 /**
