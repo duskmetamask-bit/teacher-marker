@@ -382,6 +382,10 @@ function MessageBubble({
           from { opacity: 0; transform: translateY(6px); }
           to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes streamGlow {
+          0%, 100% { box-shadow: 0 0 0 1px rgba(99,102,241,0.15), 0 4px 16px rgba(99,102,241,0.1); }
+          50% { box-shadow: 0 0 0 2px rgba(99,102,241,0.3), 0 4px 20px rgba(99,102,241,0.2); }
+        }
       `}</style>
       <div
         style={{
@@ -392,11 +396,16 @@ function MessageBubble({
           border: isUser ? "none" : `1px solid ${C.border}`,
           borderRadius: isUser ? "18px 18px 6px 18px" : "18px 18px 18px 6px",
           padding: "12px 16px",
-          boxShadow: isUser ? "0 4px 16px rgba(99,102,241,0.25)" : shadows.md,
+          boxShadow: isUser
+            ? "0 4px 16px rgba(99,102,241,0.25)"
+            : isStreaming
+              ? undefined // Glow handled by animation
+              : shadows.md,
           color: isUser ? "#fff" : C.text,
           fontSize: 14,
           lineHeight: 1.65,
           wordBreak: "break-word",
+          animation: isStreaming ? "streamGlow 2s ease-in-out infinite" : "none",
         }}
       >
         {isUser ? (
@@ -728,24 +737,48 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
         >
           {/* Agent identity */}
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            {/* Avatar */}
-            <div
-              style={{
-                background: "linear-gradient(135deg, #6366f1, #22d3ee)",
-                width: 38,
-                height: 38,
-                borderRadius: radius.md,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 13,
-                fontWeight: 700,
-                color: "#fff",
-                flexShrink: 0,
-                boxShadow: "0 0 16px rgba(99,102,241,0.35)",
-              }}
-            >
-              PN
+            {/* Avatar with animated gradient border */}
+            <div style={{ position: "relative", width: 42, height: 42, flexShrink: 0 }}>
+              <style>{`
+                @keyframes avatarGlow {
+                  0% { background-position: 0% 50%; }
+                  50% { background-position: 100% 50%; }
+                  100% { background-position: 0% 50%; }
+                }
+              `}</style>
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  borderRadius: radius.md + 2,
+                  padding: 2,
+                  background: "linear-gradient(135deg, #6366f1, #22d3ee, #a855f7, #6366f1)",
+                  backgroundSize: "300% 300%",
+                  animation: "avatarGlow 4s ease infinite",
+                }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  borderRadius: radius.md,
+                  background: "linear-gradient(135deg, #1a1f3d, #2d3561)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: 13,
+                  fontWeight: 700,
+                  color: "#fff",
+                }}
+              >
+                <span style={{
+                  background: "linear-gradient(135deg, #6366f1, #22d3ee)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  fontWeight: 800,
+                  fontSize: 15,
+                }}>P</span>
+              </div>
             </div>
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -791,7 +824,24 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
           </div>
 
           {/* Actions */}
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            {/* Persistent Privacy Badge in header */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 5,
+                background: "rgba(92,100,144,0.12)",
+                border: "1px solid rgba(92,100,144,0.25)",
+                borderRadius: radius.full,
+                padding: "4px 10px",
+                fontSize: 10,
+                color: "#7c8599",
+              }}
+            >
+              <span>🔒</span>
+              <span style={{ fontWeight: 500 }}>Private</span>
+            </div>
             {messages.length > 1 && (
               <button
                 onClick={clearChat}
@@ -932,12 +982,8 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
             const isLastAssistant = msg.id === messages[messages.length - 1]?.id;
             return (
               <div key={msg.id}>
-                <MessageBubble
-                  message={msg}
-                  isStreaming={isLastAssistant && loading && streamingContent !== ""}
-                />
                 {!isUser && msg.role === "assistant" && (
-                  <div style={{ paddingLeft: 16, paddingRight: 16 }}>
+                  <div style={{ paddingLeft: 0, paddingRight: 0, marginBottom: 8 }}>
                     <BadgeRow
                       ac9Codes={msg.ac9Codes}
                       aitslStandards={msg.aitslStandards}
@@ -946,6 +992,10 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
                     />
                   </div>
                 )}
+                <MessageBubble
+                  message={msg}
+                  isStreaming={isLastAssistant && loading && streamingContent !== ""}
+                />
               </div>
             );
           })}
