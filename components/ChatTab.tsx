@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { C, shadows, transition, radius } from "@/lib/design";
+import { BadgeRow } from "./Badge";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
@@ -9,6 +10,9 @@ interface Message {
   id: string;
   role: "user" | "assistant";
   content: string;
+  ac9Codes?: string[];
+  aitslStandards?: string[];
+  showGuardrail?: boolean;
 }
 
 interface TeacherProfile {
@@ -414,6 +418,9 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [streamingContent, setStreamingContent] = useState("");
+  const [ac9Codes, setAc9Codes] = useState<string[]>([]);
+  const [aitslStandards, setAitslStandards] = useState<string[]>([]);
+  const [showGuardrail, setShowGuardrail] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -478,6 +485,11 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
       const text = (overrideText ?? input).trim();
       if (!text || loading) return;
 
+      // Reset badge state for new message
+      setAc9Codes([]);
+      setAitslStandards([]);
+      setShowGuardrail(false);
+
       const userMsg: Message = {
         id: crypto.randomUUID(),
         role: "user",
@@ -491,7 +503,7 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
 
       // Add placeholder for streaming response
       const assistantId = crypto.randomUUID();
-      setMessages((prev) => [...prev, { id: assistantId, role: "assistant", content: "" }]);
+      setMessages((prev) => [...prev, { id: assistantId, role: "assistant", content: "", ac9Codes: [], aitslStandards: [], showGuardrail: false }]);
       setStreamingContent("");
 
       try {
@@ -505,6 +517,7 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
             messages: newMessages.map((m) => ({ role: m.role, content: m.content })),
             sessionId,
             stream: true,
+            mock: true,
           }),
           signal: controller.signal,
         });
@@ -528,8 +541,10 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
                 try {
                   const parsed = JSON.parse(line.slice(6));
                   if (parsed === "[DONE]") break;
-                  if (typeof parsed === "string") {
-                    fullResponse += parsed;
+
+                  // Handle token — accumulate into fullResponse
+                  if (parsed.type === "token" && typeof parsed.content === "string") {
+                    fullResponse += parsed.content;
                     setStreamingContent(fullResponse);
                     setMessages((prev) => {
                       const updated = [...prev];
@@ -537,6 +552,61 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
                       if (idx !== -1) {
                         updated[idx] = { ...updated[idx], content: fullResponse };
                       }
+                      return updated;
+                    });
+                  }
+
+                  // Handle AC9 codes
+                  if (parsed.type === "ac9" && Array.isArray(parsed.codes)) {
+                    setAc9Codes(prev => [...new Set([...prev, ...parsed.codes])]);
+                    setMessages((prev) => {
+                      const updated = [...prev];
+                      const idx = updated.findIndex((m) => m.id === assistantId);
+                      if (idx !== -1) {
+                        updated[idx] = { ...updated[idx], ac9Codes: [...new Set([...(updated[idx].ac9Codes || []), ...parsed.codes])] };
+                      }
+                      return updated;
+                    });
+                  }
+
+                  // Handle AITSL standards
+                  if (parsed.type === "aitsl" && Array.isArray(parsed.standards)) {
+                    setAitslStandards(prev => [...new Set([...prev, ...parsed.standards])]);
+                    setMessages((prev) => {
+                      const updated = [...prev];
+                      const idx = updated.findIndex((m) => m.id === assistantId);
+                      if (idx !== -1) {
+                        updated[idx] = { ...updated[idx], aitslStandards: [...new Set([...(updated[idx].aitslStandards || []), ...parsed.standards])] };
+                      }
+                      return updated;
+                    });
+                  }
+
+                  // Handle guardrail
+                  if (parsed.type === "guardrail") {
+                    setShowGuardrail(true);
+                    setMessages((prev) => {
+                      const updated = [...prev];
+                      const idx = updated.findIndex((m) => m.id === assistantId);
+                      if (idx !== -1) {
+                        updated[idx] = { ...updated[idx], showGuardrail: true };
+                      }
+                      return updated;
+                    });
+                  }
+
+                  // Handle done
+                  if (parsed.type === "done") {
+                    isStreamingRef.current = false;
+                    setStreamingContent("");
+                    setShowGuardrail(false);
+                    setMessages((prev) => {
+                      const updated = [...prev];
+                      const idx = updated.findIndex((m) => m.id === assistantId);
+                      if (idx !== -1) {
+                        updated[idx] = { ...updated[idx], content: fullResponse };
+                      }
+                      localStorage.setItem(MSGS_KEY + sessionId, JSON.stringify(updated));
                       return updated;
                     });
                   }
@@ -857,13 +927,28 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
           )}
 
           {/* Messages */}
-          {messages.map((msg) => (
-            <MessageBubble
-              key={msg.id}
-              message={msg}
-              isStreaming={msg.id === messages[messages.length - 1]?.id && loading && streamingContent !== ""}
-            />
-          ))}
+          {messages.map((msg) => {
+            const isUser = msg.role === "user";
+            const isLastAssistant = msg.id === messages[messages.length - 1]?.id;
+            return (
+              <div key={msg.id}>
+                <MessageBubble
+                  message={msg}
+                  isStreaming={isLastAssistant && loading && streamingContent !== ""}
+                />
+                {!isUser && msg.role === "assistant" && (
+                  <div style={{ paddingLeft: 16, paddingRight: 16 }}>
+                    <BadgeRow
+                      ac9Codes={msg.ac9Codes}
+                      aitslStandards={msg.aitslStandards}
+                      showPrivacy={true}
+                      showGuardrail={msg.showGuardrail}
+                    />
+                  </div>
+                )}
+              </div>
+            );
+          })}
 
           {/* Loading indicator */}
           {loading && messages[messages.length - 1]?.content === "" && (

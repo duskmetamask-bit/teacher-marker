@@ -2,9 +2,34 @@ import { NextRequest, NextResponse } from "next/server";
 import { chatWithAgent, chatWithAgentStream } from "@/lib/agent";
 import { getTeacherProfile, saveTeacherProfile } from "@/lib/supabase";
 
-// Simple SSE formatter
-function sse(message: string, event?: string): string {
-  return `${event ? `event: ${event}\n` : ""}data: ${JSON.stringify(message)}\n\n`;
+// Simple SSE formatter — handles both strings and JSON objects
+function sse(data: unknown, event?: string): string {
+  return `${event ? `event: ${event}\n` : ""}data: ${typeof data === "string" ? data : JSON.stringify(data)}\n\n`;
+}
+
+// ─── Badge utilities (inlined for Vercel compatibility) ─────────────────────────────────
+function extractAC9Codes(text: string): string[] {
+  const matches = text.match(/AC9[A-Z]\d{1,2}[A-Z]{2}\d{2}/gi);
+  return matches ? [...new Set(matches.map(c => c.toUpperCase()))] : [];
+}
+
+function extractAITSLStandards(text: string): string[] {
+  const matches = text.match(/AITSL\s+(focus\s+area\s+)?(\d+\.?\d*)/gi);
+  if (!matches) return [];
+  return [...new Set(matches.map(m => {
+    const num = m.match(/\d+\.?\d*/)?.[0];
+    return num ? `AITSL ${num}` : m;
+  }))];
+}
+
+const OFF_TOPIC_KEYWORDS = ['recipe','cook','food','weather','sports','movie','music','politics','medical','legal advice','symptoms','diagnosis','restaurant','gaming','fashion','celebrity','stocks','crypto'];
+const TEACHING_KEYWORDS = ['lesson','unit','plan','rubric','assessment','curriculum','AC9','AITSL','year level','student','classroom','teaching','school','education','teach','worksheet','activity','instruction','differentiation','pedagogy','scaffolding','rubrics','task','outcome','standard','syllabus','WA','Australia'];
+
+function isOffTopic(text: string): boolean {
+  const lower = text.toLowerCase();
+  const hasOffTopic = OFF_TOPIC_KEYWORDS.some(k => lower.includes(k));
+  const hasTeaching = TEACHING_KEYWORDS.some(k => lower.includes(k));
+  return hasOffTopic && !hasTeaching;
 }
 
 export async function POST(req: NextRequest) {
@@ -44,6 +69,62 @@ export async function POST(req: NextRequest) {
     if (needsOnboarding) {
       return NextResponse.json({ needsOnboarding: true });
     }
+
+    // ─── MOCK MODE — Phase 1 demo without real OpenAI API ─────────────────────────────────
+    if (body.mock === true) {
+      const encoder = new TextEncoder();
+      const userMessage = messages?.[messages.length - 1]?.content || "";
+      const offTopic = isOffTopic(userMessage);
+
+      if (offTopic) {
+        const stream = new ReadableStream({
+          start(controller) {
+            const text = "I'm a teaching assistant, not a chef. I can help with lesson plans, assessment rubrics, AC9 curriculum alignment, and classroom strategies. What teaching topic are you working on?";
+            const tokens = text.split("");
+            let i = 0;
+            const interval = setInterval(() => {
+              if (i < tokens.length) {
+                controller.enqueue(encoder.encode(sse({ type: "token", content: tokens[i] })));
+                i++;
+              } else {
+                controller.enqueue(encoder.encode(sse({ type: "guardrail", message: "teaching" })));
+                controller.enqueue(encoder.encode(sse({ type: "done" })));
+                controller.close();
+                clearInterval(interval);
+              }
+            }, 20);
+          }
+        });
+        return new Response(stream, { headers: { "Content-Type": "text/event-stream", "Cache-Control": "no-cache", "Connection": "keep-alive" } });
+      }
+
+      // Mock teaching response with AC9 and AITSL
+      const mockResponse = "Here's a 3-week unit on fractions for Year 4 Mathematics. This unit covers AC9E4MA01 and AC9E4MA02, aligned with AITSL 3.2 and AITSL 5.1. Students will develop understanding of part-whole relationships through concrete materials and visual models.";
+      const ac9Codes = extractAC9Codes(mockResponse);
+      const aitslStandards = extractAITSLStandards(mockResponse);
+
+      const stream = new ReadableStream({
+        start(controller) {
+          const tokens = mockResponse.split("");
+          let i = 0;
+          const interval = setInterval(() => {
+            if (i < tokens.length) {
+              controller.enqueue(encoder.encode(sse({ type: "token", content: tokens[i] })));
+              i++;
+            } else {
+              controller.enqueue(encoder.encode(sse({ type: "ac9", codes: ac9Codes })));
+              controller.enqueue(encoder.encode(sse({ type: "aitsl", standards: aitslStandards })));
+              controller.enqueue(encoder.encode(sse({ type: "done" })));
+              controller.close();
+              clearInterval(interval);
+            }
+          }, 25);
+        }
+      });
+      return new Response(stream, { headers: { "Content-Type": "text/event-stream", "Cache-Control": "no-cache", "Connection": "keep-alive" } });
+    }
+
+    // ─── REAL STREAMING MODE ─────────────────────────────────────────────────────────────────
 
     // Streaming mode
     if (stream) {
