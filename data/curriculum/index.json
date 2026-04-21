@@ -1,0 +1,80 @@
+{
+  "subjects": [
+    {
+      "id": "english",
+      "name": "English",
+      "shortName": "EN",
+      "strands": ["Language", "Literature", "Literacy"],
+      "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
+      "description": "English involves the study of language, literature and literacy. AC9 English builds on the three interrelated strands of language, literature and literacy.",
+      "crossCurriculum": ["Aboriginal and Torres Strait Islander Histories and Cultures", "Sustainability"]
+    },
+    {
+      "id": "mathematics",
+      "name": "Mathematics",
+      "shortName": "MA",
+      "strands": ["Number", "Algebra", "Measurement", "Space", "Statistics", "Probability"],
+      "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
+      "description": "Mathematics is organised around the interaction of three strands: Number and Algebra, Measurement and Space, and Statistics and Probability.",
+      "crossCurriculum": ["Sustainability"]
+    },
+    {
+      "id": "science",
+      "name": "Science",
+      "shortName": "SC",
+      "strands": ["Biological Sciences", "Chemical Sciences", "Earth and Space Sciences", "Physical Sciences"],
+      "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
+      "description": "Science inquiry skills are developed through understanding and applying the scientific method to four strands: Biological, Chemical, Earth and Space, and Physical Sciences.",
+      "crossCurriculum": ["Sustainability", "Aboriginal and Torres Strait Islander Histories and Cultures"]
+    },
+    {
+      "id": "hass",
+      "name": "Humanities and Social Sciences",
+      "shortName": "HASS",
+      "strands": ["History", "Geography", "Civics and Citizenship", "Economics and Business"],
+      "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
+      "description": "HASS encompasses History, Geography, Civics and Citizenship, and Economics and Business. In Years F-6, students explore personal and global contexts.",
+      "crossCurriculum": ["Aboriginal and Torres Strait Islander Histories and Cultures", "Asia and Australia's Engagement with Asia", "Sustainability"]
+    },
+    {
+      "id": "technologies",
+      "name": "Technologies",
+      "shortName": "TECH",
+      "strands": ["Digital Technologies", "Design and Technologies"],
+      "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
+      "description": "Students learn to create innovative solutions for identified needs and opportunities. Covers both Digital Technologies and Design and Technologies.",
+      "crossCurriculum": []
+    },
+    {
+      "id": "the-arts",
+      "name": "The Arts",
+      "shortName": "ARTS",
+      "strands": ["Visual Arts", "Music", "Drama", "Dance"],
+      "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
+      "description": "The Arts includes Visual Arts, Music, Drama and Dance. Students develop artistic skills and aesthetic judgements through making and responding.",
+      "crossCurriculum": ["Aboriginal and Torres Strait Islander Histories and Cultures"]
+    },
+    {
+      "id": "health-and-pe",
+      "name": "Health and Physical Education",
+      "shortName": "HPE",
+      "strands": ["Health", "Physical Education"],
+      "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
+      "description": "HPE develops the knowledge, understanding and skills students need to make healthy, safe and active choices. Includes personal development and movement.",
+      "crossCurriculum": []
+    },
+    {
+      "id": "languages",
+      "name": "Languages",
+      "shortName": "LANG",
+      "strands": ["Communicating", "Understanding"],
+      "yearLevels": ["Year 3", "Year 4", "Year 5", "Year 6"],
+      "description": "Languages learning involves communicating in the target language, developing understanding of language as a system, and exploring the relationship between culture and language.",
+      "crossCurriculum": ["Asia and Australia's Engagement with Asia"]
+    }
+  ],
+  "meta": {
+    "totalSubjects": 8,
+    "lastUpdated": "2026-04-21T08:00:00Z"
+  }
+}
