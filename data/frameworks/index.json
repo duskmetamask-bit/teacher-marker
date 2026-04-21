@@ -1,95 +1,38 @@
 {
   "frameworks": [
     {
-      "id": "wiep",
-      "name": "WIEP",
-      "fullName": "Western Australian Institute of Education Planning",
-      "tagline": "The WA default — W-I-E-P",
-      "description": "The standard Western Australian lesson planning format. Four-phase structure that is required in WA schools and SCSA-aligned.",
-      "whenToUse": "Default for all WA lesson planning. Required format for TRBWA documentation.",
-      "structure": [
-        { "phase": "W — Learning Intention", "duration": "5 min", "description": "State the specific learning intention in student-friendly language. Make the 'why' clear." },
-        { "phase": "I — Implementation", "duration": "Variable", "description": "How you teach it — explicit instruction, modelling, guided practice, independent tasks." },
-        { "phase": "E — Evaluation", "duration": "5-10 min", "description": "How you'll know they've learned — exit tickets, check for understanding, observations." },
-        { "phase": "P — Planning", "duration": "Ongoing", "description": "Activities, resources, timing, differentiation notes." }
-      ],
-      "ac9Aligned": true,
-      "aitslStandard": "1.1, 2.1, 3.2",
-      "tags": ["WA", "SCSA", "Required", "All subjects"]
-    },
-    {
-      "id": "5e",
-      "name": "5E Model",
-      "fullName": "5E Instructional Model",
-      "tagline": "Science and Inquiry",
-      "description": "Five-phase inquiry model originally from science education. Widely used for HASS and Science, effective for building conceptual understanding.",
-      "whenToUse": "Science, HASS, any inquiry-based unit. Best for Years 3-6 where students have prior knowledge to build on.",
-      "structure": [
-        { "phase": "Engage", "duration": "5-10 min", "description": "Hook students — question, mystery, demonstration. Activates prior knowledge." },
-        { "phase": "Explore", "duration": "15-20 min", "description": "Hands-on investigation. Students discover concepts through doing, not listening." },
-        { "phase": "Explain", "duration": "10-15 min", "description": "Explicit teaching of new concepts. Connect to exploration findings." },
-        { "phase": "Elaborate", "duration": "15-20 min", "description": "Apply understanding to new situations. Extend and deepen learning." },
-        { "phase": "Evaluate", "duration": "5-10 min", "description": "Check for understanding — formative assessment, self-evaluation, exit ticket." }
-      ],
-      "ac9Aligned": true,
-      "aitslStandard": "2.1, 2.2, 3.1",
-      "tags": ["Science", "HASS", "Inquiry", "Years 3-6"]
-    },
-    {
-      "id": "gradual-release",
-      "name": "Gradual Release",
-      "fullName": "Gradual Release of Responsibility",
-      "tagline": "I Do → We Do → You Do",
-      "description": "The foundational explicit teaching model. Teacher moves from full responsibility (I Do) to shared (We Do) to independent (You Do).",
-      "whenToUse": "New concepts, Years 1-4, literacy and numeracy foundations. Best for explicit teaching of skills and strategies.",
-      "structure": [
-        { "phase": "I Do", "duration": "10-15 min", "description": "Teacher models, thinks aloud. Makes expert thinking visible. No student output yet." },
-        { "phase": "We Do", "duration": "15-20 min", "description": "Guided practice together. Teacher and students work collaboratively. Scaffolding provided." },
-        { "phase": "You Do", "duration": "15-20 min", "description": "Independent practice. Students work alone while teacher monitors and assesses." }
-      ],
-      "ac9Aligned": true,
-      "aitslStandard": "3.1, 3.2, 3.3",
-      "tags": ["Explicit", "All subjects", "Years F-4", "Literacy", "Numeracy"]
+      "id": "5e-model",
+      "name": "5e Model",
+      "content": "# The 5E Instructional Model\n\n## Definition and Purpose\n\nThe 5E model is an inquiry-based instructional framework that guides students through five sequential phases of learning: **Engage, Explore, Explain, Elaborate, and Evaluate**. Developed by Roger Bybee and colleagues at BSCS (Biological Sciences Curriculum Study) in 1987, the model is grounded in constructivist learning theory — the principle that learners actively construct meaning from experience rather than passively receive information.\n\nThe 5E model is designed to:\n\n- Activate and challenge prior knowledge before instruction\n- Allow students to construct conceptual understanding through guided experience\n- Provide a structured space for teacher explanation that builds on student exploration\n- Extend understanding into new or more complex contexts\n- Integrate assessment as an ongoing process, not a terminal event\n\nUnlike the Gradual Release model, which is primarily a skill-transfer framework, the 5E model is designed for **c",
+      "file": "5e-model.md"
     },
     {
       "id": "direct-instruction",
       "name": "Direct Instruction",
-      "fullName": "Direct Instruction (DI)",
-      "tagline": "Structured, Fast-Paced",
-      "description": "Highly structured, teacher-led instruction with clear objectives, scripted teaching, and rapid-fire practice. Based on Siegfried Engelmann's research.",
-      "whenToUse": "New concepts that need clear explanation, foundational skills that require drill and practice, years F-3 for literacy and numeracy basics.",
-      "structure": [
-        { "phase": "Objective & Review", "duration": "5 min", "description": "State objective clearly. Review prerequisite skills." },
-        { "phase": "Presentation", "duration": "15-20 min", "description": "New content presented in small steps. Clear explanations, modelling, examples." },
-        { "phase": "Guided Practice", "duration": "15-20 min", "description": "Controlled practice with immediate feedback. Signal reinforcement." },
-        { "phase": "Independent Practice", "duration": "10-15 min", "description": "Solo practice with reducing support. Monitor and correct errors immediately." },
-        { "phase": "Closure", "duration": "5 min", "description": "Review what was learned, preview next lesson." }
-      ],
-      "ac9Aligned": true,
-      "aitslStandard": "3.1, 3.2",
-      "tags": ["Explicit", "Years F-3", "Literacy", "Numeracy", "Structured"]
+      "content": "# Direct Instruction\n\n## Definition and Purpose\n\nDirect Instruction (DI) is an explicit, teacher-led instructional approach in which the teacher models thinking and skill performance, then gradually releases responsibility to students through structured practice with immediate feedback. The defining feature is that the teacher is the primary source of information and demonstration; students learn through observing, imitating, and rehearsing with guidance before attempting independent work.\n\nDI is not simply \"teaching by telling.\" Effective direct instruction involves precise teacher modelling of expert thinking, strategic questioning, carefully scaffolded practice, and systematic error correction. It is among the most studied and evidence-backed instructional approaches in education.\n\nThe purpose of Direct Instruction is efficient, high-confidence skill transfer — moving students from novice to competent performance as quickly as possible through clear demonstration, scaffolded practic",
+      "file": "direct-instruction.md"
     },
     {
-      "id": "inquiry-based",
-      "name": "Inquiry-Based",
-      "fullName": "Inquiry-Based Learning",
-      "tagline": "Student-Driven Investigation",
-      "description": "Students drive learning through questions, investigation, and discovery. Teacher acts as facilitator and guide rather than primary information source.",
-      "whenToUse": "Open-ended projects, HASS and Science, Years 4-6, when students have sufficient prior knowledge to frame meaningful questions.",
-      "structure": [
-        { "phase": "Wonder", "duration": "10 min", "description": "Students generate questions from a stimulus. Teacher guides selection of inquiry question." },
-        { "phase": "Investigate", "duration": "30-40 min", "description": "Students research, collect data, experiment. Teacher facilitates and provides resources." },
-        { "phase": "Construct", "duration": "15-20 min", "description": "Students make meaning from data. Develop explanations, create products." },
-        { "phase": "Discuss", "duration": "10-15 min", "description": "Share findings. Debate, critique, refine understanding." },
-        { "phase": "Reflect", "duration": "5-10 min", "description": "Students reflect on learning process and product. Self and peer assessment." }
-      ],
-      "ac9Aligned": true,
-      "aitslStandard": "2.1, 3.1, 4.1",
-      "tags": ["Student-driven", "HASS", "Science", "Years 4-6", "Projects"]
+      "id": "gradual-release-model",
+      "name": "Gradual Release Model",
+      "content": "# Gradual Release of Responsibility (GRR) Model\n\n## Definition and Purpose\n\nThe Gradual Release of Responsibility (GRR) model is a structured instructional framework that systematically transfers the cognitive load of a task from teacher to student. Originally articulated by Pearson and Gallagher (1983), the model follows a deliberate sequence:\n\n**I Do** — The teacher demonstrates the skill or concept explicitly, thinking aloud to make invisible cognitive processes visible.\n\n**We Do** — The teacher and students engage with the task together. Responsibility is shared, and the teacher provides guided support while students begin to participate actively.\n\n**You Do** — Students work independently, applying the skill or concept without direct teacher support.\n\nThe model's central purpose is to ensure students are never thrown into independent work before they have the conceptual foundation and procedural knowledge to succeed. It reduces cognitive overload, builds confidence, and creates con",
+      "file": "gradual-release-model.md"
+    },
+    {
+      "id": "inquiry-learning",
+      "name": "Inquiry Learning",
+      "content": "# Inquiry-Based Learning\n\n## Definition and Purpose\n\nInquiry-based learning is an instructional approach in which students develop understanding by confronting genuinely puzzling questions, phenomena, or problems that they cannot resolve using their current knowledge. Rather than receiving information from a teacher, students design investigations, gather and interpret evidence, construct explanations, and communicate conclusions. The teacher acts as a guide and facilitator — posing productive questions, providing resources, and structuring opportunities for reflection, but not delivering the answer.\n\nInquiry-based learning exists on a continuum. At one end, it resembles structured discovery — the teacher frames the question and supplies most of the resources. At the other end, it approaches genuine student-directed research. The position on this continuum is determined by student readiness, time, curriculum constraints, and the nature of the content.\n\nThe core purpose of inquiry-based",
+      "file": "inquiry-learning.md"
+    },
+    {
+      "id": "wiep-model",
+      "name": "Wiep Model",
+      "content": "# The WIEP Model\n\n## Definition and Purpose\n\nWIEP is a structured writing framework developed within the Western Australian education context. The acronym stands for:\n\n- **W** — Whole class (shared construction)\n- **I** — Individual attempt (independent drafting)\n- **E** — Edit (review and revision)\n- **P** — Polish (final draft production)\n\nThe model is designed to support extended writing tasks by providing a clear production cycle: shared modelling, independent drafting, structured editing, and presentation-quality final output. It is used across all year levels and learning areas where sustained writing is required, though it is most deeply embedded in English and Humanities and Social Sciences classrooms in Western Australia.\n\nWIEP's strength lies in its integration of the social and individual dimensions of writing. Students do not draft in isolation — they begin with a shared constructed piece before attempting their own, and they return to a collaborative phase (editing) before",
+      "file": "wiep-model.md"
     }
   ],
   "meta": {
     "totalFrameworks": 5,
-    "lastUpdated": "2026-04-21T08:00:00Z"
+    "lastUpdated": "2026-04-21T12:30:19.117Z"
   }
 }
