@@ -106,6 +106,58 @@ export async function chatWithAgent(
   return { content, ac9Validation: validation };
 }
 
+/**
+ * Streaming version of chatWithAgent — yields response chunks for SSE streaming.
+ */
+export async function* chatWithAgentStream(
+  messages: ChatMessage[],
+  teacherProfile: TeacherContext | null
+): AsyncGenerator<string> {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    yield 'The OPENAI_API_KEY environment variable is not configured. Please set it to use PickleNickAI.';
+    return;
+  }
+
+  // 1. Classify message to determine domain skills
+  const domainSkills = getDomainSkills(messages);
+  const allSkills = [...CORE_SKILLS, ...domainSkills];
+
+  // 2. Load all relevant skills
+  const skillContents = await SkillLoader.load(allSkills);
+
+  // 3. Build system prompt from loaded skills
+  const systemPrompt = buildSystemPrompt({
+    teacherContext: teacherProfile || {},
+    skillContents,
+  });
+
+  // 4. Build OpenAI messages
+  const openAIMessages: OpenAI.Chat.ChatCompletionMessageParam[] = [
+    { role: 'system', content: systemPrompt },
+    ...messages.map(m => ({
+      role: m.role as 'user' | 'assistant' | 'system',
+      content: m.content,
+    })),
+  ];
+
+  // 5. Call GPT-4o Mini with streaming
+  const stream = await client.chat.completions.create({
+    model: 'gpt-4o-mini',
+    messages: openAIMessages,
+    temperature: 0.7,
+    max_tokens: 4000,
+    stream: true,
+  });
+
+  for await (const chunk of stream) {
+    const content = chunk.choices[0]?.delta?.content;
+    if (content) {
+      yield content;
+    }
+  }
+}
+
 // Legacy export for backwards compat
 export async function chatWithAgentLegacy(
   messages: { role: string; content: string }[],

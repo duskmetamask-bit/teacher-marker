@@ -10,6 +10,7 @@ import AssessmentsTab from "@/components/AssessmentsTab";
 import AdminTab from "@/components/AdminTab";
 import ProfileTab from "@/components/ProfileTab";
 import TeacherOnboarding from "@/components/TeacherOnboarding";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 type TabId = "chat" | "library" | "curriculum" | "frameworks" | "assessments" | "admin" | "profile";
 
@@ -141,19 +142,19 @@ export default function PickleNickAIPage() {
 
         <div style={{ display: activeTab === "chat" ? "flex" : "block", flexDirection: "column", minHeight: "100dvh" }}>
           {activeTab === "chat" ? (
-            <ChatTab teacherProfile={profile} sessionId={sessionId} />
+            <ErrorBoundary title="Chat error"><ChatTab teacherProfile={profile} sessionId={sessionId} /></ErrorBoundary>
           ) : activeTab === "library" ? (
-            <LibraryTab />
+            <ErrorBoundary title="Library error"><LibraryTab /></ErrorBoundary>
           ) : activeTab === "curriculum" ? (
-            <CurriculumTab />
+            <ErrorBoundary title="Curriculum error"><CurriculumTab /></ErrorBoundary>
           ) : activeTab === "frameworks" ? (
-            <FrameworksTab />
+            <ErrorBoundary title="Frameworks error"><FrameworksTab /></ErrorBoundary>
           ) : activeTab === "assessments" ? (
-            <AssessmentsTab />
+            <ErrorBoundary title="Assessments error"><AssessmentsTab /></ErrorBoundary>
           ) : activeTab === "admin" ? (
-            <AdminTab />
+            <ErrorBoundary title="Admin error"><AdminTab /></ErrorBoundary>
           ) : activeTab === "profile" ? (
-            <ProfileTab profile={profile} />
+            <ErrorBoundary title="Profile error"><ProfileTab profile={profile} /></ErrorBoundary>
           ) : null}
         </div>
       </main>
