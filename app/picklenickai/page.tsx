@@ -3,14 +3,15 @@
 import { useState, useEffect } from "react";
 import Sidebar from "@/components/Sidebar";
 import ChatTab from "@/components/ChatTab";
-import PlansTab from "@/components/PlansTab";
+import LibraryTab from "@/components/LibraryTab";
+import CurriculumTab from "@/components/CurriculumTab";
+import FrameworksTab from "@/components/FrameworksTab";
 import AssessmentsTab from "@/components/AssessmentsTab";
-import DocsTab from "@/components/DocsTab";
 import AdminTab from "@/components/AdminTab";
 import ProfileTab from "@/components/ProfileTab";
 import TeacherOnboarding from "@/components/TeacherOnboarding";
 
-type TabId = "chat" | "plans" | "assessments" | "docs" | "admin" | "profile";
+type TabId = "chat" | "library" | "curriculum" | "frameworks" | "assessments" | "admin" | "profile";
 
 interface TeacherProfile {
   name: string;
@@ -72,30 +73,34 @@ export default function PickleNickAIPage() {
 
   if (loading) {
     return (
-      <div style={{
-        background: "var(--background)",
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}>
+      <div
+        style={{
+          background: "#0d0f1a",
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <div style={{ textAlign: "center" }}>
-          <div style={{
-            background: "linear-gradient(135deg, var(--primary), #8B5CF6)",
-            width: 56,
-            height: 56,
-            borderRadius: 16,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: 16,
-            margin: "0 auto 16px",
-            color: "#fff",
-            fontWeight: 700,
-          }}>
-            AI
+          <div
+            style={{
+              background: "linear-gradient(135deg, #6366f1, #22d3ee)",
+              width: 56,
+              height: 56,
+              borderRadius: 16,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              margin: "0 auto 16px",
+              fontSize: 16,
+              color: "#fff",
+              fontWeight: 700,
+            }}
+          >
+            PN
           </div>
-          <p style={{ color: "var(--text-secondary)", fontSize: "0.875rem" }}>Loading PickleNickAI...</p>
+          <p style={{ color: "#99a3c7", fontSize: "0.875rem" }}>Loading PickleNickAI...</p>
         </div>
       </div>
     );
@@ -106,21 +111,25 @@ export default function PickleNickAIPage() {
   }
 
   return (
-    <div style={{
-      background: "var(--background)",
-      minHeight: "100vh",
-      display: "flex",
-    }}>
-      <Sidebar activeTab={activeTab} onTabChange={(tab) => setActiveTab(tab)} />
-
-      {/* Main content — offset by sidebar on desktop, padding on mobile */}
-      <main style={{
-        flex: 1,
-        marginLeft: 0,
-        overflowY: "auto",
+    <div
+      style={{
+        background: "#0d0f1a",
         minHeight: "100vh",
-        background: "var(--background)",
-      }} className="main-content">
+        display: "flex",
+      }}
+    >
+      <Sidebar activeTab={activeTab} onTabChange={(tab) => setActiveTab(tab as TabId)} />
+
+      <main
+        style={{
+          flex: 1,
+          marginLeft: 0,
+          overflowY: "auto",
+          minHeight: "100vh",
+          background: "#0d0f1a",
+        }}
+        className="main-content"
+      >
         <style>{`
           @media (min-width: 769px) {
             .main-content { margin-left: 240px; }
@@ -133,12 +142,14 @@ export default function PickleNickAIPage() {
         <div style={{ display: activeTab === "chat" ? "flex" : "block", flexDirection: "column", minHeight: "100dvh" }}>
           {activeTab === "chat" ? (
             <ChatTab teacherProfile={profile} sessionId={sessionId} />
-          ) : activeTab === "plans" ? (
-            <PlansTab sessionId={sessionId} />
+          ) : activeTab === "library" ? (
+            <LibraryTab />
+          ) : activeTab === "curriculum" ? (
+            <CurriculumTab />
+          ) : activeTab === "frameworks" ? (
+            <FrameworksTab />
           ) : activeTab === "assessments" ? (
             <AssessmentsTab />
-          ) : activeTab === "docs" ? (
-            <DocsTab />
           ) : activeTab === "admin" ? (
             <AdminTab />
           ) : activeTab === "profile" ? (
