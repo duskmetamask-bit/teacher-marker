@@ -155,16 +155,41 @@ export default function PickleNickAIPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  async function handleOnboardingComplete(p: TeacherProfile) {
-    try {
-      await fetch("/api/chat", {
+  // Re-check profile after onboarding wizard redirects back
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("onboarded") === "1") {
+      fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "saveProfile", sessionId, profile: p }),
-      });
-    } catch {}
-    setProfile(p);
-  }
+        body: JSON.stringify({ action: "checkOnboarding" }),
+      })
+        .then((r) => r.json())
+        .then((data) => {
+          if (data.onboarded) {
+            // Teacher is now onboarded — refetch full profile
+            fetch("/api/chat", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ sessionId: sessionStorage.getItem("picklenickai-session") || "", messages: [], checkProfile: true }),
+            })
+              .then((r) => r.json())
+              .then((data) => {
+                if (data.profile?.name) {
+                  setProfile({
+                    name: data.profile.name,
+                    yearLevels: data.profile.year_levels || [],
+                    subjects: data.profile.subjects || [],
+                  });
+                }
+              });
+            // Clean URL
+            window.history.replaceState({}, "", "/picklenickai");
+          }
+        })
+        .catch(() => {});
+    }
+  }, []);
 
   // NextAuth loading or unauthenticated — show sign in
   if (status === "loading" || (!session && !loading)) {
@@ -246,7 +271,7 @@ export default function PickleNickAIPage() {
   }
 
   if (!profile) {
-    return <TeacherOnboarding onComplete={handleOnboardingComplete} />;
+    return <TeacherOnboarding />;
   }
 
   return (
