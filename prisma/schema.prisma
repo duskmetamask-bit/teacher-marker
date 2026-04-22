@@ -79,6 +79,7 @@ model Generation {
   unitId          String?
   type            String
   prompt          String
+  output         String?  @db.Text
   outputTokens    Int?
   rating          Int?
   teacherFeedback String?
