@@ -1,6 +1,6 @@
 # PickleNickAI Build — Post-Mortem & Quality Review
 **Date**: 2026-04-21
-**Status**: Deployed at https://teacher-marker-nine.vercel.app
+**Status**: Deployed at https://pickle-nick-ai.vercel.app
 
 ---
 
@@ -102,7 +102,7 @@ vercel deploy --prod --token TOKEN --scope duskmetamask-bits-projects
 vercel env add OPENAI_API_KEY production
 
 # Check deployments
-vercel list teacher-marker --token TOKEN --scope duskmetamask-bits-projects
+vercel list pickle-nick-ai --token TOKEN --scope duskmetamask-bits-projects
 ```
 
 ---

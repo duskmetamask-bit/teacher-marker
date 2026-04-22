@@ -1130,7 +1130,7 @@ function AutoGraderTab() {
 
 // ─── Main App ─────────────────────────────────────────────────────
 
-export default function TeacherMarker() {
+export default function PickleNickAIHome() {
   const [tab, setTab] = useState<"planner" | "grader">("planner");
 
   return (
@@ -1151,7 +1151,7 @@ export default function TeacherMarker() {
             }}>
               📚
             </div>
-            <h1 className="text-2xl font-black">Teacher Marker</h1>
+            <h1 className="text-2xl font-black">PickleNickAI</h1>
           </div>
           <p style={{ color: C.text2 }} className="text-sm ml-1">WA Curriculum · Lesson Planner &amp; Auto-Grader</p>
         </div>
@@ -1231,7 +1231,7 @@ export default function TeacherMarker() {
 
         {/* Footer */}
         <footer style={{ color: C.text3 }} className="text-center text-xs py-8 mt-4">
-          Teacher Marker — $19/mo teacher plan · School license $99/mo
+          PickleNickAI — $19/mo teacher plan · School license $99/mo
         </footer>
       </main>
     </div>

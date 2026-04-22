@@ -1,0 +1,101 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Teacher {
+  id            String         @id @default(cuid())
+  email         String         @unique
+  name          String?
+  plan          String         @default("free")
+  image         String?
+  onboarded     Boolean        @default(false)
+  yearLevels    String[]
+  subjects      String[]
+  schoolId      String?
+  createdAt     DateTime       @default(now())
+  lastActiveAt  DateTime       @default(now())
+  accounts      Account[]
+  sessions      Session[]
+  units         Unit[]
+  generations   Generation[]
+  subscriptions Subscription[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              Teacher @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         Teacher  @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String   @unique
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Unit {
+  id        String   @id @default(cuid())
+  teacherId String
+  title     String
+  yearLevel String?
+  subject   String?
+  ac9Codes  String[]
+  content   Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  teacher    Teacher      @relation(fields: [teacherId], references: [id])
+  generations Generation[]
+}
+
+model Generation {
+  id              String   @id @default(cuid())
+  teacherId       String
+  unitId          String?
+  type            String
+  prompt          String
+  outputTokens    Int?
+  rating          Int?
+  teacherFeedback String?
+  ac9Codes        String[]
+  createdAt       DateTime @default(now())
+  teacher         Teacher  @relation(fields: [teacherId], references: [id])
+  unit            Unit?    @relation(fields: [unitId], references: [id])
+}
+
+model Subscription {
+  id                   String    @id @default(cuid())
+  teacherId            String
+  plan                 String
+  status               String
+  stripeSubscriptionId String?
+  stripePriceId        String?
+  currentPeriodEnd     DateTime?
+  createdAt            DateTime  @default(now())
+  teacher              Teacher   @relation(fields: [teacherId], references: [id])
+}

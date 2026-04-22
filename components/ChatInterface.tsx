@@ -18,6 +18,15 @@ interface ChatInterfaceProps {
   sessionId: string;
 }
 
+type StreamStage = "classifying" | "loading_skills" | "thinking" | "validating" | "done" | "";
+
+const STAGE_LABELS: Record<string, string> = {
+  classifying: "Understanding your question...",
+  loading_skills: "Loading teaching knowledge...",
+  thinking: "Building your response...",
+  validating: "Validating curriculum codes...",
+};
+
 const SUGGESTED_PROMPTS = [
   { label: "Year 4 Fractions lesson plan", prompt: "Give me a Year 4 Mathematics lesson plan on fractions using the WIEP framework." },
   { label: "Year 3 Narrative writing rubric", prompt: "Build an A-E rubric for Year 3 Narrative Writing assessment." },
@@ -94,6 +103,72 @@ function renderMarkdown(text: string): React.ReactNode {
   return <div>{elements}</div>;
 }
 
+function StageIndicator({ stage, content }: { stage: StreamStage; content: string }) {
+  if (!stage) return null;
+
+  const label = STAGE_LABELS[stage] || stage;
+  const dotColor = stage === "done" ? "var(--success)" : stage === "thinking" ? "var(--accent)" : "var(--primary)";
+
+  return (
+    <div style={{
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      padding: "6px 14px",
+      background: "var(--surface2)",
+      border: "1px solid var(--border)",
+      borderRadius: 20,
+      marginBottom: 8,
+      width: "fit-content",
+    }}>
+      <div style={{
+        width: 8,
+        height: 8,
+        borderRadius: "50%",
+        background: dotColor,
+        animation: stage === "thinking" ? "pulse 1.5s ease-in-out infinite" : "none",
+      }} />
+      <span style={{ color: "var(--text2)", fontSize: 12, fontWeight: 500 }}>
+        {label}
+      </span>
+      {content && stage === "thinking" && (
+        <span style={{ color: "var(--text3)", fontSize: 11 }}>— {content}</span>
+      )}
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.5; transform: scale(0.85); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+function AC9Badge({ codes }: { codes: string[] }) {
+  if (!codes || codes.length === 0) return null;
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }}>
+      {codes.map((code) => (
+        <span
+          key={code}
+          style={{
+            background: "var(--surface)",
+            color: "var(--accent)",
+            border: "1px solid var(--border)",
+            borderRadius: 6,
+            padding: "3px 8px",
+            fontSize: 11,
+            fontFamily: "monospace",
+            fontWeight: 600,
+          }}
+        >
+          {code}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 function TypingIndicator() {
   return (
     <div style={{ display: "flex", gap: 4, padding: "10px 14px", alignItems: "center" }}>
@@ -165,6 +240,10 @@ export default function ChatInterface({ teacherProfile, sessionId }: ChatInterfa
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [streamStage, setStreamStage] = useState<StreamStage>("");
+  const [streamContent, setStreamContent] = useState("");
+  const [ac9Codes, setAc9Codes] = useState<string[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -202,7 +281,7 @@ export default function ChatInterface({ teacherProfile, sessionId }: ChatInterfa
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages, streamStage]);
 
   async function handleSuggestedPrompt(prompt: string) {
     setInput(prompt);
@@ -213,11 +292,18 @@ export default function ChatInterface({ teacherProfile, sessionId }: ChatInterfa
     const text = (overrideText ?? input).trim();
     if (!text || loading) return;
 
+    // Clear previous state
+    setError(null);
+    setAc9Codes([]);
+    setStreamStage("");
+    setStreamContent("");
+
     const newMessages: Message[] = [...messages, { role: "user", content: text }];
     setMessages(newMessages);
     setInput("");
     setLoading(true);
 
+    // Add placeholder for assistant response
     setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
     const assistantIndex = newMessages.length;
 
@@ -225,18 +311,19 @@ export default function ChatInterface({ teacherProfile, sessionId }: ChatInterfa
       const controller = new AbortController();
       abortRef.current = controller;
 
-      const res = await fetch("/api/chat", {
+      const res = await fetch("/api/chat/stream", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          messages: newMessages.map((m) => ({ role: m.role, content: m.content })),
-          sessionId,
-          stream: true,
+          message: text,
+          teacherId: teacherProfile?.name ?? undefined,
         }),
         signal: controller.signal,
       });
 
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
 
       const reader = res.body?.getReader();
       const decoder = new TextDecoder();
@@ -249,28 +336,61 @@ export default function ChatInterface({ teacherProfile, sessionId }: ChatInterfa
 
           const chunk = decoder.decode(value, { stream: true });
           const lines = chunk.split("\n");
+
           for (const line of lines) {
-            if (line.startsWith("data: ")) {
-              try {
-                const parsed = JSON.parse(line.slice(6));
-                if (parsed === "[DONE]") break;
-                if (typeof parsed === "string") {
-                  fullResponse += parsed;
-                  setMessages((prev) => {
-                    const updated = [...prev];
-                    updated[assistantIndex] = { role: "assistant", content: fullResponse };
-                    return updated;
-                  });
+            if (!line.startsWith("data: ")) continue;
+            const data = line.slice(6).trim();
+            if (!data || data === "[DONE]") continue;
+
+            try {
+              const event = JSON.parse(data) as { stage: StreamStage; content?: string; ac9_codes?: string[] };
+
+              // Update stage indicator
+              if (event.stage) {
+                setStreamStage(event.stage);
+              }
+
+              if (event.stage === "done") {
+                // Final AC9 codes
+                if (event.ac9_codes && event.ac9_codes.length > 0) {
+                  setAc9Codes(event.ac9_codes);
                 }
-              } catch {}
+                // Verification warning (non-empty content on done stage)
+                if (event.content && event.content.startsWith("[VERIFY]")) {
+                  fullResponse += "\n\n" + event.content;
+                }
+              } else if (event.content) {
+                // Accumulate text content
+                fullResponse += event.content;
+              }
+
+              // Update message with accumulated content
+              setMessages((prev) => {
+                const updated = [...prev];
+                if (updated[assistantIndex]) {
+                  updated[assistantIndex] = { role: "assistant", content: fullResponse };
+                }
+                return updated;
+              });
+
+              // Track thinking content for stage display
+              if (event.stage === "thinking" && event.content) {
+                setStreamContent(event.content);
+              }
+            } catch {
+              // Skip malformed JSON
             }
           }
         }
       }
 
+      // Final state update
+      setStreamStage("done");
       setMessages((prev) => {
         const updated = [...prev];
-        updated[assistantIndex] = { role: "assistant", content: fullResponse };
+        if (updated[assistantIndex]) {
+          updated[assistantIndex] = { role: "assistant", content: fullResponse };
+        }
         localStorage.setItem(MSGS_KEY + sessionId, JSON.stringify(updated));
         return updated;
       });
@@ -278,11 +398,10 @@ export default function ChatInterface({ teacherProfile, sessionId }: ChatInterfa
       if (err instanceof Error && err.name === "AbortError") {
         // keep partial
       } else {
+        const errMsg = err instanceof Error ? err.message : "Something went wrong. Please try again.";
+        setError(errMsg);
+        // Remove the placeholder message on error
         setMessages((prev) => prev.slice(0, -1));
-        setMessages((prev) => [
-          ...prev,
-          { role: "assistant", content: `Error: ${err instanceof Error ? err.message : "Something went wrong. Please try again."}` },
-        ]);
       }
     } finally {
       setLoading(false);
@@ -294,6 +413,14 @@ export default function ChatInterface({ teacherProfile, sessionId }: ChatInterfa
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
+    }
+  }
+
+  function handleRetry() {
+    // Get last user message and retry
+    const lastUserMsg = messages.filter(m => m.role === "user").pop();
+    if (lastUserMsg) {
+      sendMessage(lastUserMsg.content);
     }
   }
 
@@ -404,23 +531,64 @@ export default function ChatInterface({ teacherProfile, sessionId }: ChatInterfa
                 {msg.role === "user" ? (
                   <p style={{ color: "#fff", fontSize: 13, margin: 0, whiteSpace: "pre-wrap" }}>{msg.content}</p>
                 ) : (
-                  renderMarkdown(msg.content)
+                  <div>
+                    {/* Show stage indicator while streaming */}
+                    {i === messages.length - 1 && loading && streamStage && (
+                      <StageIndicator stage={streamStage} content={streamContent} />
+                    )}
+                    {renderMarkdown(msg.content)}
+                    {/* Show AC9 codes on last assistant message after streaming done */}
+                    {i === messages.length - 1 && ac9Codes.length > 0 && (
+                      <AC9Badge codes={ac9Codes} />
+                    )}
+                  </div>
                 )}
               </div>
             </div>
           ))}
 
-          {loading && (
+          {loading && messages[messages.length - 1]?.role === "assistant" && !streamStage && (
             <div style={{ display: "flex", justifyContent: "flex-start" }}>
               <div style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: "18px 18px 18px 4px", boxShadow: "var(--shadow)" }}>
                 <TypingIndicator />
               </div>
             </div>
           )}
-
-          <div ref={messagesEndRef} />
         </div>
       </div>
+
+      {/* Error */}
+      {error && (
+        <div style={{
+          margin: "0 16px 8px",
+          padding: "10px 14px",
+          background: "var(--danger)",
+          color: "#fff",
+          borderRadius: 10,
+          fontSize: 13,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 8,
+        }}>
+          <span>{error}</span>
+          <button
+            onClick={handleRetry}
+            style={{
+              background: "rgba(255,255,255,0.2)",
+              border: "none",
+              borderRadius: 6,
+              padding: "4px 10px",
+              color: "#fff",
+              fontSize: 12,
+              cursor: "pointer",
+              whiteSpace: "nowrap",
+            }}
+          >
+            Retry
+          </button>
+        </div>
+      )}
 
       {/* Input */}
       <div style={{
@@ -437,6 +605,7 @@ export default function ChatInterface({ teacherProfile, sessionId }: ChatInterfa
             onKeyDown={handleKeyDown}
             placeholder="Ask for a lesson plan, rubric, unit, worksheet… (Enter to send)"
             rows={2}
+            disabled={loading}
             style={{
               flex: 1,
               background: "var(--surface)",
@@ -449,6 +618,7 @@ export default function ChatInterface({ teacherProfile, sessionId }: ChatInterfa
               outline: "none",
               lineHeight: 1.5,
               transition: "border-color var(--transition)",
+              opacity: loading ? 0.6 : 1,
             }}
             onFocus={(e) => { e.currentTarget.style.borderColor = "var(--primary)"; e.currentTarget.style.boxShadow = "0 0 0 3px rgba(37,99,235,0.12)"; }}
             onBlur={(e) => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.boxShadow = "none"; }}
