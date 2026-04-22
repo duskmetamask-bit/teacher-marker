@@ -1,16 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/auth";
+import { prisma, DEMO_TEACHER_ID } from "@/lib/auth";
 
 export async function GET() {
   try {
-    const session = await auth();
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const generations = await prisma.generation.findMany({
-      where: { teacherId: session.user.id },
+      where: { teacherId: DEMO_TEACHER_ID },
       orderBy: { createdAt: "asc" },
       select: {
         id: true,
@@ -31,11 +25,6 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    const session = await auth();
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const { type, prompt, output, ac9Codes } = await req.json();
 
     if (!type || !prompt) {
@@ -44,7 +33,7 @@ export async function POST(req: NextRequest) {
 
     const generation = await prisma.generation.create({
       data: {
-        teacherId: session.user.id,
+        teacherId: DEMO_TEACHER_ID,
         type,
         prompt,
         output: output ?? null,

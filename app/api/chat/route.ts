@@ -1,24 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/auth";
-import { chatWithAgentStream } from "@/lib/agent";
-
-function sse(data: unknown, event?: string): string {
-  return `${event ? `event: ${event}\n` : ""}data: ${typeof data === "string" ? data : JSON.stringify(data)}\n\n`;
-}
+import { prisma, DEMO_TEACHER_ID } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { messages, profile, action } = body;
 
-    // Auth check for all actions
-    const session = await auth();
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const teacherId = session.user.id;
+    const teacherId = DEMO_TEACHER_ID;
 
     // Handle profile check — return from Prisma
     if (action === "checkProfile") {
@@ -35,7 +23,7 @@ export async function POST(req: NextRequest) {
         where: { id: teacherId },
         create: {
           id: teacherId,
-          email: session.user.email ?? "",
+          email: "demo@picklenick.ai",
           name: profile.name,
           yearLevels: profile.yearLevels ?? [],
           subjects: profile.subjects ?? [],

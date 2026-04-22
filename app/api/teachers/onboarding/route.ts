@@ -1,14 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/auth";
+import { prisma, DEMO_TEACHER_ID } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
-    const session = await auth();
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const { yearLevels, subjects, schoolType } = await req.json();
 
     if (!yearLevels || !Array.isArray(yearLevels) || yearLevels.length === 0) {
@@ -19,7 +13,7 @@ export async function POST(req: NextRequest) {
     }
 
     const teacher = await prisma.teacher.update({
-      where: { id: session.user.id },
+      where: { id: DEMO_TEACHER_ID },
       data: {
         yearLevels,
         subjects,

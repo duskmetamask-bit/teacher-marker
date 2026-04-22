@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Providers from "@/components/Providers";
 
 export const metadata: Metadata = {
   title: "PickleNickAI — Teacher's AI Assistant",
@@ -20,9 +19,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Century+Gothic&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <Providers>
-          {children}
-        </Providers>
+        {children}
       </body>
     </html>
   );

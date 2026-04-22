@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { signOut } from "next-auth/react";
 import Button from "./ui/Button";
 import Badge from "./ui/Badge";
 import Card from "./ui/Card";
@@ -186,44 +185,6 @@ export default function ProfileTab({ profile }: ProfileTabProps) {
           <Button size="sm" variant="secondary">Upgrade</Button>
         </div>
       </Card>
-
-      {/* Sign out */}
-      <div style={{ marginTop: "2rem", paddingTop: "1.5rem", borderTop: `1px solid ${C.border}` }}>
-        <button
-          onClick={() => signOut({ callbackUrl: "/picklenickai" })}
-          style={{
-            width: "100%",
-            background: "transparent",
-            color: C.text3,
-            border: `1px solid ${C.border}`,
-            borderRadius: radius.md,
-            padding: "10px 16px",
-            fontSize: 13,
-            fontWeight: 600,
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 8,
-            transition: "all 0.15s ease",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.color = C.danger;
-            e.currentTarget.style.borderColor = `${C.danger}50`;
-            e.currentTarget.style.background = `${C.danger}10`;
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.color = C.text3;
-            e.currentTarget.style.borderColor = C.border;
-            e.currentTarget.style.background = "transparent";
-          }}
-        >
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-            <path d="M6 14H3a1 1 0 01-1-1V3a1 1 0 011-1h3M11 11l3-3-3-3M5 8h9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          Sign out
-        </button>
-      </div>
 
       {editMode && (
         <div style={{ display: "flex", gap: 8, marginTop: "1rem", justifyContent: "flex-end" }}>

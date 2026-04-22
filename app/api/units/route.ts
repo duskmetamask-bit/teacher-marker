@@ -1,16 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/auth";
+import { prisma, DEMO_TEACHER_ID } from "@/lib/auth";
 
 export async function GET() {
   try {
-    const session = await auth();
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const units = await prisma.unit.findMany({
-      where: { teacherId: session.user.id },
+      where: { teacherId: DEMO_TEACHER_ID },
       orderBy: { createdAt: "desc" },
       select: {
         id: true,
@@ -31,11 +25,6 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    const session = await auth();
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const { title, yearLevel, subject, ac9Codes, content } = await req.json();
 
     if (!title?.trim()) {
@@ -44,7 +33,7 @@ export async function POST(req: NextRequest) {
 
     const unit = await prisma.unit.create({
       data: {
-        teacherId: session.user.id,
+        teacherId: DEMO_TEACHER_ID,
         title: title.trim(),
         yearLevel: yearLevel ?? null,
         subject: subject ?? null,

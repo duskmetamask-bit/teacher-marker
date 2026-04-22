@@ -1,17 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/auth";
+import { prisma, DEMO_TEACHER_ID } from "@/lib/auth";
 
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await auth();
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const { id } = await params;
 
     const unit = await prisma.unit.findUnique({
@@ -32,7 +26,7 @@ export async function GET(
       return NextResponse.json({ error: "Unit not found" }, { status: 404 });
     }
 
-    if (unit.teacherId !== session.user.id) {
+    if (unit.teacherId !== DEMO_TEACHER_ID) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
@@ -48,11 +42,6 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await auth();
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const { id } = await params;
 
     const unit = await prisma.unit.findUnique({
@@ -64,7 +53,7 @@ export async function DELETE(
       return NextResponse.json({ error: "Unit not found" }, { status: 404 });
     }
 
-    if (unit.teacherId !== session.user.id) {
+    if (unit.teacherId !== DEMO_TEACHER_ID) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 

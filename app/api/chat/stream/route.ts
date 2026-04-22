@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
 import { classifyMessage, CORE_SKILLS } from "@/lib/skills/registry";
 import { SkillLoader } from "@/lib/skills/loader";
 import { buildSystemPrompt, TeacherContext } from "@/lib/skills/builder";
 import { validateFromText } from "@/lib/curriculum/validator";
-import { prisma } from "@/lib/auth";
+import { prisma, DEMO_TEACHER_ID } from "@/lib/auth";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_MODEL = process.env.LLM_MODEL || "gpt-4o-mini";
@@ -24,13 +23,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "OPENAI_API_KEY not configured" }, { status: 500 });
   }
 
-  // Auth check
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const teacherId = session.user.id;
+  const teacherId = DEMO_TEACHER_ID;
 
   try {
     const body = await req.json();
