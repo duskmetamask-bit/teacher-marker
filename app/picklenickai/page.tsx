@@ -71,10 +71,10 @@ export default function PickleNickAIPage() {
             })
               .then((r) => r.json())
               .then((data) => {
-                if (data.profile?.name) {
+                if (data.profile?.yearLevels?.length > 0 || data.profile?.subjects?.length > 0) {
                   setProfile({
-                    name: data.profile.name,
-                    yearLevels: data.profile.year_levels || [],
+                    name: data.profile.name || "",
+                    yearLevels: data.profile.yearLevels || [],
                     subjects: data.profile.subjects || [],
                   });
                 }
