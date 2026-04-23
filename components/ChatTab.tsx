@@ -797,8 +797,8 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
                   const parsed = JSON.parse(line.slice(6));
                   if (parsed === "[DONE]") break;
 
-                  // Token
-                  if (parsed.type === "token" && typeof parsed.content === "string") {
+                  // Token — server sends {stage: "thinking", content: "..."}
+                  if (parsed.stage === "thinking" && typeof parsed.content === "string") {
                     fullResponse += parsed.content;
                     setStreamingContent(fullResponse);
                     setMessages((prev) => {
@@ -811,45 +811,21 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
                     });
                   }
 
-                  // AC9 codes
-                  if (parsed.type === "ac9" && Array.isArray(parsed.codes)) {
-                    setAc9Codes((prev) => [...new Set([...prev, ...parsed.codes])]);
+                  // AC9 codes — server sends {stage: "done", ac9_codes: [...]}
+                  if (parsed.stage === "done" && Array.isArray(parsed.ac9_codes)) {
+                    setAc9Codes((prev) => [...new Set([...prev, ...parsed.ac9_codes])]);
                     setMessages((prev) => {
                       const updated = [...prev];
                       const idx = updated.findIndex((m) => m.id === assistantId);
                       if (idx !== -1) {
-                        updated[idx] = { ...updated[idx], ac9Codes: [...new Set([...(updated[idx].ac9Codes || []), ...parsed.codes])] };
+                        updated[idx] = { ...updated[idx], ac9Codes: [...new Set([...(updated[idx].ac9Codes || []), ...parsed.ac9_codes])] };
                       }
                       return updated;
                     });
                   }
 
-                  // AITSL standards
-                  if (parsed.type === "aitsl" && Array.isArray(parsed.standards)) {
-                    setMessages((prev) => {
-                      const updated = [...prev];
-                      const idx = updated.findIndex((m) => m.id === assistantId);
-                      if (idx !== -1) {
-                        updated[idx] = { ...updated[idx], aitslStandards: [...new Set([...(updated[idx].aitslStandards || []), ...parsed.standards])] };
-                      }
-                      return updated;
-                    });
-                  }
-
-                  // Guardrail
-                  if (parsed.type === "guardrail") {
-                    setMessages((prev) => {
-                      const updated = [...prev];
-                      const idx = updated.findIndex((m) => m.id === assistantId);
-                      if (idx !== -1) {
-                        updated[idx] = { ...updated[idx], showGuardrail: true };
-                      }
-                      return updated;
-                    });
-                  }
-
-                  // Done
-                  if (parsed.type === "done") {
+                  // Done — server sends {stage: "done", content: "", ac9_codes: [...]}
+                  if (parsed.stage === "done") {
                     isStreamingRef.current = false;
                     setStreamingContent("");
 
