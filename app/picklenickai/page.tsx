@@ -35,9 +35,9 @@ export default function PickleNickAIPage() {
     fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionId: id, messages: [], checkProfile: true }),
+      body: JSON.stringify({ action: "checkProfile" }),
     })
-      .then((r) => r.json())
+      .then((r) => r.ok ? r.json() : { profile: null })
       .then((data) => {
         if (data.profile?.yearLevels?.length > 0 || data.profile?.subjects?.length > 0) {
           setProfile({
@@ -58,32 +58,23 @@ export default function PickleNickAIPage() {
       fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "checkOnboarding" }),
+        body: JSON.stringify({ action: "checkProfile" }),
       })
-        .then((r) => r.json())
+        .then((r) => r.ok ? r.json() : { profile: null })
         .then((data) => {
-          if (data.onboarded) {
-            // Teacher is now onboarded — refetch full profile
-            fetch("/api/chat", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ sessionId: sessionStorage.getItem("picklenickai-session") || "", messages: [], checkProfile: true }),
-            })
-              .then((r) => r.json())
-              .then((data) => {
-                if (data.profile?.yearLevels?.length > 0 || data.profile?.subjects?.length > 0) {
-                  setProfile({
-                    name: data.profile.name || "",
-                    yearLevels: data.profile.yearLevels || [],
-                    subjects: data.profile.subjects || [],
-                  });
-                }
-              });
-            // Clean URL
-            window.history.replaceState({}, "", "/picklenickai");
+          if (data.profile?.yearLevels?.length > 0 || data.profile?.subjects?.length > 0) {
+            setProfile({
+              name: data.profile.name || "",
+              yearLevels: data.profile.yearLevels || [],
+              subjects: data.profile.subjects || [],
+            });
           }
         })
-        .catch(() => {});
+        .catch(() => {})
+        .finally(() => {
+          window.history.replaceState({}, "", "/picklenickai");
+          setLoading(false);
+        });
     }
   }, []);
 
