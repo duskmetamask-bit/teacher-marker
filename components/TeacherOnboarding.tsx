@@ -131,7 +131,7 @@ export default function TeacherOnboarding() {
       const res = await fetch("/api/teachers/onboarding", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ yearLevels: selectedYears, subjects: selectedSubjects, schoolType }),
+        body: JSON.stringify({ name: "", yearLevels: selectedYears, subjects: selectedSubjects, schoolType }),
       });
       if (!res.ok) {
         const data = await res.json();

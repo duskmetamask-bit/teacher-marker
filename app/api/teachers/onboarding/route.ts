@@ -3,7 +3,7 @@ import { prisma, DEMO_TEACHER_ID } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
-    const { yearLevels, subjects, schoolType } = await req.json();
+    const { name, yearLevels, subjects, schoolType } = await req.json();
 
     if (!yearLevels || !Array.isArray(yearLevels) || yearLevels.length === 0) {
       return NextResponse.json({ error: "At least one year level is required" }, { status: 400 });
@@ -12,9 +12,19 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "At least one subject is required" }, { status: 400 });
     }
 
-    const teacher = await prisma.teacher.update({
+    const teacher = await prisma.teacher.upsert({
       where: { id: DEMO_TEACHER_ID },
-      data: {
+      create: {
+        id: DEMO_TEACHER_ID,
+        email: "demo@picklenick.ai",
+        name: name ?? "",
+        yearLevels,
+        subjects,
+        schoolId: schoolType ?? null,
+        onboarded: true,
+      },
+      update: {
+        name: name ?? "",
         yearLevels,
         subjects,
         schoolId: schoolType ?? null,

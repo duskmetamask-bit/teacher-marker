@@ -770,15 +770,10 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
         const controller = new AbortController();
         abortRef.current = controller;
 
-        const res = await fetch("/api/chat", {
+        const res = await fetch("/api/chat/stream", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            messages: newMessages.map((m) => ({ role: m.role, content: m.content })),
-            sessionId,
-            stream: true,
-            mock: true,
-          }),
+          body: JSON.stringify({ message: text }),
           signal: controller.signal,
         });
 
