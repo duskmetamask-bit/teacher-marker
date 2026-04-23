@@ -24,13 +24,13 @@ export async function POST(req: NextRequest) {
         create: {
           id: teacherId,
           email: "demo@picklenick.ai",
-          name: profile.name,
-          yearLevels: profile.yearLevels ?? [],
-          subjects: profile.subjects ?? [],
+          name: profile?.name ?? "",
+          yearLevels: profile?.yearLevels ?? [],
+          subjects: profile?.subjects ?? [],
           onboarded: true,
         },
         update: {
-          name: profile.name,
+          name: profile?.name ?? "",
           yearLevels: profile.yearLevels ?? [],
           subjects: profile.subjects ?? [],
           onboarded: true,
