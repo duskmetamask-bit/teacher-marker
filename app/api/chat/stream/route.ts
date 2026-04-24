@@ -1,12 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { classifyMessage, CORE_SKILLS } from "@/lib/skills/registry";
-import { SkillLoader } from "@/lib/skills/loader";
-import { buildSystemPrompt, TeacherContext } from "@/lib/skills/builder";
+import { chatWithAgentStream } from "@/lib/agent";
 import { validateFromText } from "@/lib/curriculum/validator";
 import { prisma, DEMO_TEACHER_ID } from "@/lib/auth";
-
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const OPENAI_MODEL = process.env.LLM_MODEL || "gpt-4o-mini";
+import { TeacherContext } from "@/lib/skills/builder";
 
 interface StreamEvent {
   stage: "classifying" | "loading_skills" | "thinking" | "validating" | "done";
@@ -19,8 +15,14 @@ function sse(event: StreamEvent): string {
 }
 
 export async function POST(req: NextRequest) {
-  if (!OPENAI_API_KEY) {
-    return NextResponse.json({ error: "OPENAI_API_KEY not configured" }, { status: 500 });
+  const OPENCLAW_GATEWAY_URL = process.env.OPENCLAW_GATEWAY_URL;
+  const OPENCLAW_GATEWAY_TOKEN = process.env.OPENCLAW_GATEWAY_TOKEN;
+
+  if (!OPENCLAW_GATEWAY_URL || !OPENCLAW_GATEWAY_TOKEN) {
+    return NextResponse.json(
+      { error: "OpenClaw gateway not configured. Set OPENCLAW_GATEWAY_URL and OPENCLAW_GATEWAY_TOKEN." },
+      { status: 500 }
+    );
   }
 
   const teacherId = DEMO_TEACHER_ID;
@@ -33,115 +35,37 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "message is required" }, { status: 400 });
     }
 
+    // Load teacher profile for context injection
+    const teacher = await prisma.teacher.findUnique({
+      where: { id: teacherId },
+      select: { name: true, yearLevels: true, subjects: true },
+    });
+
+    const teacherContext: TeacherContext = {
+      name: teacher?.name ?? undefined,
+      yearLevels: teacher?.yearLevels ?? [],
+      subjects: teacher?.subjects ?? [],
+    };
+
     const encoder = new TextEncoder();
 
     const stream = new ReadableStream({
       async start(controller) {
         try {
-          // ─── Stage 1: Classifying ───────────────────────────────────
-          controller.enqueue(encoder.encode(sse({ stage: "classifying", content: "Understanding your question..." })));
+          controller.enqueue(encoder.encode(sse({ stage: "thinking", content: "Connecting to PickleNickAI..." })));
 
-          const domainSkills = classifyMessage(message);
-          const allSkills = [...CORE_SKILLS, ...domainSkills];
+          const messages = [
+            { role: "user" as const, content: message },
+          ];
 
-          controller.enqueue(encoder.encode(sse({
-            stage: "classifying",
-            content: `Identified ${domainSkills.length > 0 ? `${domainSkills.length} domain skill${domainSkills.length > 1 ? "s" : ""}` : "core knowledge"}`,
-          })));
-
-          // ─── Stage 2: Loading Skills ─────────────────────────────────
-          controller.enqueue(encoder.encode(sse({ stage: "loading_skills", content: "Loading teaching knowledge..." })));
-
-          const skillContents = await SkillLoader.load(allSkills);
-          const loadedCount = skillContents.filter(c => c.length > 0).length;
-          controller.enqueue(encoder.encode(sse({
-            stage: "loading_skills",
-            content: `Loaded ${loadedCount} skill${loadedCount !== 1 ? "s" : ""}`,
-          })));
-
-          // ─── Stage 3: Thinking (GPT-4o Mini) ─────────────────────────
-          controller.enqueue(encoder.encode(sse({ stage: "thinking", content: "Building your response..." })));
-
-          // Load teacher profile from database
-          const teacher = await prisma.teacher.findUnique({
-            where: { id: teacherId },
-            select: { name: true, yearLevels: true, subjects: true },
-          });
-
-          const teacherContext: TeacherContext = {
-            name: teacher?.name ?? undefined,
-            yearLevels: teacher?.yearLevels ?? [],
-            subjects: teacher?.subjects ?? [],
-          };
-
-          const systemPrompt = buildSystemPrompt({
-            teacherContext,
-            skillContents: skillContents.filter(c => c.length > 0),
-          });
-
-          // Collect the full response for AC9 validation
           let fullContent = "";
 
-          const gptResponse = await fetch("https://api.openai.com/v1/chat/completions", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${OPENAI_API_KEY}`,
-            },
-            body: JSON.stringify({
-              model: OPENAI_MODEL,
-              messages: [
-                { role: "system", content: systemPrompt },
-                { role: "user", content: message },
-              ],
-              stream: true,
-            }),
-          });
-
-          if (!gptResponse.ok) {
-            controller.enqueue(encoder.encode(sse({ stage: "done", content: "Error: GPT API returned " + gptResponse.status })));
-            controller.close();
-            return;
+          for await (const chunk of chatWithAgentStream(messages, teacherContext)) {
+            fullContent += chunk;
+            controller.enqueue(encoder.encode(sse({ stage: "thinking", content: chunk })));
           }
 
-          if (!gptResponse.body) {
-            controller.enqueue(encoder.encode(sse({ stage: "done", content: "Error: Empty response from GPT" })));
-            controller.close();
-            return;
-          }
-
-          const reader = gptResponse.body.getReader();
-          const decoder = new TextDecoder();
-          let buffer = "";
-
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-
-            buffer += decoder.decode(value, { stream: true });
-            const lines = buffer.split("\n");
-            buffer = lines.pop() || "";
-
-            for (const line of lines) {
-              if (!line.startsWith("data: ")) continue;
-              const data = line.slice(6).trim();
-              if (data === "[DONE]") continue;
-              if (data === "") continue;
-
-              try {
-                const parsed = JSON.parse(data);
-                const content = parsed.choices?.[0]?.delta?.content;
-                if (content) {
-                  fullContent += content;
-                  controller.enqueue(encoder.encode(sse({ stage: "thinking", content })));
-                }
-              } catch {
-                // Skip malformed JSON
-              }
-            }
-          }
-
-          // ─── Stage 4: Validating AC9 codes ───────────────────────────
+          // Stage 2: Validating AC9 codes
           controller.enqueue(encoder.encode(sse({ stage: "validating", content: "Validating curriculum codes..." })));
 
           const { valid, invalid } = validateFromText(fullContent);
@@ -165,7 +89,6 @@ export async function POST(req: NextRequest) {
             ac9_codes: valid,
           })));
 
-          // If there were invalid codes, send a warning
           if (invalid.length > 0) {
             controller.enqueue(encoder.encode(sse({
               stage: "done",

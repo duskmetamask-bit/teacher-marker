@@ -138,7 +138,7 @@ export default function TeacherOnboarding() {
         throw new Error(data.error ?? "Onboarding failed");
       }
       setStep(4); // Done step
-      setTimeout(() => { window.location.href = "/picklenickai"; }, 1200);
+      setTimeout(() => { router.push("/picklenickai?onboarded=1"); }, 1500);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Something went wrong");
       setSubmitting(false);

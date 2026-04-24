@@ -68,11 +68,13 @@ export default function PickleNickAIPage() {
               yearLevels: data.profile.yearLevels || [],
               subjects: data.profile.subjects || [],
             });
+            window.history.replaceState({}, "", "/picklenickai");
           }
         })
-        .catch(() => {})
+        .catch(() => {
+          // Profile fetch failed — stay on current state, don't clear URL
+        })
         .finally(() => {
-          window.history.replaceState({}, "", "/picklenickai");
           setLoading(false);
         });
     }
