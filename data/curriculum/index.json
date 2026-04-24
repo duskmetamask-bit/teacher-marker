@@ -1,20 +1,74 @@
-{
-  "subjects": [
-    {
-      "id": "english-f-6",
-      "name": "English F 6",
-      "content": "# Australian Curriculum Version 9: English Foundation to Year 6\n## Complete Reference Document\n\n---\n\n## 1. Curriculum Overview\n\n### 1.1 Structure\n\nThe Australian Curriculum v9 (AC v9) for English is structured around three strands:\n\n| Strand | Abbreviation | Focus |\n|--------|-------------|-------|\n| Language | LA | Understanding the English language system -- how words and sentences work |\n| Literature | LE | Engaging with, analysing, and creating literary texts |\n| Literacy | LY | Applying English knowledge to comprehending and composing texts across all learning areas |\n\n**Content Descriptor Code Format:** `AC9EXXZYY`\n- `AC9` = Australian Curriculum Version 9\n- `E` = English\n- `XX` = Strand identifier\n  - `FLA`, `1LA`, `2LA` etc. = Language (Foundation, Year 1, Year 2...)\n  - `FLE`, `1LE`, `2LE` etc. = Literature\n  - `FLY`, `1LY`, `2LY` etc. = Literacy\n- `YY` = Descriptor number (two digits)\n\n**Language Modes** (integrated within all strands):\n- Listening, Speaking, Reading, Viewing",
-      "file": "english-f-6.md"
-    },
-    {
-      "id": "maths-f-6",
-      "name": "Maths F 6",
-      "content": "# Australian Curriculum v9 — Mathematics F–6\n**Subject:** Mathematics | **Scope:** Foundation to Year 6\n**Saved:** 2026-04-20 | **Status:** BUILDING\n\n---\n\n## STRUCTURE OVERVIEW\n\nThe Australian Curriculum v9 Mathematics is organised into six strands:\n- **Number** (AC9N) — Counting, place value, operations, mental computation\n- **Algebra** (AC9A) — Patterns, relationships, equations\n- **Measurement** (AC9M) — Length, area, volume, mass, time, money\n- **Space** (AC9S) — 2D shapes, 3D objects, geometric reasoning\n- **Statistics** (AC9ST) — Data collection, representation, analysis\n- **Probability** (AC9P) — Chance experiments, likelihood\n\nIntegrated with:\n- **General Capabilities:** Literacy, Numeracy, ICT Capability, Critical and Creative Thinking, Personal and Social Capability, Ethical Understanding, Intercultural Understanding\n- **Cross-Curriculum Priorities:** Sustainability, Aboriginal and Torres Strait Islander Histories and Cultures, Asia and Australia's Engagement with Asia\n\n---\n\n",
-      "file": "maths-f-6.md"
-    }
-  ],
-  "meta": {
-    "totalSubjects": 2,
-    "lastUpdated": "2026-04-21T12:30:19.104Z"
+[
+  {
+    "id": "english-f-6",
+    "name": "English",
+    "shortName": "English",
+    "strands": ["Language", "Literature", "Literacy"],
+    "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
+    "description": "The Australian Curriculum v9 English F-6 covers Language, Literature and Literacy across Foundation to Year 6, developing listening, speaking, reading, viewing and writing skills through diverse texts.",
+    "crossCurriculum": ["Aboriginal and Torres Strait Islander Histories and Cultures", "Sustainability"]
+  },
+  {
+    "id": "maths-f-6",
+    "name": "Mathematics",
+    "shortName": "Maths",
+    "strands": ["Number", "Algebra", "Measurement", "Geometry", "Statistics", "Probability"],
+    "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
+    "description": "The Australian Curriculum v9 Mathematics F-6 covers Number, Algebra, Measurement, Space, Statistics and Probability. Develops fluency, reasoning and problem-solving across six strands from Foundation to Year 6.",
+    "crossCurriculum": ["Sustainability", "Aboriginal and Torres Strait Islander Histories and Cultures"]
+  },
+  {
+    "id": "science-f-6",
+    "name": "Science",
+    "shortName": "Science",
+    "strands": ["Biological Sciences", "Chemical Sciences", "Earth & Space Sciences", "Physical Sciences"],
+    "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
+    "description": "The Australian Curriculum v9 Science F-6 explores Biological, Chemical, Earth and Space, and Physical sciences. Students develop inquiry skills and understanding of the natural world through hands-on investigation.",
+    "crossCurriculum": ["Sustainability", "Aboriginal and Torres Strait Islander Histories and Cultures"]
+  },
+  {
+    "id": "hass-f-6",
+    "name": "HASS",
+    "shortName": "HASS",
+    "strands": ["History", "Geography", "Civics & Citizenship", "Economics & Business"],
+    "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
+    "description": "The Australian Curriculum v9 HASS F-6 covers History, Geography, Civics and Citizenship, and Economics and Business. Develops understanding of society, environment and civic participation.",
+    "crossCurriculum": ["Aboriginal and Torres Strait Islander Histories and Cultures", "Sustainability"]
+  },
+  {
+    "id": "technologies-f-6",
+    "name": "Technologies",
+    "shortName": "Technologies",
+    "strands": ["Digital Technologies", "Design & Technologies"],
+    "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
+    "description": "The Australian Curriculum v9 Technologies F-6 covers Digital Technologies and Design & Technologies. Students learn to create digital solutions and design technologies for real-world problems.",
+    "crossCurriculum": ["Sustainability"]
+  },
+  {
+    "id": "the-arts-f-6",
+    "name": "The Arts",
+    "shortName": "The Arts",
+    "strands": ["Visual Arts", "Music", "Drama", "Dance"],
+    "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
+    "description": "The Australian Curriculum v9 The Arts F-6 covers Visual Arts, Music, Drama and Dance. Students develop creativity, expression and artistic skills across the four arts disciplines.",
+    "crossCurriculum": ["Aboriginal and Torres Strait Islander Histories and Cultures"]
+  },
+  {
+    "id": "health-pe-f-6",
+    "name": "Health & Physical Education",
+    "shortName": "HPE",
+    "strands": ["Health", "Physical Education"],
+    "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
+    "description": "The Australian Curriculum v9 HPE F-6 covers Health and Physical Education. Students develop knowledge, skills and attitudes for healthy, active lives and positive wellbeing.",
+    "crossCurriculum": ["Sustainability"]
+  },
+  {
+    "id": "languages-f-6",
+    "name": "Languages",
+    "shortName": "Languages",
+    "strands": ["Italian", "Japanese", "Mandarin", "Indonesian"],
+    "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
+    "description": "The Australian Curriculum v9 Languages F-6 covers Italian, Japanese, Mandarin and Indonesian. Students develop communicative competence and intercultural understanding in the target language.",
+    "crossCurriculum": ["Asia and Australia's Engagement with Asia"]
   }
-}
+]

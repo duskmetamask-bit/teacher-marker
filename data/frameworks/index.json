@@ -1,38 +1,86 @@
-{
-  "frameworks": [
-    {
-      "id": "5e-model",
-      "name": "5e Model",
-      "content": "# The 5E Instructional Model\n\n## Definition and Purpose\n\nThe 5E model is an inquiry-based instructional framework that guides students through five sequential phases of learning: **Engage, Explore, Explain, Elaborate, and Evaluate**. Developed by Roger Bybee and colleagues at BSCS (Biological Sciences Curriculum Study) in 1987, the model is grounded in constructivist learning theory — the principle that learners actively construct meaning from experience rather than passively receive information.\n\nThe 5E model is designed to:\n\n- Activate and challenge prior knowledge before instruction\n- Allow students to construct conceptual understanding through guided experience\n- Provide a structured space for teacher explanation that builds on student exploration\n- Extend understanding into new or more complex contexts\n- Integrate assessment as an ongoing process, not a terminal event\n\nUnlike the Gradual Release model, which is primarily a skill-transfer framework, the 5E model is designed for **c",
-      "file": "5e-model.md"
-    },
-    {
-      "id": "direct-instruction",
-      "name": "Direct Instruction",
-      "content": "# Direct Instruction\n\n## Definition and Purpose\n\nDirect Instruction (DI) is an explicit, teacher-led instructional approach in which the teacher models thinking and skill performance, then gradually releases responsibility to students through structured practice with immediate feedback. The defining feature is that the teacher is the primary source of information and demonstration; students learn through observing, imitating, and rehearsing with guidance before attempting independent work.\n\nDI is not simply \"teaching by telling.\" Effective direct instruction involves precise teacher modelling of expert thinking, strategic questioning, carefully scaffolded practice, and systematic error correction. It is among the most studied and evidence-backed instructional approaches in education.\n\nThe purpose of Direct Instruction is efficient, high-confidence skill transfer — moving students from novice to competent performance as quickly as possible through clear demonstration, scaffolded practic",
-      "file": "direct-instruction.md"
-    },
-    {
-      "id": "gradual-release-model",
-      "name": "Gradual Release Model",
-      "content": "# Gradual Release of Responsibility (GRR) Model\n\n## Definition and Purpose\n\nThe Gradual Release of Responsibility (GRR) model is a structured instructional framework that systematically transfers the cognitive load of a task from teacher to student. Originally articulated by Pearson and Gallagher (1983), the model follows a deliberate sequence:\n\n**I Do** — The teacher demonstrates the skill or concept explicitly, thinking aloud to make invisible cognitive processes visible.\n\n**We Do** — The teacher and students engage with the task together. Responsibility is shared, and the teacher provides guided support while students begin to participate actively.\n\n**You Do** — Students work independently, applying the skill or concept without direct teacher support.\n\nThe model's central purpose is to ensure students are never thrown into independent work before they have the conceptual foundation and procedural knowledge to succeed. It reduces cognitive overload, builds confidence, and creates con",
-      "file": "gradual-release-model.md"
-    },
-    {
-      "id": "inquiry-learning",
-      "name": "Inquiry Learning",
-      "content": "# Inquiry-Based Learning\n\n## Definition and Purpose\n\nInquiry-based learning is an instructional approach in which students develop understanding by confronting genuinely puzzling questions, phenomena, or problems that they cannot resolve using their current knowledge. Rather than receiving information from a teacher, students design investigations, gather and interpret evidence, construct explanations, and communicate conclusions. The teacher acts as a guide and facilitator — posing productive questions, providing resources, and structuring opportunities for reflection, but not delivering the answer.\n\nInquiry-based learning exists on a continuum. At one end, it resembles structured discovery — the teacher frames the question and supplies most of the resources. At the other end, it approaches genuine student-directed research. The position on this continuum is determined by student readiness, time, curriculum constraints, and the nature of the content.\n\nThe core purpose of inquiry-based",
-      "file": "inquiry-learning.md"
-    },
-    {
-      "id": "wiep-model",
-      "name": "Wiep Model",
-      "content": "# The WIEP Model\n\n## Definition and Purpose\n\nWIEP is a structured writing framework developed within the Western Australian education context. The acronym stands for:\n\n- **W** — Whole class (shared construction)\n- **I** — Individual attempt (independent drafting)\n- **E** — Edit (review and revision)\n- **P** — Polish (final draft production)\n\nThe model is designed to support extended writing tasks by providing a clear production cycle: shared modelling, independent drafting, structured editing, and presentation-quality final output. It is used across all year levels and learning areas where sustained writing is required, though it is most deeply embedded in English and Humanities and Social Sciences classrooms in Western Australia.\n\nWIEP's strength lies in its integration of the social and individual dimensions of writing. Students do not draft in isolation — they begin with a shared constructed piece before attempting their own, and they return to a collaborative phase (editing) before",
-      "file": "wiep-model.md"
-    }
-  ],
-  "meta": {
-    "totalFrameworks": 5,
-    "lastUpdated": "2026-04-21T12:30:19.117Z"
+[
+  {
+    "id": "wiep-model",
+    "name": "WIEP",
+    "fullName": "WIEP Writing Framework",
+    "tagline": "Whole class → Individual → Edit → Polish",
+    "description": "WIEP is a structured writing framework developed within the Western Australian education context. The acronym stands for Whole class (shared construction), Individual attempt (independent drafting), Edit (review and revision), and Polish (final draft production). The model supports extended writing tasks through a clear production cycle.",
+    "whenToUse": "Use WIEP for any extended writing task from Year 1-6 — narratives, persuasive texts, reports, and poetry. It is most effective when students have already been introduced to the genre through shared writing. Best suited for English and Humanities subjects where sustained writing is required.",
+    "structure": [
+      { "phase": "Whole Class", "duration": "20-30 min", "description": "The teacher leads shared construction of a text type, modelling the thought processes, structural moves and language features of the genre. Students contribute ideas and the teacher scribes, making thinking visible." },
+      { "phase": "Individual", "duration": "25-35 min", "description": "Students draft their own piece independently, applying the modelled structure and language patterns. The teacher conferences individually, asking probing questions rather than giving answers." },
+      { "phase": "Edit", "duration": "15-20 min", "description": "Students review their draft with a peer or in pairs using an editing checklist. Focus on structural improvements, clarity of ideas, and language choices — not punctuation or spelling at this stage." },
+      { "phase": "Polish", "duration": "15-20 min", "description": "Students produce their final draft with attention to presentation, handwriting/computer formatting, and final corrections. The piece is shared with an authentic audience — display, publication, or reading aloud." }
+    ],
+    "ac9Aligned": true,
+    "aitslStandard": "2.1, 2.5, 3.2",
+    "tags": ["Writing", "WA", "Genre-based", "Years 1-6"]
+  },
+  {
+    "id": "gradual-release",
+    "name": "GRR",
+    "fullName": "Gradual Release of Responsibility",
+    "tagline": "I Do → We Do → You Do",
+    "description": "The Gradual Release of Responsibility (GRR) model is a structured instructional framework that systematically transfers cognitive load from teacher to student. Originally articulated by Pearson and Gallagher (1983), the model follows the sequence: I Do (teacher models), We Do (shared practice), You Do (independent application).",
+    "whenToUse": "Use GRR when introducing a new skill, strategy or concept. It is particularly effective for literacy and numeracy instruction — teaching a reading strategy, introducing a mathematical concept, or modelling a writing craft technique. Ensure students have prerequisite knowledge before beginning the GRR sequence.",
+    "structure": [
+      { "phase": "I Do", "duration": "10-15 min", "description": "The teacher explicitly models the skill or concept, thinking aloud to make invisible cognitive processes visible. The teacher is the primary source of information and demonstration. Precision and clarity are essential — students need to see expert performance." },
+      { "phase": "We Do", "duration": "15-20 min", "description": "The teacher and students engage with the task together. Responsibility is shared — the teacher provides guided support while students begin to participate actively. The teacher asks strategic questions, accepts incorrect answers as learning opportunities, and gradually reduces support." },
+      { "phase": "You Do", "duration": "20-30 min", "description": "Students work independently, applying the skill or concept without direct teacher support. This follows only when the teacher is confident students have the conceptual foundation and procedural knowledge to succeed. Independent work should be the reward of effective instruction." }
+    ],
+    "ac9Aligned": true,
+    "aitslStandard": "2.1, 2.2, 3.2",
+    "tags": ["Literacy", "Numeracy", "Skill transfer", "All subjects"]
+  },
+  {
+    "id": "5e-model",
+    "name": "5E",
+    "fullName": "5E Instructional Model",
+    "tagline": "Engage → Explore → Explain → Elaborate → Evaluate",
+    "description": "The 5E model is an inquiry-based instructional framework that guides students through five sequential phases of learning: Engage, Explore, Explain, Elaborate, and Evaluate. Developed by Roger Bybee and colleagues at BSCS in 1987, the model is grounded in constructivist learning theory — learners actively construct meaning from experience rather than passively receiving information.",
+    "whenToUse": "Use 5E for science units, STEM investigations, and any inquiry-based unit where students need to construct conceptual understanding through guided experience. Particularly effective for science topics that involve processes, systems and cause-and-effect relationships. Allow adequate time — each phase should take at least one lesson.",
+    "structure": [
+      { "phase": "Engage", "duration": "10-15 min", "description": "Activate prior knowledge and generate interest before instruction. Use a puzzling question, hands-on demo, or real-world problem that connects to students' experiences. The goal is to make students want to know more, not to teach new content yet." },
+      { "phase": "Explore", "duration": "20-30 min", "description": "Students work with a phenomenon, investigation or problem that generates questions. They collect data, observe, and begin constructing understanding without direct instruction. The teacher acts as facilitator, asking questions and providing materials — not answers." },
+      { "phase": "Explain", "duration": "15-20 min", "description": "The teacher introduces formal vocabulary, concepts and explanations that build on student exploration. Students label their observations and connect their findings to established scientific understanding. Direct instruction follows discovery, making concepts more meaningful." },
+      { "phase": "Elaborate", "duration": "20-25 min", "description": "Students apply their understanding to new or more complex contexts. They extend the concept into different situations, make predictions, or design their own investigations. This phase challenges students to transfer learning beyond the original context." },
+      { "phase": "Evaluate", "duration": "15-20 min", "description": "Assessment is embedded throughout, but this phase provides a dedicated opportunity for students to demonstrate understanding. Both formative and summative evaluation approaches can be used — interviews, exit tickets, performance tasks, or tests." }
+    ],
+    "ac9Aligned": true,
+    "aitslStandard": "2.1, 3.2, 3.3",
+    "tags": ["Science", "STEM", "Inquiry", "Years 3-6"]
+  },
+  {
+    "id": "direct-instruction",
+    "name": "DI",
+    "fullName": "Direct Instruction",
+    "tagline": "Explicit teaching with immediate feedback",
+    "description": "Direct Instruction (DI) is an explicit, teacher-led instructional approach where the teacher models thinking and skill performance, then gradually releases responsibility to students through structured practice with immediate feedback. Effective DI is not 'teaching by telling' — it involves precise teacher modelling, strategic questioning, carefully scaffolded practice, and systematic error correction.",
+    "whenToUse": "Use Direct Instruction when students need to acquire specific knowledge or master a procedural skill efficiently. It is particularly effective for phonics, mathematics procedures, spelling rules, and grammatical concepts. Avoid DI for open-ended inquiry or initially introducing complex conceptual topics where students need to discover patterns.",
+    "structure": [
+      { "phase": "Model", "duration": "10-15 min", "description": "The teacher demonstrates expert performance of the skill, thinking aloud to make the decision-making process visible. This includes showing what good performance looks like and explicitly identifying common errors or misconceptions." },
+      { "phase": "Guided Practice", "duration": "15-20 min", "description": "Students attempt the skill with teacher guidance and immediate corrective feedback. The teacher circulates, monitoring every student, asking questions, and providing specific error corrections. The goal is near-zero error rates before moving to independent work." },
+      { "phase": "Independent Practice", "duration": "20-30 min", "description": "Students work independently to consolidate the skill. Once students demonstrate high accuracy (typically 90%+), they can move to independent application. Distributed practice over multiple sessions is more effective than massed practice." }
+    ],
+    "ac9Aligned": true,
+    "aitslStandard": "2.2, 2.5, 3.2",
+    "tags": ["Explicit teaching", "Skills", "All subjects", "Years F-6"]
+  },
+  {
+    "id": "inquiry-learning",
+    "name": "Inquiry",
+    "fullName": "Inquiry-Based Learning",
+    "tagline": "Question → Investigate → Create → Discuss",
+    "description": "Inquiry-based learning is an instructional approach in which students develop understanding by confronting genuinely puzzling questions, phenomena or problems they cannot resolve using their current knowledge. Rather than receiving information from a teacher, students design investigations, gather and interpret evidence, construct explanations, and communicate conclusions.",
+    "whenToUse": "Use inquiry when students have sufficient background knowledge to engage with a genuine question, and when time and resources allow for extended investigation. Works well for HASS research projects, science fair investigations, and project-based learning units. Ensure curriculum content is covered — inquiry should not be the default for all topics every term.",
+    "structure": [
+      { "phase": "Wonder", "duration": "10-15 min", "description": "Students encounter a puzzling phenomenon, question or problem and generate genuine questions they want answered. The teacher facilitates discussion, helping students refine questions into investigable form without telling them the answers." },
+      { "phase": "Investigate", "duration": "30-60 min", "description": "Students design and conduct investigations, collect evidence, and gather data to answer their questions. They make observations, consult sources, conduct experiments or surveys, and record findings systematically." },
+      { "phase": "Create", "duration": "25-35 min", "description": "Students construct explanations and create products that communicate their findings. This may include written reports, presentations, models, artworks or multimedia. The creation process itself deepens understanding as students organise and synthesise their evidence." },
+      { "phase": "Discuss", "duration": "15-20 min", "description": "Students share their findings with an authentic audience — peers, other classes, or community members. They justify their reasoning, respond to questions, and consider alternative perspectives. The teacher facilitates discussion, not just presentation." }
+    ],
+    "ac9Aligned": true,
+    "aitslStandard": "2.1, 3.1, 3.3",
+    "tags": ["HASS", "Science", "Project-based", "Years 4-6"]
   }
-}
+]
