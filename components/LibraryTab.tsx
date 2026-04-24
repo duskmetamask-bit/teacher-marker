@@ -4,6 +4,73 @@ import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { C, radius, shadows, SUBJECT_COLORS } from "@/lib/design";
 
+// ─── Curated Sample Units ───────────────────────────────────────────
+interface SampleUnit {
+  id: string;
+  title: string;
+  yearLevel: string;
+  subject: string;
+  description: string;
+  url: string;
+  weeks: number;
+  lessons: number;
+}
+
+const SAMPLE_UNITS: SampleUnit[] = [
+  {
+    id: "sample-narrative",
+    title: "Narrative Writing — Leo and Ralph",
+    yearLevel: "Years 3–4",
+    subject: "English",
+    description: "8-week narrative writing unit using *Leo and Ralph* by Peter Carnavas. Students explore friendship, belonging and identity through the Gradual Release model.",
+    url: "/units/leo-ralph-narrative-unit.html",
+    weeks: 8,
+    lessons: 24,
+  },
+  {
+    id: "sample-ecosystems",
+    title: "Ecosystems and Living Things",
+    yearLevel: "Years 3–4",
+    subject: "Science",
+    description: "8-week science unit exploring ecosystems, food chains and Australian environments through *The Lorax*. 24 lessons using the 5E model.",
+    url: "/units/ecosystems-science-unit.html",
+    weeks: 8,
+    lessons: 24,
+  },
+  {
+    id: "sample-hass",
+    title: "Changes in Community and Country",
+    yearLevel: "Years 3–4",
+    subject: "HASS",
+    description: "8-week HASS unit examining how Australia has changed over time using *The Rabbits* by John Marsden and Shaun Tan. Covers history and geography.",
+    url: "/units/hass-changes-community-unit.html",
+    weeks: 8,
+    lessons: 24,
+  },
+  {
+    id: "sample-fractions",
+    title: "Fractions and Decimals",
+    yearLevel: "Years 3–4",
+    subject: "Mathematics",
+    description: "8-week mathematics unit on fractions and decimals using *The Doorbell Rang* by Pat Hutchins. CPA approach with 5E model, AC9 aligned.",
+    url: "/units/maths-fractions-unit.html",
+    weeks: 8,
+    lessons: 24,
+  },
+  {
+    id: "sample-persuasive",
+    title: "Persuasive Writing — The Rabbits",
+    yearLevel: "Years 5–6",
+    subject: "English",
+    description: "8-week persuasive writing unit analysing author's viewpoint and bias in *The Rabbits*, then applying rhetorical devices to students' own arguments.",
+    url: "/units/persuasive-writing-unit.html",
+    weeks: 8,
+    lessons: 24,
+  },
+];
+
+// ─── Helpers ─────────────────────────────────────────────────────────
+
 interface Unit {
   id: string;
   title: string;
@@ -24,6 +91,106 @@ function formatDate(dateStr: string) {
     month: "short",
     year: "numeric",
   });
+}
+
+function SampleUnitCard({ unit }: { unit: SampleUnit }) {
+  const [hovered, setHovered] = useState(false);
+  const sc = getSubjectColor(unit.subject);
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        background: hovered ? C.surface2 : C.surface,
+        border: `1px solid ${hovered ? C.border2 : C.border}`,
+        borderRadius: radius.lg,
+        padding: "20px",
+        transition: "all 0.2s ease",
+        transform: hovered ? "translateY(-2px)" : "none",
+        boxShadow: hovered ? shadows.md : shadows.sm,
+        display: "flex",
+        flexDirection: "column",
+        gap: 10,
+      }}
+    >
+      {/* Subject + Year */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span
+          style={{
+            background: sc.bg,
+            color: sc.text,
+            border: `1px solid ${sc.border}`,
+            padding: "3px 10px",
+            borderRadius: radius.full,
+            fontSize: 11,
+            fontWeight: 600,
+          }}
+        >
+          {unit.subject}
+        </span>
+        <span style={{ color: C.text3, fontSize: 11 }}>
+          {unit.weeks} weeks · {unit.lessons} lessons
+        </span>
+      </div>
+
+      {/* Title */}
+      <h3
+        style={{
+          color: C.text,
+          fontSize: 14,
+          fontWeight: 700,
+          margin: 0,
+          lineHeight: 1.3,
+        }}
+      >
+        {unit.title}
+      </h3>
+
+      {/* Year level */}
+      <p style={{ color: C.text2, fontSize: 12, margin: 0 }}>
+        {unit.yearLevel}
+      </p>
+
+      {/* Description */}
+      <p
+        style={{
+          color: C.text3,
+          fontSize: 12,
+          margin: 0,
+          lineHeight: 1.5,
+          flex: 1,
+        }}
+      >
+        {unit.description}
+      </p>
+
+      {/* View button */}
+      <div style={{ marginTop: 4, paddingTop: 10, borderTop: `1px solid ${C.border}` }}>
+        <a
+          href={unit.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "block",
+            textAlign: "center",
+            background: hovered ? C.primary : C.surface2,
+            color: hovered ? "#fff" : C.text2,
+            border: "none",
+            borderRadius: radius.sm,
+            padding: "8px 12px",
+            fontSize: 12,
+            fontWeight: 600,
+            cursor: "pointer",
+            textDecoration: "none",
+            transition: "all 0.2s ease",
+          }}
+        >
+          View Unit Plan
+        </a>
+      </div>
+    </div>
+  );
 }
 
 // ─── Unit Card ───────────────────────────────────────────────────────
@@ -660,8 +827,84 @@ export default function LibraryTab() {
         </div>
       </div>
 
-      {/* Content */}
+      {/* Sample Units */}
+      <div style={{ padding: "0 24px", maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ paddingTop: 28, marginBottom: 6 }}>
+          <h2 style={{ color: C.text, fontSize: 18, fontWeight: 800, margin: "0 0 4px", letterSpacing: "-0.01em" }}>
+            Sample Units
+          </h2>
+          <p style={{ color: C.text3, fontSize: 13, margin: "0 0 16px" }}>
+            Browse complete unit plans built by PickleNickAI. Click any card to open the full lesson plan.
+          </p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16, paddingBottom: 8 }}>
+          {SAMPLE_UNITS.map((unit) => (
+            <SampleUnitCard key={unit.id} unit={unit} />
+          ))}
+        </div>
+      </div>
+
+      <div style={{ borderTop: `1px solid ${C.border}`, margin: "24px 0 0" }} />
+
+      {/* My Saved Units */}
       <div style={{ padding: "24px", maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
+          <div>
+            <h2 style={{ color: C.text, fontSize: 16, fontWeight: 800, margin: "0 0 4px" }}>
+              My Saved Units
+            </h2>
+            <p style={{ color: C.text3, fontSize: 13, margin: 0 }}>
+              {loading ? "Loading..." : `${units.length} saved unit${units.length !== 1 ? "s" : ""}`}
+            </p>
+          </div>
+          <button
+            onClick={() => setShowNewModal(true)}
+            style={{
+              background: C.primary,
+              color: "#fff",
+              border: "none",
+              borderRadius: radius.md,
+              padding: "8px 16px",
+              fontSize: 12,
+              fontWeight: 700,
+              cursor: "pointer",
+              boxShadow: `0 4px 16px ${C.primary}40`,
+              display: "flex",
+              alignItems: "center",
+              gap: 6,
+            }}
+          >
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+              <path d="M8 2v12M2 8h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+            New Unit
+          </button>
+        </div>
+
+        {/* Filters for saved units */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 16 }}>
+          <FilterPills label="Subject" options={ALL_SUBJECTS} selected={subjectFilter} onChange={setSubjectFilter} />
+          <FilterPills label="Year" options={ALL_YEARS} selected={yearFilter} onChange={setYearFilter} />
+        </div>
+
+        {hasFilters && (
+          <button
+            onClick={() => { setSubjectFilter(""); setYearFilter(""); }}
+            style={{
+              marginBottom: 16,
+              background: "transparent",
+              color: C.danger,
+              border: "none",
+              fontSize: 12,
+              fontWeight: 600,
+              cursor: "pointer",
+              padding: "4px 0",
+            }}
+          >
+            Clear filters
+          </button>
+        )}
+
         {loading ? (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
             {[1, 2, 3].map((i) => (

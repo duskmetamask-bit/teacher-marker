@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecosystems and Living Things — Science Unit Plan | Years 3–4</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --navy: #1a2a4a;
+    --navy-light: #2d4a7c;
+    --teal: #0d9488;
+    --teal-light: #14b8a6;
+    --amber: #f59e0b;
+    --amber-light: #fbbf24;
+    --rose: #e11d48;
+    --slate: #475569;
+    --slate-light: #94a3b8;
+    --bg: #f8fafc;
+    --white: #ffffff;
+    --border: #e2e8f0;
+    --text: #1e293b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: white;
+    padding: 2.5rem 2rem;
+    border-radius: 0 0 1.5rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .header h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+
+  .header .subtitle {
+    color: var(--amber-light);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .badge {
+    background: var(--teal);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .mentor-text {
+    margin-top: 1.25rem;
+    background: rgba(255,255,255,0.1);
+    border-left: 4px solid var(--amber);
+    padding: 0.75rem 1rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-size: 0.875rem;
+  }
+
+  .mentor-text strong { color: var(--amber-light); }
+
+  /* META GRID */
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .meta-card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    border: 1px solid var(--border);
+  }
+
+  .meta-card .label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--slate-light);
+    margin-bottom: 0.25rem;
+  }
+
+  .meta-card .value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  /* SUCCESS CRITERIA */
+  .success-criteria {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--teal);
+    margin-bottom: 0.75rem;
+  }
+
+  .success-criteria h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+
+  .criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .criteria-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--slate);
+  }
+
+  .criteria-item::before {
+    content: "✓";
+    color: var(--teal);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  /* WEEK SUMMARY TABLE */
+  .week-summary {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+    overflow-x: auto;
+  }
+
+  .week-summary h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    min-width: 600px;
+  }
+
+  th {
+    background: var(--navy);
+    color: white;
+    font-weight: 600;
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #f8fafc; }
+
+  .week-num {
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .week-focus {
+    font-weight: 600;
+    color: var(--slate);
+  }
+
+  .lesson-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .lesson-tag {
+    background: var(--teal);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .highlight-tag {
+    background: var(--amber);
+    color: var(--navy);
+  }
+
+  /* WEEK SECTIONS */
+  .week-section {
+    background: white;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .week-header {
+    background: var(--navy);
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .week-header h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .week-badge {
+    background: var(--teal);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  .week-body { padding: 1.25rem 1.5rem; }
+
+  /* LESSON CARDS */
+  .lesson-card {
+    background: var(--bg);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+  }
+
+  .lesson-card:last-child { margin-bottom: 0; }
+
+  .lesson-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .lesson-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .lesson-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .lesson-time, .lesson-type {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+  }
+
+  .lesson-time {
+    background: var(--amber);
+    color: var(--navy);
+  }
+
+  .lesson-type {
+    background: var(--navy);
+    color: white;
+  }
+
+  .lesson-type.guided { background: var(--teal); }
+  .lesson-type.independent { background: var(--slate); }
+  .lesson-type.assessment { background: var(--rose); }
+
+  /* LESSON TABLE */
+  .lesson-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.775rem;
+    margin-top: 0.75rem;
+  }
+
+  .lesson-table th {
+    background: var(--slate);
+    color: white;
+    font-size: 0.65rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .lesson-table td {
+    padding: 0.5rem 0.6rem;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .lesson-table tr td:first-child {
+    background: rgba(13,148,136,0.1);
+    font-weight: 600;
+    color: var(--teal);
+    width: 100px;
+    white-space: nowrap;
+  }
+
+  .differentiation {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(245,158,11,0.1);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-size: 0.775rem;
+  }
+
+  .differentiation strong {
+    color: var(--amber);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* RUBRIC TABLE */
+  .rubric-section {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+  }
+
+  .rubric-section h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  .rubric-table th {
+    background: var(--navy);
+    font-size: 0.65rem;
+  }
+
+  .rubric-table td:first-child {
+    background: rgba(26,42,74,0.05);
+    font-weight: 600;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .grade-a { background: rgba(16,185,129,0.15); font-weight: 600; color: #059669; }
+  .grade-b { background: rgba(59,130,246,0.15); color: #2563eb; }
+  .grade-c { background: rgba(245,158,11,0.15); color: #d97706; }
+  .grade-d { background: rgba(249,115,22,0.15); color: #ea580c; }
+  .grade-e { background: rgba(239,68,68,0.15); color: #dc2626; }
+
+  /* ADAPTATIONS */
+  .adaptations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .adapt-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+  }
+
+  .adapt-card h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .adapt-card.eal h3 { color: var(--teal); }
+  .adapt-card.gifted h3 { color: var(--navy); }
+  .adapt-card.nep h3 { color: var(--amber); }
+
+  .adapt-card ul {
+    list-style: none;
+    font-size: 0.775rem;
+    color: var(--slate);
+  }
+
+  .adapt-card li {
+    padding: 0.25rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .adapt-card.eal li::before { content: "→"; position: absolute; left: 0; color: var(--teal); }
+  .adapt-card.gifted li::before { content: "→"; position: absolute; left: 0; color: var(--navy); }
+  .adapt-card.nep li::before { content: "→"; position: absolute; left: 0; color: var(--amber); }
+
+  /* COLD/HOT TASK */
+  .task-card {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .task-card h2 {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--amber-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .task-card .task-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .task-card .task-desc {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    margin-bottom: 0.75rem;
+  }
+
+  .task-details {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+  }
+
+  .task-detail {
+    background: rgba(255,255,255,0.15);
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+  }
+
+  .task-detail strong { color: var(--amber-light); }
+
+  /* ASSESSMENT NOTES */
+  .assessment-notes {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+  }
+
+  .assessment-notes h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--slate-light);
+    font-size: 0.7rem;
+  }
+
+  /* PRINT */
+  @media print {
+    body { font-size: 11px; }
+    .header { border-radius: 0; }
+    .week-section { break-inside: avoid; }
+    .lesson-card { break-inside: avoid; }
+  }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.3rem; }
+    .meta-grid { grid-template-columns: 1fr 1fr; }
+    .week-header { flex-direction: column; align-items: flex-start; }
+    .lesson-top { flex-direction: column; }
+    .lesson-table { font-size: 0.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="subtitle">ezy-teach — Science Unit Output</div>
+        <h1>Ecosystems and Living Things</h1>
+      </div>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+        <span class="badge">Years 3–4</span>
+        <span class="badge" style="background:var(--amber)">8 Weeks</span>
+        <span class="badge" style="background:var(--rose)">24 Lessons</span>
+      </div>
+    </div>
+    <div class="mentor-text">
+      <strong>Mentor Text:</strong> <em>The Lorax</em> by Dr. Seuss (1971) — Classic environmental fable exploring interdependence, ecosystem collapse, and environmental stewardship.
+    </div>
+  </div>
+
+  <!-- META GRID -->
+  <div class="meta-grid">
+    <div class="meta-card">
+      <div class="label">Curriculum</div>
+      <div class="value">AC Science v9</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Focus</div>
+      <div class="value">Biological Sciences</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Big Idea</div>
+      <div class="value">Living things depend on each other</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Cold Task</div>
+      <div class="value">Week 1, Lesson 1</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Hot Task</div>
+      <div class="value">Week 8, Lesson 1</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Model</div>
+      <div class="value">5E Inquiry Model</div>
+    </div>
+  </div>
+
+  <!-- SUCCESS CRITERIA -->
+  <div class="success-criteria">
+    <div class="section-label">Learning Intention</div>
+    <h2>We are learning to investigate how living things depend on each other and their environment to survive, and to describe how systems support healthy ecosystems.</h2>
+    <div class="criteria-grid">
+      <div class="criteria-item">I can identify and describe the components of an ecosystem (living and non-living)</div>
+      <div class="criteria-item">I can explain the relationship between producers, consumers, and decomposers in a food chain</div>
+      <div class="criteria-item">I can describe how living things adapt to their environment</div>
+      <div class="criteria-item">I can explain the effects of natural and human changes on ecosystems</div>
+      <div class="criteria-item">I can communicate scientific ideas using appropriate vocabulary and diagrams</div>
+    </div>
+  </div>
+
+  <!-- COLD TASK -->
+  <div class="task-card">
+    <h2>Pre-Assessment — Cold Task</h2>
+    <div class="task-name">Week 1, Lesson 1</div>
+    <div class="task-desc">Draw and label what you think an ecosystem looks like. Include at least 5 living things and 2 non-living things. Explain in writing why they belong together.</div>
+    <div class="task-details">
+      <span class="task-detail"><strong>Time:</strong> 40 minutes</span>
+      <span class="task-detail"><strong>Year 3:</strong> 5–8 labels + 2–3 sentences</span>
+      <span class="task-detail"><strong>Year 4:</strong> 8–10 labels + 4–5 sentences</span>
+      <span class="task-detail"><strong>Same task as Hot Task (Week 8)</strong></span>
+    </div>
+  </div>
+
+  <!-- WEEK SUMMARY TABLE -->
+  <div class="week-summary">
+    <h2>8-Week Overview at a Glance</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Focus</th>
+          <th>Lessons</th>
+          <th>Highlights</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="week-num">Week 1</td>
+          <td class="week-focus">ENGAGE — The Lorax + What is an Ecosystem?</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag highlight-tag">Cold Task</span>
+              <span class="lesson-tag">Meet The Lorax</span>
+              <span class="lesson-tag">What is an Ecosystem?</span>
+            </div>
+          </td>
+          <td>Pre-assessment, hook, vocabulary building</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 2</td>
+          <td class="week-focus">EXPLORE — Living vs Non-Living</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag">Living or Non-Living?</span>
+              <span class="lesson-tag">Mini Ecosystem Investigation</span>
+              <span class="lesson-tag">Recording Observations</span>
+            </div>
+          </td>
+          <td>Sorting, hands-on investigation, MRS GREN</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 3</td>
+          <td class="week-focus">EXPLORE + EXPLAIN — Food Chains</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag">What Do Living Things Need?</span>
+              <span class="lesson-tag">Producers, Consumers, Decomposers</span>
+              <span class="lesson-tag">Food Chains vs Food Webs</span>
+            </div>
+          </td>
+          <td>Food chain construction from The Lorax</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 4</td>
+          <td class="week-focus">EXPLAIN — Australian Ecosystems</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag">Australian Ecosystems</span>
+              <span class="lesson-tag">Adaptation Introduction</span>
+              <span class="lesson-tag">The Lorax Connection</span>
+            </div>
+          </td>
+          <td>Desert, rainforest, ocean, bush ecosystems</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 5</td>
+          <td class="week-focus">ELABORATE — Changes to Ecosystems</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag">Natural vs Human Changes</span>
+              <span class="lesson-tag">Case Study — Australian Ecosystems</span>
+              <span class="lesson-tag">How Living Things Adapt</span>
+            </div>
+          </td>
+          <td>Migration, hibernation, camouflage, Great Barrier Reef</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 6</td>
+          <td class="week-focus">ELABORATE + EVALUATE — Human Impact</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag">The Lorax Revisited</span>
+              <span class="lesson-tag">Design a Solution</span>
+              <span class="lesson-tag">Save Our Ecosystem Presentations</span>
+            </div>
+          </td>
+          <td>Student proposals, design thinking</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 7</td>
+          <td class="week-focus">EVALUATE — Review and Reflection</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag">Exit Ticket Review</span>
+              <span class="lesson-tag">Cold vs Hot Task Comparison</span>
+              <span class="lesson-tag">Self-Reflection</span>
+            </div>
+          </td>
+          <td>Growth analysis, preparation for hot task</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 8</td>
+          <td class="week-focus">HOT TASK</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag highlight-tag">Hot Task</span>
+              <span class="lesson-tag">Compare and Reflect</span>
+              <span class="lesson-tag">Celebration</span>
+            </div>
+          </td>
+          <td>Post-assessment, growth analysis, acknowledgement</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HOT TASK -->
+  <div class="task-card" style="background:linear-gradient(135deg, #0f766e 0%, #14b8a6 100%)">
+    <h2>Post-Assessment — Hot Task</h2>
+    <div class="task-name">Week 8, Lesson 1</div>
+    <div class="task-desc">Describe an ecosystem and explain how living things depend on each other. Include a food chain with at least 3 organisms and explain what would happen if one part of the food chain was removed.</div>
+    <div class="task-details">
+      <span class="task-detail"><strong>Time:</strong> 40 minutes</span>
+      <span class="task-detail"><strong>Year 3:</strong> Drawing + 5–8 sentences</span>
+      <span class="task-detail"><strong>Year 4:</strong> Detailed diagram + 8–12 sentences</span>
+      <span class="task-detail"><strong>Same task as Cold Task (Week 1) — measure growth</strong></span>
+    </div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 1 — ENGAGE: The Lorax and What is an Ecosystem?</h3>
+      <span class="week-badge">Foundation Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Cold Task — Draw an Ecosystem</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type assessment">Assessment</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Hook (5 min)</td>
+            <td>Show images of three ecosystems: a coral reef, an Australian bushland, and a pond. "What do you see? What do you think all of these have in common?"</td>
+          </tr>
+          <tr>
+            <td>Task (35 min)</td>
+            <td><strong>Cold Task:</strong> "Draw and label what you think an ecosystem looks like. Include at least 5 living things and 2 non-living things. Explain in writing why they belong together." Year 3: 5–8 labels + 2–3 sentences. Year 4: 8–10 labels + 4–5 sentences.</td>
+          </tr>
+        </table>
+        <div class="differentiation">
+          <strong>Differentiation:</strong> Word bank of living/non-living things available. Sentence starters provided: "I think this is an ecosystem because..." / "These things belong together because..." EAL students may label in home language first then add English.
+        </div>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Meet The Lorax</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Read Aloud (20 min)</td>
+            <td>Read <em>The Lorax</em> aloud in full, showing illustrations. Stop at key moments: the Once-ler describing the Truffula trees, the Lorax emerging from the stump, the regulatory actions of the Lorax.</td>
+          </tr>
+          <tr>
+            <td>Notice and Wonder (10 min)</td>
+            <td>"What do you notice?" (Record on chart paper — living things, environment, characters) / "What questions do you have?" (Why did the trees disappear? Who is responsible?)</td>
+          </tr>
+          <tr>
+            <td>Connect (10 min)</td>
+            <td>"The Lorax is a story about an ecosystem. Who are the living things? What has happened to their environment? Why?"</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: What is an Ecosystem?</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Build the Definition (10 min)</td>
+            <td>Write on board: "ECOSYSTEM = all living things + non-living things working together in an area." Use The Lorax to model: truffula trees (living) + air/water (non-living) + animals (living) = ecosystem.</td>
+          </tr>
+          <tr>
+            <td>Vocabulary Building (10 min)</td>
+            <td>Introduce word wall: ecosystem, environment, habitat, community, population, species. Use images.</td>
+          </tr>
+          <tr>
+            <td>Apply the Concept (15 min)</td>
+            <td>Students revisit their Cold Task drawing. "Now that you know what an ecosystem is, add or change one thing in your drawing." Share with partner.</td>
+          </tr>
+          <tr>
+            <td>Exit Ticket (5 min)</td>
+            <td>"In one sentence, explain what an ecosystem is."</td>
+          </tr>
+        </table>
+        <div class="differentiation">
+          <strong>Differentiation:</strong> Visual word wall displayed permanently in classroom. EAL students may draw their definition. Gifted students: research a specific ecosystem type in Australia for Week 4 extension.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 2 — EXPLORE: Living vs Non-Living</h3>
+      <span class="week-badge">Investigation Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Living or Non-Living?</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Quick Sort (10 min)</td>
+            <td>Place items on tables: feather, rock, leaf, plastic plant, real plant, toy car, shell, pinecone, dried pasta, photograph of a dog. "Living or non-living? How do you know?"</td>
+          </tr>
+          <tr>
+            <td>Establish the Rules (10 min)</td>
+            <td>What do ALL living things have in common? Movement, breathing/respiration, growth, reproduction, response to environment. MRS GREN acronym introduced.</td>
+          </tr>
+          <tr>
+            <td>Sort and Justify (15 min)</td>
+            <td>In pairs, students sort the remaining items. They must explain WHY each item is living or non-living using MRS GREN.</td>
+          </tr>
+          <tr>
+            <td>Share (5 min)</td>
+            <td>Pairs share one surprising sort decision.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Mini Ecosystem Investigation</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type independent">Independent</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Set Up (10 min)</td>
+            <td>Distribute clear containers with pond water or leaf litter samples. "We are going to observe a REAL mini ecosystem. We are scientists." Observe only, don't disturb.</td>
+          </tr>
+          <tr>
+            <td>Observe (20 min)</td>
+            <td>Circulate and prompt: "What can you see? How many different living things can you find? What non-living things can you see?" Magnifying glasses and white paper provided.</td>
+          </tr>
+          <tr>
+            <td>Predict (5 min)</td>
+            <td>"What do you think will happen to your mini ecosystem if we leave it on the desk for a week?"</td>
+          </tr>
+          <tr>
+            <td>Record (5 min)</td>
+            <td>Students complete observation sheet: name, date, living things found, non-living things found, one interesting observation.</td>
+          </tr>
+        </table>
+        <div class="differentiation">
+          <strong>Safety Note:</strong> Remind students not to touch water or leaf litter directly. Wash hands after lesson.
+        </div>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Recording Observations — What Did We Find?</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type independent">Independent</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Compare Samples (10 min)</td>
+            <td>Students share what they found in their samples. Create a class tally: most common creatures (mosquito larvae, water fleas, worms, snails, algae).</td>
+          </tr>
+          <tr>
+            <td>Surprising Discoveries (10 min)</td>
+            <td>"What surprised you? Was there anything unexpected?" Connect to ecosystem concept: tiny creatures have specific roles.</td>
+          </tr>
+          <tr>
+            <td>What We Know Now (10 min)</td>
+            <td>Revise Cold Task drawings: add labels for MRS GREN characteristics. What would you change? Why?</td>
+          </tr>
+          <tr>
+            <td>Connect Forward (10 min)</td>
+            <td>"Next week we are going to learn about food chains. How do you think the tiny creatures in your sample fit into a food chain?"</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 3 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 3 — EXPLORE + EXPLAIN: Food Chains</h3>
+      <span class="week-badge">Explanation Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: What Do Living Things Need to Survive?</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Prior Knowledge Probe (10 min)</td>
+            <td>Brainstorm: "What do ALL living things need to survive?" Sun, water, food, air, shelter, space. Connect to pond water sample: "What were your creatures using for food?"</td>
+          </tr>
+          <tr>
+            <td>Mini-Lesson (15 min)</td>
+            <td>Every living thing needs ENERGY. Where does all energy start? THE SUN. Plants use sunlight to make food (photosynthesis). Animals eat plants or other animals. Energy flows from the sun → plants → animals.</td>
+          </tr>
+          <tr>
+            <td>Application (10 min)</td>
+            <td>"Use The Lorax. Where does the Bar-ba-loot get its energy? Where does the Once-ler get his energy? Where does the Lorax fit?"</td>
+          </tr>
+          <tr>
+            <td>Exit Ticket (5 min)</td>
+            <td>"Where does all energy in an ecosystem come from? How does it reach animals?"</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Producers, Consumers and Decomposers</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Introduce the Roles (10 min)</td>
+            <td>Write three categories: PRODUCERS (make their own food using sun — plants), CONSUMERS (eat other living things — animals), DECOMPOSERS (break down dead things — fungi, bacteria).</td>
+          </tr>
+          <tr>
+            <td>Food Chain from The Lorax (15 min)</td>
+            <td>Build on board: Sun → Truffula trees (producer) → Bar-ba-loot (consumer) → [decomposer when trees die]. Connect: when trees are cut down, Bar-ba-loots have no food.</td>
+          </tr>
+          <tr>
+            <td>Sort Activity (10 min)</td>
+            <td>Students receive cards with organisms. Sort into producers/consumers/decomposers. Cards: grass, cow, mushroom, sun, eagle, plankton, worm, apple tree, shark, mold.</td>
+          </tr>
+          <tr>
+            <td>Share (5 min)</td>
+            <td>Pairs share their sorted groups. Were there any disagreements?</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Food Chains vs Food Webs</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Food Chain Model (10 min)</td>
+            <td>Draw a simple food chain: grass → kangaroo → dingo. Label producer/consumer. Add arrows showing energy flow. "The arrow points the way energy travels."</td>
+          </tr>
+          <tr>
+            <td>Food Web Introduction (10 min)</td>
+            <td>"But in real ecosystems, animals eat MANY things." Add to diagram: grass also eaten by emu, dingo also eats lizard, emu eaten by dingo. This is a FOOD WEB — interconnected food chains.</td>
+          </tr>
+          <tr>
+            <td>What Happens If One Link Breaks? (10 min)</td>
+            <td>"The Lorax showed us what happens when truffula trees disappear. The Bar-ba-loots have no food. The Swomey Swomeys can't sing. What if the dingo disappeared?"</td>
+          </tr>
+          <tr>
+            <td>You Do (10 min)</td>
+            <td>Year 3: Draw a food chain with 4 organisms. Year 4: Draw a food web connecting 5+ organisms in an Australian ecosystem.</td>
+          </tr>
+        </table>
+        <div class="differentiation">
+          <strong>Differentiation:</strong> EAL students use pre-drawn template with word labels. Gifted students: create a food web for the Great Barrier Reef with at least 8 organisms. NEP students: draw a 3-organism food chain with labels.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 4 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 4 — EXPLAIN: Australian Ecosystems</h3>
+      <span class="week-badge">Australian Focus Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Australian Ecosystems — Desert, Rainforest, Ocean, Bush</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Introduce the Four Ecosystems (10 min)</td>
+            <td>Show images of four Australian ecosystems: Great Victoria Desert, Daintree Rainforest, Great Barrier Reef, eucalypt bushland. "What is the same? What is different?"</td>
+          </tr>
+          <tr>
+            <td>Ecosystem Comparison (15 min)</td>
+            <td>Create comparison chart: DESERT — sparse water, extreme heat / RAINFOREST — high rainfall, dense canopy / OCEAN — saltwater, coral / BUSH — moderate rainfall, eucalypts. Students copy chart.</td>
+          </tr>
+          <tr>
+            <td>Why These Animals Live Here (10 min)</td>
+            <td>"The koala lives in the bush because it eats eucalypt leaves. The cassowary lives in the rainforest because it eats rainforest fruits." Introduce the word ADAPTATION.</td>
+          </tr>
+          <tr>
+            <td>Apply (5 min)</td>
+            <td>Show 4 animal cards: dingo, clownfish, emu, green tree python. Students match to correct ecosystem and explain WHY.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: How Do Living Things Adapt?</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>What is an Adaptation? (10 min)</td>
+            <td>"An adaptation is a feature or behaviour that helps a living thing survive in its environment." Physical: camel has a hump to store water. Behavioural: frog burrows underground in summer.</td>
+          </tr>
+          <tr>
+            <td>Australian Adaptations (15 min)</td>
+            <td>Show examples: Desert: kangaroo rat — large ears to release heat / Eucalypt: koala — pouch, strong sense of smell / Rainforest: cassowary — bright colours for mating, strong legs to run.</td>
+          </tr>
+          <tr>
+            <td>Compare Across Ecosystems (10 min)</td>
+            <td>"How is the way a desert kangaroo keeps cool different from the way a rainforest animal keeps cool?" Compare behavioural adaptations across two ecosystems.</td>
+          </tr>
+          <tr>
+            <td>Exit Ticket (5 min)</td>
+            <td>"Name one adaptation an Australian animal has. Explain why this adaptation helps it survive."</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: The Lorax Connection — What Happens When the Trees Are Cut Down?</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type independent">Independent</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Return to The Lorax (10 min)</td>
+            <td>"Last time we read The Lorax, the trees were cut down. What living things lost their homes? What happened to the ecosystem?" Re-read final pages.</td>
+          </tr>
+          <tr>
+            <td>Ecosystem Impact Map (15 min)</td>
+            <td>Build on board: Once-ler cuts down truffula trees → Bar-ba-loots lose food → Swomey Swomeys lose singing trees → Humming-Fish lose clean water → Ecosystem collapses.</td>
+          </tr>
+          <tr>
+            <td>What Could Have Been Different? (10 min)</td>
+            <td>"What if the Once-ler had kept some trees? What if there was a rule to protect the forest?" Apply understanding: solutions for ecosystem protection.</td>
+          </tr>
+          <tr>
+            <td>Apply to Australia (5 min)</td>
+            <td>"In Australia, we have cut down huge areas of forest for farms and cities. What might have happened to animals like the koala?"</td>
+          </tr>
+        </table>
+        <div class="differentiation">
+          <strong>Differentiation:</strong> Gifted students: research a specific Australian ecosystem under threat (Great Barrier Reef, leadbeater's possum habitat). NEP students: complete a partial impact map with word bank support.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 5 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 5 — ELABORATE: Changes to Ecosystems</h3>
+      <span class="week-badge">Application Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Natural Changes vs Human Changes</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Two Types of Change (10 min)</td>
+            <td>Natural changes: drought, flood, bushfire, volcanic eruption, season changes. Human changes: deforestation, pollution, building cities, farming, fishing. Sort examples on board.</td>
+          </tr>
+          <tr>
+            <td>Impact Continuum (15 min)</td>
+            <td>"Some changes recover quickly. Some permanently damage an ecosystem. Let's sort by how much impact they have and how long they last." Students receive scenario cards and sort onto a spectrum.</td>
+          </tr>
+          <tr>
+            <td>Case Study Preview (5 min)</td>
+            <td>"Next lesson we will look at a real Australian ecosystem that has changed. What questions would you want to answer?"</td>
+          </tr>
+          <tr>
+            <td>Connect to The Lorax (10 min)</td>
+            <td>"What type of change was happening in The Lorax? Natural or human? What could have happened if it was a natural drought instead?"</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Case Study — A Real Australian Ecosystem</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type independent">Independent</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Present the Case — Great Barrier Reef (10 min)</td>
+            <td>Show images: 2,300km long, 1,500+ species of fish, coral bleached due to rising ocean temperatures (human-caused climate change). Coral bleaching = coral expels algae, turns white, dies.</td>
+          </tr>
+          <tr>
+            <td>Investigate in Pairs (15 min)</td>
+            <td>Students receive information sheet about ONE changed ecosystem: (A) Great Barrier Reef coral bleaching, (B) Tasmania's old-growth forest logging, (C) Murray-Darling Basin water issues, (D) Perth's urban sprawl affecting banksia woodland.</td>
+          </tr>
+          <tr>
+            <td>Jigsaw Share (10 min)</td>
+            <td>Each pair joins with another pair who studied a different ecosystem. Share findings. Create class list: what changed, who was affected, what is being done.</td>
+          </tr>
+          <tr>
+            <td>Reflection (5 min)</td>
+            <td>"What surprised you most about how ecosystems change?"</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: How Do Living Things Adapt When Their Environment Changes?</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Three Adaptive Strategies (10 min)</td>
+            <td>Migration: animals move to a better environment (birds fly north in winter). Hibernation/Aestivation: animals sleep through harsh conditions. Camouflage and protection: animals blend in or hide.</td>
+          </tr>
+          <tr>
+            <td>Australian Examples (15 min)</td>
+            <td>Migration: grey nomad birds fly to Australia for summer / Hibernation: echidna goes into torpor in cold / Camouflage: thorny devil blends into desert sand / Seasonal colour change: Alpine pygmy possum changes fur colour.</td>
+          </tr>
+          <tr>
+            <td>Design Challenge (10 min)</td>
+            <td>"An ecosystem is experiencing a 3-month drought. Design an animal that could survive this drought. Give it one behavioural adaptation and one physical adaptation. Draw it and label the adaptations."</td>
+          </tr>
+          <tr>
+            <td>Share (5 min)</td>
+            <td>3–4 students share their designed animals.</td>
+          </tr>
+        </table>
+        <div class="differentiation">
+          <strong>Differentiation:</strong> EAL students draw and label adaptations in visual format. Gifted students: design an animal for an extreme environment (underwater cave, salt lake) with two physical and two behavioural adaptations.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 6 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 6 — ELABORATE + EVALUATE: Human Impact</h3>
+      <span class="week-badge">Design Thinking Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: The Lorax Revisited — Predict and Respond</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Revisit The Lorax Ending (10 min)</td>
+            <td>Read the final pages again. The Once-ler says: "I don't know what it was. But I can UNSPEAK." He hands the last truffula seed to the reader. "Unless someone like you cares a whole awful lot, nothing is going to get better. It's not."</td>
+          </tr>
+          <tr>
+            <td>Predict (10 min)</td>
+            <td>"What do you think happens next? Does the reader plant the seed? Does the ecosystem recover? What does the reader owe the environment?"</td>
+          </tr>
+          <tr>
+            <td>What Would You Do? (15 min)</td>
+            <td>"Imagine you are the Lorax. You can speak for the trees, the animals, the fish. What would YOU do differently from the Once-ler? How would you protect the ecosystem?"</td>
+          </tr>
+          <tr>
+            <td>Share (5 min)</td>
+            <td>Select 2–3 students to share their Lorax responses.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Design a Solution — How Could We Protect This Ecosystem?</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type independent">Independent</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Introduce the Design Process (10 min)</td>
+            <td>Problem → Research → Design → Present. Model with The Lorax ecosystem: PROBLEM = trees cut down / RESEARCH = how many trees? Which animals? / DESIGN = replanting program, protected area / PRESENT = proposal to the community.</td>
+          </tr>
+          <tr>
+            <td>Design a Proposal (25 min)</td>
+            <td>Students choose ONE ecosystem (from Week 5 case studies OR their own local ecosystem). Create a "Save Our Ecosystem" proposal: What is the problem? What will you do? Why will it work? How much will it cost? Who will help?</td>
+          </tr>
+          <tr>
+            <td>Peer Feedback (5 min)</td>
+            <td>Pairs exchange proposals. One thing they did well + one question they have.</td>
+          </tr>
+        </table>
+        <div class="differentiation">
+          <strong>Differentiation:</strong> EAL students may use drawings and labelled diagrams to accompany their proposal. NEP students: focus on the "What will you do?" section with scaffolded template.
+        </div>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Save Our Ecosystem — Student Presentations</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type assessment">Assessment</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Prepare to Present (5 min)</td>
+            <td>Students organise their materials. Each student presents for 2–3 minutes. Remind audience: listening politely, asking one question per presentation.</td>
+          </tr>
+          <tr>
+            <td>Presentations (30 min)</td>
+            <td>Rotating presentations: half the class presents while half observes and writes one star (great thing) and one wish (question). Then switch. Teacher uses rubric to assess.</td>
+          </tr>
+          <tr>
+            <td>Debrief (5 min)</td>
+            <td>"What was the most interesting solution you heard from a classmate? Why?"</td>
+          </tr>
+        </table>
+        <div class="differentiation">
+          <strong>Differentiation:</strong> EAL students may present to the teacher individually or in a small group if uncomfortable presenting to the whole class. NEP students may use visual poster instead of verbal presentation.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 7 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 7 — EVALUATE: Review and Reflection</h3>
+      <span class="week-badge">Reflection Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Review — What Have We Learned?</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Key Concepts Review (15 min)</td>
+            <td>Class discussion guided by question cards: What is an ecosystem? What is the difference between a producer and a consumer? What is a food chain? What is an adaptation? What is the difference between natural and human changes?</td>
+          </tr>
+          <tr>
+            <td>Exit Ticket (20 min)</td>
+            <td>Complete the exit ticket: (1) Draw a food chain with 4 organisms. Label producer/consumer. (2) Name one adaptation a desert animal has and explain why it helps. (3) What is one way humans can protect an ecosystem?</td>
+          </tr>
+          <tr>
+            <td>Self-Check (5 min)</td>
+            <td>Students mark their own exit ticket using an answer key (displayed). Count how many out of 3 they got correct.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Cold Task vs Now — What Do We Know Now?</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type independent">Independent</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Retrieve Cold Task (5 min)</td>
+            <td>Return students' Cold Task drawings from Week 1. "Read what you wrote. Read your labels. What do you notice?"</td>
+          </tr>
+          <tr>
+            <td>New Knowledge Application (15 min)</td>
+            <td>"Now that you've learned so much about ecosystems, update your Cold Task drawing. You may add new labels, new organisms, or correct things. Use GREEN pen for additions and RED pen for corrections."</td>
+          </tr>
+          <tr>
+            <td>Written Reflection (15 min)</td>
+            <td>Complete reflection: What is ONE thing you know now that you didn't know before? What is ONE thing that surprised you? What is ONE thing you still want to learn about ecosystems?</td>
+          </tr>
+          <tr>
+            <td>Share (5 min)</td>
+            <td>3–4 students share one thing they know now.</td>
+          </tr>
+        </table>
+        <div class="differentiation">
+          <strong>Differentiation:</strong> EAL students may draw their "what I know now" response. Gifted students: write a comparison paragraph explicitly comparing Cold Task and current understanding.
+        </div>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Self-Reflection and Hot Task Preparation</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Prepare for Hot Task (15 min)</td>
+            <td>Display Hot Task question: "Describe an ecosystem and explain how living things depend on each other. Include a food chain with at least 3 organisms and explain what would happen if one part of the food chain was removed."</td>
+          </tr>
+          <tr>
+            <td>Plan Your Response (15 min)</td>
+            <td>Students plan their Hot Task response: (1) Which ecosystem will you write about? (2) What food chain will you include? (3) What will happen if one part is removed? Students write a quick plan in point form.</td>
+          </tr>
+          <tr>
+            <td>Success Criteria Reminder (5 min)</td>
+            <td>"Before tomorrow's Hot Task, review your success criteria checklist. How confident are you about each one?"</td>
+          </tr>
+          <tr>
+            <td>Mindset Check (5 min)</td>
+            <td>"A hot task is a chance to show everything you know. You have learned SO MUCH in 7 weeks. Believe in yourself."</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 8 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 8 — HOT TASK</h3>
+      <span class="week-badge" style="background:var(--teal)">Assessment Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Hot Task — Show What You Know</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type assessment">Assessment</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Set Up (5 min)</td>
+            <td>"Today is your Hot Task. This is your chance to show everything you've learned about ecosystems. Read the question carefully. Plan before you write. Take your time."</td>
+          </tr>
+          <tr>
+            <td>Planning Time (10 min)</td>
+            <td>Allow 10 minutes for planning: students may create a rough draft plan, diagram, or organiser before writing.</td>
+          </tr>
+          <tr>
+            <td>Hot Task (25 min)</td>
+            <td>Students write/draw their response independently. "Describe an ecosystem and explain how living things depend on each other. Include a food chain with at least 3 organisms and explain what would happen if one part was removed." Year 3: drawing + 5–8 sentences. Year 4: detailed diagram + 8–12 sentences.</td>
+          </tr>
+        </table>
+        <div class="differentiation">
+          <strong>Differentiation:</strong> EAL students may use bilingual dictionaries and word banks. NEP students may dictate responses or use oral presentation format. Extra time provided where applicable.
+        </div>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Compare Cold Task to Hot Task — Growth Analysis</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Side-by-Side Comparison (15 min)</td>
+            <td>Students place Cold Task next to Hot Task. "Use a green texta to circle 3 things you did BETTER in your Hot Task. Use a red texta to circle 1 thing you could still improve."</td>
+          </tr>
+          <tr>
+            <td>Quantify Your Growth (10 min)</td>
+            <td>Students count: How many organisms did you correctly identify as living vs non-living in the Cold Task? How many in the Hot Task? Did you use scientific vocabulary? Did you include a food chain?</td>
+          </tr>
+          <tr>
+            <td>Write a Growth Statement (10 min)</td>
+            <td>"I have grown as a scientist because..." Students write 3–5 sentences about their growth.</td>
+          </tr>
+          <tr>
+            <td>Share (5 min)</td>
+            <td>Volunteers share one thing they are proud of from their Hot Task.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Celebration — Acknowledging Our Learning Journey</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Display Work (10 min)</td>
+            <td>Hot Tasks and Cold Tasks displayed side by side. Students walk the gallery. Sticky notes: "I noticed your growth in..."</td>
+          </tr>
+          <tr>
+            <td>Celebrate with The Lorax (10 min)</td>
+            <td>Re-read the final page of The Lorax. "Unless someone like you cares a whole awful lot, nothing is going to get better. It's not." Discuss: "What can we do? What will YOU do?"</td>
+          </tr>
+          <tr>
+            <td>Certificate of Completion (5 min)</td>
+            <td>Award "Ecosystem Explorer" certificates. Each student receives one personalised: "For outstanding work in understanding how living things depend on each other."</td>
+          </tr>
+          <tr>
+            <td>What's Next? (5 min)</td>
+            <td>"What do you want to learn more about after this unit?" Garden, ocean, rainforest, space ecosystems — what interests you?</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RUBRIC -->
+  <div class="rubric-section">
+    <h2>Rubric — Science: Ecosystems and Living Things (Years 3–4)</h2>
+    <p style="font-size:0.7rem;color:var(--slate);margin-bottom:1rem;">Australian Curriculum v9: AC9S3U01, AC9S4U01</p>
+    <table class="rubric-table" style="min-width:0">
+      <thead>
+        <tr>
+          <th>Criterion</th>
+          <th style="background:#059669">A — Excellent</th>
+          <th style="background:#2563eb">B — Strong</th>
+          <th style="background:#d97706">C — Satisfactory</th>
+          <th style="background:#ea580c">D — Developing</th>
+          <th style="background:#dc2626">E — Beginning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Science Understanding</strong><br><small>AC9S3U01, AC9S4U01</small></td>
+          <td class="grade-a">Demonstrates thorough understanding of ecosystems, food chains, adaptations, and interdependence of living things. Accurately explains how systems support healthy ecosystems.</td>
+          <td class="grade-b">Demonstrates clear understanding of most concepts. Explains relationships between living things with minor omissions.</td>
+          <td class="grade-c">Demonstrates satisfactory understanding of key concepts. Identifies some relationships but with gaps in explanation.</td>
+          <td class="grade-d">Demonstrates partial understanding of some concepts. Shows basic awareness but struggles to explain relationships.</td>
+          <td class="grade-e">Limited understanding of ecosystem concepts. Unable to accurately describe relationships between living things.</td>
+        </tr>
+        <tr>
+          <td><strong>Investigation Skills</strong></td>
+          <td class="grade-a">Systematically observes, records and analyses with precision. Uses scientific methods to collect and interpret data. Draws logical conclusions.</td>
+          <td class="grade-b">Clearly observes and records with minor gaps. Most observations are accurate and relevant.</td>
+          <td class="grade-c">Satisfactorily observes and records. Some gaps in systematic approach.</td>
+          <td class="grade-d">Partially completes investigation tasks. Observation and recording are inconsistent.</td>
+          <td class="grade-e">Does not complete investigation tasks. Unable to record observations accurately.</td>
+        </tr>
+        <tr>
+          <td><strong>Science as Human Endeavour</strong><br><small>AC9S3U01</small></td>
+          <td class="grade-a">Explains how scientists and communities work to protect ecosystems. Provides specific examples of environmental action and impact.</td>
+          <td class="grade-b">Describes how communities protect ecosystems with some detail.</td>
+          <td class="grade-c">Identifies that humans impact ecosystems in both positive and negative ways.</td>
+          <td class="grade-d">Shows limited awareness of the relationship between humans and the environment.</td>
+          <td class="grade-e">No awareness shown of human-environment relationships.</td>
+        </tr>
+        <tr>
+          <td><strong>Communication</strong></td>
+          <td class="grade-a">Explains concepts using precise scientific vocabulary, clear diagrams and thorough written explanations. Diagrams are accurately labelled.</td>
+          <td class="grade-b">Communicates understanding clearly with appropriate vocabulary. Minor omissions in labelling or explanation.</td>
+          <td class="grade-c">Communicates key ideas adequately using some scientific terms. Some areas unclear.</td>
+          <td class="grade-d">Communication is unclear or incomplete. Limited use of scientific vocabulary.</td>
+          <td class="grade-e">Unable to communicate understanding effectively.</td>
+        </tr>
+        <tr>
+          <td><strong>AC Codes Coverage</strong></td>
+          <td class="grade-a">AC9S3U01 + AC9S4U01 covered thoroughly</td>
+          <td class="grade-b">AC9S3U01 + AC9S4U01 covered clearly</td>
+          <td class="grade-c">AC9S3U01 or AC9S4U01 covered soundly</td>
+          <td class="grade-d">Partial coverage of AC9S3U01 or AC9S4U01</td>
+          <td class="grade-e">Limited coverage of AC codes</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ADAPTATIONS -->
+  <div class="adaptations">
+    <div class="adapt-card eal">
+      <h3>🌿 EAL Students</h3>
+      <ul>
+        <li>Visual Word Wall permanently displayed with key vocabulary: ecosystem, producer, consumer, decomposer, adaptation, food chain, habitat, environment, interdependence, survive</li>
+        <li>Sentence starters for all written tasks: "All living things need..." / "The sun is important because..." / "If [organism] was removed, then..."</li>
+        <li>Bilingual Glossary with home language translations (compiled with EAL teacher support)</li>
+        <li>Home Language Allowance for initial brainstorming — English used for final published work</li>
+        <li>Visual scaffolding: all diagrams pre-labelled with key terms</li>
+        <li>Partner Support during group work and investigations</li>
+      </ul>
+    </div>
+    <div class="adapt-card gifted">
+      <h3>🚀 Gifted Students</h3>
+      <ul>
+        <li>Research a specific Australian ecosystem in depth — biotic and abiotic components, food web (not just chain), and human impact history</li>
+        <li>Food Web Challenge: create a food web for a chosen Australian ecosystem connecting 8+ organisms with energy flow arrows</li>
+        <li>Creative Extension: write a sequel to The Lorax — what happens when the seed is planted? Create a new ecosystem story with scientific accuracy</li>
+        <li>Extreme Environment Design: design an ecosystem for an extreme environment (Mars colony, deep ocean, underground cave). Justify every organism's adaptations</li>
+        <li>Case Study Investigation: research and present on a real Australian conservation program — what worked, what didn't, and why</li>
+      </ul>
+    </div>
+    <div class="adapt-card nep">
+      <h3>🎯 Students with NEPs</h3>
+      <ul>
+        <li>Written work expectations reduced to 3–5 sentences (Year 3) and 5–7 sentences (Year 4)</li>
+        <li>Word Banks provided for all written tasks — key words highlighted in task instructions</li>
+        <li>Oral Presentation Option for any task — teacher records response on observation sheet</li>
+        <li>Extra Time allocated for all written and investigation tasks</li>
+        <li>Scaffolded Templates: partially completed graphic organisers, food chain templates, writing frames</li>
+        <li>Seating and Resources: front-of-room seating, simplified task instructions, one-to-one check-ins during independent work</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ASSESSMENT NOTES -->
+  <div class="assessment-notes">
+    <h2>Assessment Summary</h2>
+    <table style="font-size:0.8rem">
+      <tr>
+        <td style="background:rgba(13,148,136,0.1);font-weight:600;color:var(--teal);padding:0.6rem 0.75rem;width:160px"><strong>Formative</strong></td>
+        <td style="padding:0.6rem 0.75rem">Exit tickets (Lessons 1.3, 3.1, 4.2, 7.1), observation during investigations (Weeks 2–3), Cold Task review (Lesson 2.3), exit ticket comparison (Lesson 7.1), self-reflection journals (Lessons 7.2, 7.3)</td>
+      </tr>
+      <tr>
+        <td style="background:rgba(13,148,136,0.1);font-weight:600;color:var(--teal);padding:0.6rem 0.75rem"><strong>Summative</strong></td>
+        <td style="padding:0.6rem 0.75rem">Cold Task (Week 1, Lesson 1): pre-assessment drawing with labels. Hot Task (Week 8, Lesson 1): post-assessment comparing ecosystem understanding. Growth Analysis (Week 8, Lesson 2): self-assessment comparing Cold Task to Hot Task.</td>
+      </tr>
+      <tr>
+        <td style="background:rgba(13,148,136,0.1);font-weight:600;color:var(--teal);padding:0.6rem 0.75rem"><strong>Data for Reporting</strong></td>
+        <td style="padding:0.6rem 0.75rem">Rubric marks for Hot Task across all four criteria (Science Understanding, Investigation Skills, Science as Human Endeavour, Communication). AC9S3U01 and AC9S4U01 codes assigned based on student performance. Anecdotal records from investigation observations. Self-reflection journal entries (Weeks 7–8).</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p><strong>ezy-teach — Ecosystems and Living Things Science Unit</strong></p>
+    <p>AC Science v9 aligned | Australian Schools | Years 3–4</p>
+    <p>Mentor Text: <em>The Lorax</em> by Dr. Seuss (1971)</p>
+  </div>
+
+</div>
+
+</body>
+</html>

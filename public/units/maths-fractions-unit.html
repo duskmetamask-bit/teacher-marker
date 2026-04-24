@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fractions and Decimals Unit — Years 3–4 | PickleNickAI</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --navy: #1a2a4a;
+    --navy-light: #2d4a7c;
+    --teal: #0d9488;
+    --teal-light: #14b8a6;
+    --amber: #f59e0b;
+    --amber-light: #fbbf24;
+    --rose: #e11d48;
+    --slate: #475569;
+    --slate-light: #94a3b8;
+    --bg: #f8fafc;
+    --white: #ffffff;
+    --border: #e2e8f0;
+    --text: #1e293b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: white;
+    padding: 2.5rem 2rem;
+    border-radius: 0 0 1.5rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .header h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+
+  .header .subtitle {
+    color: var(--amber-light);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .badge {
+    background: var(--teal);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .mentor-text {
+    margin-top: 1.25rem;
+    background: rgba(255,255,255,0.1);
+    border-left: 4px solid var(--amber);
+    padding: 0.75rem 1rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-size: 0.875rem;
+  }
+
+  .mentor-text strong { color: var(--amber-light); }
+
+  /* META GRID */
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .meta-card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    border: 1px solid var(--border);
+  }
+
+  .meta-card .label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--slate-light);
+    margin-bottom: 0.25rem;
+  }
+
+  .meta-card .value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  /* SUCCESS CRITERIA */
+  .success-criteria {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--teal);
+    margin-bottom: 0.75rem;
+  }
+
+  .success-criteria h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+
+  .criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .criteria-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--slate);
+  }
+
+  .criteria-item::before {
+    content: "✓";
+    color: var(--teal);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  /* WEEK SUMMARY TABLE */
+  .week-summary {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+    overflow-x: auto;
+  }
+
+  .week-summary h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    min-width: 600px;
+  }
+
+  th {
+    background: var(--navy);
+    color: white;
+    font-weight: 600;
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #f8fafc; }
+
+  .week-num {
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .week-focus {
+    font-weight: 600;
+    color: var(--slate);
+  }
+
+  .lesson-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .lesson-tag {
+    background: var(--teal);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .highlight-tag {
+    background: var(--amber);
+    color: var(--navy);
+  }
+
+  /* WEEK SECTIONS */
+  .week-section {
+    background: white;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .week-header {
+    background: var(--navy);
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .week-header h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .week-badge {
+    background: var(--teal);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  .week-body { padding: 1.25rem 1.5rem; }
+
+  /* LESSON CARDS */
+  .lesson-card {
+    background: var(--bg);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+  }
+
+  .lesson-card:last-child { margin-bottom: 0; }
+
+  .lesson-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .lesson-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .lesson-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .lesson-time, .lesson-type {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+  }
+
+  .lesson-time {
+    background: var(--amber);
+    color: var(--navy);
+  }
+
+  .lesson-type {
+    background: var(--navy);
+    color: white;
+  }
+
+  .lesson-type.guided { background: var(--teal); }
+  .lesson-type.independent { background: var(--slate); }
+  .lesson-type.assessment { background: var(--rose); }
+
+  /* LESSON TABLE */
+  .lesson-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.775rem;
+    margin-top: 0.75rem;
+  }
+
+  .lesson-table th {
+    background: var(--slate);
+    color: white;
+    font-size: 0.65rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .lesson-table td {
+    padding: 0.5rem 0.6rem;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .lesson-table tr td:first-child {
+    background: rgba(13,148,136,0.1);
+    font-weight: 600;
+    color: var(--teal);
+    width: 100px;
+    white-space: nowrap;
+  }
+
+  .differentiation {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(245,158,11,0.1);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-size: 0.775rem;
+  }
+
+  .differentiation strong {
+    color: var(--amber);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* RUBRIC TABLE */
+  .rubric-section {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+  }
+
+  .rubric-section h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  .rubric-table th {
+    background: var(--navy);
+    font-size: 0.65rem;
+  }
+
+  .rubric-table td:first-child {
+    background: rgba(26,42,74,0.05);
+    font-weight: 600;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .grade-a { background: rgba(16,185,129,0.15); font-weight: 600; color: #059669; }
+  .grade-b { background: rgba(59,130,246,0.15); color: #2563eb; }
+  .grade-c { background: rgba(245,158,11,0.15); color: #d97706; }
+  .grade-d { background: rgba(249,115,22,0.15); color: #ea580c; }
+  .grade-e { background: rgba(239,68,68,0.15); color: #dc2626; }
+
+  /* ADAPTATIONS */
+  .adaptations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .adapt-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+  }
+
+  .adapt-card h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .adapt-card.eal h3 { color: var(--teal); }
+  .adapt-card.gifted h3 { color: var(--navy); }
+  .adapt-card.nep h3 { color: var(--amber); }
+
+  .adapt-card ul {
+    list-style: none;
+    font-size: 0.775rem;
+    color: var(--slate);
+  }
+
+  .adapt-card li {
+    padding: 0.25rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .adapt-card.eal li::before { content: "→"; position: absolute; left: 0; color: var(--teal); }
+  .adapt-card.gifted li::before { content: "→"; position: absolute; left: 0; color: var(--navy); }
+  .adapt-card.nep li::before { content: "→"; position: absolute; left: 0; color: var(--amber); }
+
+  /* COLD/HOT TASK */
+  .task-card {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .task-card h2 {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--amber-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .task-card .task-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .task-card .task-desc {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    margin-bottom: 0.75rem;
+  }
+
+  .task-details {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+  }
+
+  .task-detail {
+    background: rgba(255,255,255,0.15);
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+  }
+
+  .task-detail strong { color: var(--amber-light); }
+
+  /* BIG IDEAS */
+  .big-ideas {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+  }
+
+  .big-ideas h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  .big-ideas ol {
+    padding-left: 1.25rem;
+    font-size: 0.85rem;
+    color: var(--slate);
+  }
+
+  .big-ideas li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .big-ideas li strong {
+    color: var(--navy);
+  }
+
+  /* VOCABULARY */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .vocab-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+  }
+
+  .vocab-card h3 {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--teal);
+    margin-bottom: 0.5rem;
+  }
+
+  .vocab-card p {
+    font-size: 0.8rem;
+    color: var(--slate);
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--slate-light);
+    font-size: 0.7rem;
+  }
+
+  /* PRINT */
+  @media print {
+    body { font-size: 11px; }
+    .header { border-radius: 0; }
+    .week-section { break-inside: avoid; }
+    .lesson-card { break-inside: avoid; }
+  }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.3rem; }
+    .meta-grid { grid-template-columns: 1fr 1fr; }
+    .week-header { flex-direction: column; align-items: flex-start; }
+    .lesson-top { flex-direction: column; }
+    .lesson-table { font-size: 0.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="subtitle">PickleNickAI — Sample Unit Output</div>
+        <h1>Fractions and Decimals<br>Years 3–4</h1>
+      </div>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+        <span class="badge">Years 3–4</span>
+        <span class="badge" style="background:var(--amber)">8 Weeks</span>
+        <span class="badge" style="background:var(--rose)">24 Lessons</span>
+      </div>
+    </div>
+    <div class="mentor-text">
+      <strong>Mentor Text:</strong> *The Doorbell Rang* by Pat Hutchins (1986) — A picture book about children sharing cookies equally. The perfect concrete hook for fractions as equal sharing.
+    </div>
+  </div>
+
+  <!-- META GRID -->
+  <div class="meta-grid">
+    <div class="meta-card">
+      <div class="label">Curriculum</div>
+      <div class="value">AC Mathematics v9</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Focus</div>
+      <div class="value">Fractions & Decimals</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Model</div>
+      <div class="value">5E Instructional</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Mentor Text</div>
+      <div class="value">The Doorbell Rang</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Cold Task</div>
+      <div class="value">Week 1, Lesson 1</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Hot Task</div>
+      <div class="value">Week 8, Lesson 3</div>
+    </div>
+  </div>
+
+  <!-- BIG IDEAS -->
+  <div class="big-ideas">
+    <div class="section-label">Key Understandings</div>
+    <h2>What students will understand by the end of this unit</h2>
+    <ol>
+      <li>A fraction names equal parts — the parts must be <strong>the same size</strong></li>
+      <li>The denominator names <strong>how many equal parts</strong> the whole is divided into; the numerator names <strong>how many parts are selected</strong></li>
+      <li>The same fraction can look different (equivalent fractions) — they name the <strong>same amount</strong></li>
+      <li>Fractions and decimals are two different ways of writing parts of a whole</li>
+      <li>Fractions exist on a number line — they have size and order</li>
+      <li>You can only add or subtract fractions that refer to the <strong>same sized parts</strong> (same denominator)</li>
+    </ol>
+  </div>
+
+  <!-- SUCCESS CRITERIA -->
+  <div class="success-criteria">
+    <div class="section-label">Learning Intentions</div>
+    <h2>We are learning to understand, represent and work with fractions and decimals.</h2>
+    <div class="criteria-grid">
+      <div class="criteria-item">Explain what a fraction is and why the parts must be equal</div>
+      <div class="criteria-item">Read and write fractions — know what the top and bottom numbers mean</div>
+      <div class="criteria-item">Shade or draw fractions of shapes</div>
+      <div class="criteria-item">Find fractions of a collection (e.g. 1/3 of 12)</div>
+      <div class="criteria-item">Show fractions on a number line</div>
+      <div class="criteria-item">Find equivalent fractions (same size, different names)</div>
+      <div class="criteria-item">Add and subtract fractions with the same denominator</div>
+      <div class="criteria-item">Explain the connection between fractions and decimals (tenths)</div>
+      <div class="criteria-item">Read and write decimals with tenths and hundredths</div>
+      <div class="criteria-item">Order fractions and decimals from smallest to largest</div>
+    </div>
+  </div>
+
+  <!-- COLD TASK -->
+  <div class="task-card">
+    <h2>Pre-Assessment — Cold Task</h2>
+    <div class="task-name">Week 1, Lesson 1</div>
+    <div class="task-desc">Students attempt the same 10-question assessment they'll complete again in Week 8 as the Hot Task — establishing a baseline to measure growth against.</div>
+    <div class="task-details">
+      <span class="task-detail"><strong>Format:</strong> Written assessment</span>
+      <span class="task-detail"><strong>Year 3:</strong> Parts A–C</span>
+      <span class="task-detail"><strong>Year 4:</strong> All parts including decimals</span>
+      <span class="task-detail"><strong>Same task as Hot Task (Week 8)</strong></span>
+    </div>
+  </div>
+
+  <!-- WEEK SUMMARY TABLE -->
+  <div class="week-summary">
+    <h2>8-Week Overview at a Glance</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Phase</th>
+          <th>Focus</th>
+          <th>Highlights</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="week-num">Week 1</td>
+          <td><span class="lesson-tag">Engage</span></td>
+          <td class="week-focus">Introduction to Fractions</td>
+          <td>Cold Task, equal sharing, numerator & denominator</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 2</td>
+          <td><span class="lesson-tag">Explore</span></td>
+          <td class="week-focus">Unit Fractions In Depth</td>
+          <td>Area model, fractions of shapes, comparing fractions</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 3</td>
+          <td><span class="lesson-tag">Explore</span></td>
+          <td class="week-focus">Collections & Number Lines</td>
+          <td>Fractions of collections, number line placement, Flip Book</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 4</td>
+          <td><span class="lesson-tag">Explain</span></td>
+          <td class="week-focus">Equivalent Fractions</td>
+          <td>What equivalent means, finding patterns, concept quiz</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 5</td>
+          <td><span class="lesson-tag">Explain</span></td>
+          <td class="week-focus">Adding & Subtracting Fractions</td>
+          <td>Same denominator, problem solving, mixed numerals</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 6</td>
+          <td><span class="lesson-tag">Elaborate</span></td>
+          <td class="week-focus">Introducing Decimals</td>
+          <td>Tenths, decimal grids, place value, number lines</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 7</td>
+          <td><span class="lesson-tag">Elaborate</span></td>
+          <td class="week-focus">Hundredths & Ordering</td>
+          <td>Hundredths grid, comparing decimals, peer assessment</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 8</td>
+          <td><span class="lesson-tag" style="background:var(--teal)">Evaluate</span></td>
+          <td class="week-focus">Hot Task & Celebration</td>
+          <td>Hot Task, Cold→Hot comparison, unit celebration</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- VOCABULARY -->
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <h3>Tier 1 — Everyday</h3>
+      <p>share, equal, same, piece, part, whole, half</p>
+    </div>
+    <div class="vocab-card">
+      <h3>Tier 2 — Academic</h3>
+      <p>compare, represent, divide, equivalent, convert, locate, partition</p>
+    </div>
+    <div class="vocab-card">
+      <h3>Tier 3 — Mathematical</h3>
+      <p>numerator, denominator, unit fraction, equivalent fraction, tenth, hundredth, decimal point, number line, mixed numeral</p>
+    </div>
+  </div>
+
+  <!-- HOT TASK -->
+  <div class="task-card" style="background:linear-gradient(135deg, #0f766e 0%, #14b8a6 100%)">
+    <h2>Post-Assessment — Hot Task</h2>
+    <div class="task-name">Week 8, Lesson 3</div>
+    <div class="task-desc">Identical to the Cold Task — same 10 questions. Students receive both alongside each other, annotate growth with sticky notes, and reflect on how far they've come.</div>
+    <div class="task-details">
+      <span class="task-detail"><strong>Format:</strong> Written assessment</span>
+      <span class="task-detail"><strong>Year 3:</strong> Parts A–C</span>
+      <span class="task-detail"><strong>Year 4:</strong> All parts including decimals</span>
+      <span class="task-detail"><strong>Same task as Cold Task — measure growth</strong></span>
+    </div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 1 — Engage: Introduction to Fractions</h3>
+      <span class="week-badge">5E: Engage</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Cold Task and Launch</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type assessment">Assessment</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Hook (10 min)</td>
+            <td>Read <em>The Doorbell Rang</em> aloud. Turn and talk: What happened to each person's share every time the doorbell rang? "That's what this whole unit is about."</td>
+          </tr>
+          <tr>
+            <td>Cold Task (35 min)</td>
+            <td>Students attempt the 10-question pre-assessment independently. Teacher circulates and observes only — does NOT scaffold or prompt.</td>
+          </tr>
+          <tr>
+            <td>Debrief (10 min)</td>
+            <td>Normalise not knowing. Preview the 8-week journey. "By Week 8, you'll do this exact same task again. And you will be amazed at how much you've learned."</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Equal Sharing — What Makes a Fraction?</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (15 min)</td>
+            <td>Read <em>The Doorbell Rang</em> pp. 1–15. Model folding paper circles into halves. Key concept: "For something to be a fraction, the parts must be EQUAL in size." Introduce numerator (top = how many parts) and denominator (bottom = how many equal parts).</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>Students fold paper circles: Round 1 — 2 people (halves). Round 2 — 4 people (quarters). Round 3 — 3 people (thirds). Discuss: what changes when more people share?</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Draw and shade rectangles and circles to show fractions. "My friend says this shape shows halves:" (show unequal pieces) — agree or disagree and explain why.</td>
+          </tr>
+        </table>
+        <div class="differentiation">
+          <strong>Differentiation:</strong> EAL/D: vocabulary cards (numerator, denominator, equal, whole). Gifted: Can you draw a shape that shows 5/8? NEP: Focus on halves only.
+        </div>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Naming Fractions — Reading and Writing</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (15 min)</td>
+            <td>Build fraction vocabulary wall: halves (1/2), thirds (1/3), quarters (1/4), fifths (1/5), sixths (1/6). Key rule: "When the numerator equals the denominator, we have ONE whole. 4/4 = 1."</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>Fraction strip exploration. Partner activity: Partner A points to a fraction strip piece; Partner B reads it aloud. Whiteboard check: teacher calls out fractions, students write and hold up.</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Write fractions shown by shaded diagrams. Draw own diagrams for given fractions. "I ate 3/8 of a pizza. My friend ate 5/8. Together, did we eat the whole pizza?"</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 2 — Explore: Fractions of Shapes</h3>
+      <span class="week-badge">5E: Explore</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Area Model — Fractions of Shapes</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (15 min)</td>
+            <td>Model: divide rectangles and circles into equal parts. Show that equal AREA is required — not just equal number. Circle divided into thirds, sixths. Key: "Sixths make a half — 3/6 = 1/2."</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>Grid paper activity: students draw rectangles (3×2, 4×2, 3×3 grids) and divide into halves, thirds, sixths. Partner check: "Is my partner's shape correctly divided into equal parts?"</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Shade 3/4 of each shape (rectangle, circle, cross). Tick shapes correctly showing 1/3. Cross ones that do not — explain one cross.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Multiple Representations</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (12 min)</td>
+            <td>Show the fraction 3/4 in four completely different ways: (1) Rectangle diagram, (2) Number line, (3) Collection of counters, (4) Words. Key question: "What stays the SAME? What CHANGES?"</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>5-station rotation: (1) Pattern blocks — if hexagon = 1 whole, what fraction is each shape? (2) Number lines — mark halves, thirds, quarters. (3) Drawing — show 3/5 three different ways. (4) Word problems. (5) Sorting — same-amount fractions together.</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Show 2/3 in three different ways. "Which representation do you find easiest? Why?" Challenge: can 1/4 be placed closer to 1 than to 0 on a number line?</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Comparing Fractions — Which Is Bigger?</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (15 min)</td>
+            <td>Which is bigger: 1/2 or 1/6? Test with fraction strips. Key insight: "When we cut something into MORE pieces, each piece gets SMALLER." Golden Rule: For unit fractions — the bigger the denominator, the SMALLER the fraction.</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>Fraction strip compare activity: 1/4 vs 1/3, 2/4 vs 1/2, 3/6 vs 1/2, 2/3 vs 3/4, 5/6 vs 4/5. Build strategy anchor chart: (1) Use fraction strips, (2) Think about size of piece, (3) Compare to 1/2 benchmark.</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Compare using >, <, =. Order fractions smallest to largest. "I have 1/3 of a chocolate bar. My friend has 1/4. Who has more? Explain."</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 3 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 3 — Explore: Fractions of Collections & Number Lines</h3>
+      <span class="week-badge">5E: Explore</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Fractions of a Collection</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Engage (5 min)</td>
+            <td>Re-read <em>The Doorbell Rang</em> — 12 cookies shared between 4 children. Work out the maths: 12 ÷ 4 = 3 cookies each. Each child gets 3/12 = 1/4 of the total.</td>
+          </tr>
+          <tr>
+            <td>I Do (12 min)</td>
+            <td>Model with 12 counters: find 1/3 of 12 (divide by 3 = 4). Key connection: "Finding 1/3 of something = dividing by 3." Model non-unit: 3/4 of 20 — find 1/4 first (5), then count 3 groups (15).</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>Partner counter activity: find 1/4 of 16, 1/3 of 15, 2/3 of 12. The Doorbell Rang problem set: 12 cookies shared between 2, 3, 4, 6, 12 people — record cookies per person and fraction of total.</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Find: 1/3 of 18, 1/4 of 24, 1/6 of 30, 2/3 of 15. "There are 20 students. 1/4 are wearing hats. How many?" "Sam says 1/5 of 25 is 10. Is he correct?"</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Fractions on the Number Line</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (15 min)</td>
+            <td>"Numbers don't jump from 0 to 1. That world is fractions." Divide 0–1 into halves, then quarters, then sixths. Notice: 2/4 and 1/2 are at the same point. Extend to beyond 1: 5/4 and 7/4 on 0–2 number line.</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>Floor number line activity: each student places a fraction card. Partner number lines: stack strips showing halves, thirds, sixths — record equivalences. "Which fractions line up?"</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Place fractions on a number line from 0–1 and 0–2. "I placed 1/3 halfway between 0 and 1. Is this correct? Explain." Challenge: where would 1/3 go on a halves-and-quarters number line?</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Fractions Flip Book (Formative Artifact)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type independent">Independent</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (10 min)</td>
+            <td>Model flip book construction. Each page includes: diagram of shape, fraction name, number line placement, fraction of a collection example.</td>
+          </tr>
+          <tr>
+            <td>You Do (35 min)</td>
+            <td>Students create personal Fractions Flip Book independently: (1) Halves, (2) Thirds, (3) Quarters, (4) Fifths, (5) Sixths, (6) Back — "My two favourites." Teacher circulates, conferences, assesses on 1–3 scale.</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 4 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 4 — Explain: Equivalent Fractions</h3>
+      <span class="week-badge">5E: Explain</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: What Are Equivalent Fractions?</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (15 min)</td>
+            <td>Show 2/4 = 1/2 using fraction strips — exactly the same length. Analogy: "It's like calling me Yuki or calling me 'the teacher' — different names, same person." Build: 1/2 = 2/4 = 3/6 = 4/8. "Every time we double both numerator and denominator, we get equivalent fractions."</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>Fraction wall activity: find all fractions equivalent to 1/2, 1/3, 2/3. Gallery walk — 4 posters with sticky notes. Order fractions using the wall: 2/6, 1/2, 3/4, 1/3.</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Write two equivalent fractions for 1/3, 1/4, 3/4. Fill in blanks: 1/2 = ___/6 = ___/8. "My friend says 3/6 and 1/3 are equivalent. Do you agree?"</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Finding Equivalent Fractions — The Pattern</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (15 min)</td>
+            <td>"Multiply top and bottom by the same number": 1/2 × 2/2 = 2/4, × 3/3 = 3/6. "Why does this work? Because we're multiplying by 1 — 2/2, 3/3." Simplifying: 12/16 → divide by 4 = 3/4.</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>Whiteboard rounds: find equivalent fractions, simplify. Missing number puzzles: 1/3 = ___/9 (answer: 3), 2/5 = 6/___ (answer: 15). Partner quiz: write 5 equivalent fraction puzzles to swap.</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Find three equivalent fractions for 1/4, 2/3, 3/5. Simplify: 6/8, 4/6, 10/15. Fill in: 3/4 = ___/12 = 9/___.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Concept Check Quiz + Consolidation</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type assessment">Assessment</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Quiz (20 min)</td>
+            <td>Concept Check covering Weeks 1–4: represent fractions from diagrams, find fractions of collections, place on number line, identify equivalent fractions, explain denominator role, order fractions.</td>
+          </tr>
+          <tr>
+            <td>Consolidation (25 min)</td>
+            <td>Flexible grouping: Group A (Strong) — peer teaching, explore unlike denominators. Group B (On Track) — practice page. Group C (Needs Support) — teacher-led small group with fraction strips.</td>
+          </tr>
+          <tr>
+            <td>Reflection (10 min)</td>
+            <td>Exit ticket: "One thing I understand well: ___. One thing I'm still confused about: ___. My goal for next week: ___."</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 5 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 5 — Explain: Adding and Subtracting Fractions</h3>
+      <span class="week-badge">5E: Explain</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Adding Fractions — Same Denominator</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (15 min)</td>
+            <td><em>The Doorbell Rang</em>: Sam ate 2/6 of cookies, then 1/6 more. "2/6 + 1/6 = 3/6." Rule: ADD the numerators, KEEP the denominator. "Why? The denominator names the SIZE of the pieces — sixths are sixths. Only the numerator changes." Model: 2/3 + 2/3 = 4/3 = 1 and 1/3.</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>Fraction tile activity: build 2/5 + 2/5, 1/3 + 1/3. Partner challenge: build a problem where the answer is 3/4. When answer > 1, write as mixed numeral: 7/6 = 1 and 1/6.</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Add: 2/5 + 2/5, 3/8 + 4/8, 1/3 + 2/3, 5/6 + 4/6. "Sam eats 1/4 of cookies, Jay eats 2/4. What fraction altogether? Is there any left?"</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Subtracting Fractions — Same Denominator</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (15 min)</td>
+            <td>"Ma had 3/4 of a pizza. She ate 1/4. How much is left?" Model: 3/4 − 1/4 = 2/4. Same rule — SUBTRACT numerators, KEEP denominator. Key: 1 − 3/4 = 4/4 − 3/4 = 1/4 (convert whole to fraction form first).</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>Diagram-first approach: draw fraction diagrams, then write equations. Problems: 4/5 − 2/5, 5/6 − 3/6, 5/6 (whole) − 5/6 = 0. Partner: "Sam had 5/8 of cake. After the party, only 2/8 left. How much was eaten?"</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Subtract: 4/5 − 2/5, 7/8 − 3/8, 5/6 − 5/6, 1 − 3/5. "I had 3/4 of water bottle. I drank 1/4. How much left?"</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Problem-Solving with Fractions</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (10 min)</td>
+            <td>STAR problem-solving strategy: Search (find numbers + question), Translate (write maths sentence), Answer (solve), Review (does it make sense?). Model: "Sam has 5/8 of pie. Gives 2/8 to brother. Gets 1/8 back. How much?" → 5/8 − 2/8 + 1/8 = 4/8 = 1/2.</td>
+          </tr>
+          <tr>
+            <td>We Do (20 min)</td>
+            <td>Partner problem set: 11/12 of chocolate bar left; Maya ate 3/12; Sam ate 4/12 — how much left? Jay ate 2/6 pizza at lunch, 1/6 at dinner — more or less than half? Recipe needs 3/4 cup flour; added 1/4 cup — how much more needed?</td>
+          </tr>
+          <tr>
+            <td>You Do (20 min)</td>
+            <td>Students choose 2 of 4 problems including multi-step fraction problems. Extension: describe the full Doorbell Rang cookie-sharing sequence in fractions.</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 6 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 6 — Elaborate: Introducing Decimals</h3>
+      <span class="week-badge">5E: Elaborate</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: What Is a Decimal? Tenths</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (15 min)</td>
+            <td>"Decimals are another way to write parts of a whole." Show 10-column grid: "Each part = one tenth = 1/10 = 0.1." Build table: 1/10 = 0.1, 2/10 = 0.2, 5/10 = 0.5, 10/10 = 1.0. "The decimal point separates the WHOLE part (left) from the PARTS (right)." Place value: ones | . | tenths.</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>Grid colouring activity: shade 3/10 columns → "What fraction? What decimal?" Shade 10/10 → "What fraction? Decimal? Whole number?" Whiteboard place value chart practice. Match fractions to decimals card activity.</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Write as decimal: 4/10, 9/10, 1/10, 10/10. Write as fraction: 0.6, 0.2, 0.8, 1.0. Shade grid for 0.7. "Is 0.5 the same as 1/2? Show how you know."</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Tenths on a Number Line and Place Value</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (15 min)</td>
+            <td>Divide 0–1 number line into 10 equal parts = tenths. Label: 0, 0.1, 0.2... 1.0. "Where is 0.5? Right in the middle — the same as 1/2!" Extend to 0–2: place 1.3. MAB blocks: long rod = 1 whole, small cube = 0.1. Build 1.4: 1 rod + 4 cubes.</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>Number line placement: 0.3, 0.7, 1.2, 0.5, 1.8, 0.9. MAB building with partners — build and read: 2.3, 1.7. Order decimals from smallest to largest and justify.</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Place on number line: 0.2, 0.8, 1.5, 0.5. Order: 1.3, 0.7, 1.0, 0.4, 1.9. Write in words: 0.3, 1.6, 2.9. Challenge: what decimals come between 0.5 and 1.0?</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Converting — Fractions ↔ Decimals (Tenths)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (12 min)</td>
+            <td>Conversion table: 1/10 = 0.1, 3/10 = 0.3, 7/10 = 0.7, 10/10 = 1.0. "What about 1/2? Denominator is 2, not 10." Make equivalent: 1/2 = 5/10 = 0.5. Common conversions: 1/5 = 2/10 = 0.2, 2/5 = 4/10 = 0.4.</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>Conversion whiteboard rounds — teacher calls a fraction, students convert and hold up decimal, and vice versa. Match-up card game (20 cards). Mini investigation: which fractions with denominator 2, 4, 5, 10 can be written as decimal tenths? Which can't?</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Convert to decimal: 6/10, 1/2, 3/5, 9/10. Convert to fraction: 0.4, 0.9, 0.5, 0.2. Order: 1/2, 0.3, 3/5, 0.8. "I say 3/5 > 0.5. Is this true?"</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 7 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 7 — Elaborate: Hundredths and Ordering Decimals</h3>
+      <span class="week-badge">5E: Elaborate</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Hundredths — The Next Column</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (15 min)</td>
+            <td>Show 10×10 grid (100 squares): "Each tiny square = one HUNDREDTH = 1/100 = 0.01." One column (10 squares) = 10/100 = 1/10 = 0.1. Build place value: ones | . | tenths | hundredths. Model: 0.34 = 34/100, 0.07 = 7/100, 1.25 = 1 whole + 2 tenths + 5 hundredths. Key: 0.50 = 0.5 — trailing zero doesn't change value.</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>Hundredths grid colouring: shade 34 squares → write as fraction and decimal. Shade 50 squares → "Is there another name for this?" (1/2, 0.5). Place value chart: build 0.45, 1.23, 0.09, 2.50. Decimal dictation — teacher reads "three tenths and seven hundredths", students write 0.37.</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Write as decimal: 45/100, 7/100, 3/10 and 9/100. Write as fraction: 0.23, 0.08, 0.90, 1.45. "My friend says 0.50 is bigger than 0.5. Are they correct?" Write 1/4 as a decimal.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Ordering and Comparing Decimals</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (15 min)</td>
+            <td>"Common mistake: students think 0.9 > 1.2 because 9 > 1." Compare ones FIRST → then tenths → then hundredths. Compare 0.45 and 0.5: same ones, tenths 4 vs 5 → 0.45 < 0.5. Trick: write 0.5 as 0.50 — now compare easily.</td>
+          </tr>
+          <tr>
+            <td>We Do (25 min)</td>
+            <td>Number line placement race: teams order decimal cards. Rounds: 0.2, 0.8, 0.5, 0.1 | 1.3, 0.9, 1.1, 1.7 | 0.45, 0.4, 0.54, 0.5 | 0.09, 0.9, 0.19, 0.90. Whiteboard comparison: hold up >, <, or =.</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Compare: 0.7 ○ 0.3, 1.2 ○ 0.9, 0.45 ○ 0.5, 0.60 ○ 0.6. Order: 0.3, 0.03, 1.3, 0.31, 0.13. Between 0.4 and 0.5, name three decimals. Find the error: 0.9, 0.91, 0.19, 0.09 ordered incorrectly.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Peer Assessment + Decimal Review</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type independent">Independent</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Peer Assessment (25 min)</td>
+            <td>Swap Week 6/7 workbook pages. Check: Are diagrams divided equally? Are fraction-to-decimal conversions correct? Write one specific praise and one specific suggestion.</td>
+          </tr>
+          <tr>
+            <td>Review Task (25 min)</td>
+            <td>Individual: Write as decimal (3/10, 47/100, 1/4, 1/2). Write as fraction (0.9, 0.35, 0.06, 1.25). Place on 0–2 number line: 0.5, 1.25, 0.75, 1.9. Order: 0.6, 0.06, 1.6, 0.16, 0.61.</td>
+          </tr>
+          <tr>
+            <td>Reflection (10 min)</td>
+            <td>Journal: "What I understand about decimals: ___. What I'm still working on: ___. One connection between fractions and decimals: ___."</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 8 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 8 — Evaluate: Consolidation and Hot Task</h3>
+      <span class="week-badge" style="background:var(--teal)">5E: Evaluate</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Fraction Gallery and Consolidation Games</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Gallery Walk (20 min)</td>
+            <td>Flip Books from Week 3 displayed around the room. Students add sticky notes: GREEN (something I notice), ORANGE (question), PINK (connection to another concept).</td>
+          </tr>
+          <tr>
+            <td>Consolidation Games (30 min)</td>
+            <td>4 rotations: Fraction Snap (matching game), The Doorbell Rang Maths (reenact with counters, write fraction equations), Decimal Place Value Race (dice game), Equivalent Fraction Bingo.</td>
+          </tr>
+          <tr>
+            <td>Reflection (5 min)</td>
+            <td>"Without looking at your notes, tell your partner three things you know for sure about fractions and decimals now that you didn't know in Week 1."</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Connecting It All — Unit Synthesis</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">60 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Concept Map (20 min)</td>
+            <td>Whole-class concept map built on board: "Fractions and Decimals" in centre. Connections: Fractions ↔ Division (fractions of collections), Fractions ↔ Number Line, Fractions ↔ Equivalent, Fractions ↔ Decimals, Fractions ↔ Addition/Subtraction.</td>
+          </tr>
+          <tr>
+            <td>Doorbell Rang Maths Retelling (20 min)</td>
+            <td>Read <em>The Doorbell Rang</em> one final time. STOP after each doorbell ring. Pairs: write new fraction per person, subtraction equation, place on number line. Final question: "At start: 2 people each get 1/2 (6 cookies). At end: 12 people each get 1/12 (1 cookie). Write the full sequence. What pattern do you see?"</td>
+          </tr>
+          <tr>
+            <td>Personal Concept Map (15 min)</td>
+            <td>Independent: create own concept map with at least 6 key terms, 5 connecting lines with labels, 2 examples. Extension: include a diagram or worked example.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Hot Task + Cold → Hot Comparison + Celebration</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">70 min</span>
+            <span class="lesson-type assessment">Assessment</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Hot Task (30 min)</td>
+            <td>IDENTICAL to Cold Task from Week 1. Students work independently and silently. Collect all Hot Tasks.</td>
+          </tr>
+          <tr>
+            <td>Cold → Hot Comparison (25 min)</td>
+            <td>Return Cold Task alongside Hot Task. Students compare with coloured pens: GREEN circle = right in both, BLUE = wrong in Week 1, right in Week 8, ORANGE = still tricky. Write sticky notes: "Before Week 1, I thought... Now I know... I'm most proud of..."</td>
+          </tr>
+          <tr>
+            <td>Celebration (10 min)</td>
+            <td>Each student shares one "I'm most proud of" statement. Display both tasks side by side: "Look How Far We've Come." Final <em>Doorbell Rang</em> read: "Grandma arrives with more cookies. What fraction does each person get now? Tell me — because you're mathematicians now."</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RUBRIC -->
+  <div class="rubric-section">
+    <h2>Rubric — Fractions and Decimals (Years 3–4)</h2>
+    <p style="font-size:0.7rem;color:var(--slate);margin-bottom:1rem;">AC9M3N04, AC9M3N05, AC9M3N06, AC9M4N04, AC9M4N05, AC9M4N06</p>
+    <table class="rubric-table" style="min-width:0">
+      <thead>
+        <tr>
+          <th>Criterion</th>
+          <th style="background:#059669">A — Excellent</th>
+          <th style="background:#2563eb">B — Strong</th>
+          <th style="background:#d97706">C — Satisfactory</th>
+          <th style="background:#ea580c">D — Developing</th>
+          <th style="background:#dc2626">E — Beginning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Understanding Fractions of a Whole</strong></td>
+          <td class="grade-a">Accurately represents unit/non-unit fractions; explains numerator/denominator with precision; uses mixed numerals independently</td>
+          <td class="grade-b">Represents fractions correctly; explains numerator/denominator with minor imprecision; attempts mixed numerals</td>
+          <td class="grade-c">Represents halves, quarters, thirds correctly most of the time; needs prompting for numerator/denominator</td>
+          <td class="grade-d">Halves/quarters inconsistent; confuses numerator and denominator</td>
+          <td class="grade-e">Requires significant support; doesn't demonstrate equal parts concept</td>
+        </tr>
+        <tr>
+          <td><strong>Fractions of a Collection</strong></td>
+          <td class="grade-a">Finds any unit fraction of a collection; solves multi-step problems; connects division and fractions with justification</td>
+          <td class="grade-b">Finds unit fractions reliably; solves sharing problems with minor errors; connects division and fractions</td>
+          <td class="grade-c">Finds 1/2 and 1/4 of collections with concrete materials; beginning to connect division and fractions</td>
+          <td class="grade-d">Finds 1/2 of a collection with support; struggles with equal-sharing concept</td>
+          <td class="grade-e">Unable to find fractions of a collection</td>
+        </tr>
+        <tr>
+          <td><strong>Equivalent Fractions</strong></td>
+          <td class="grade-a">Identifies and generates equivalent fractions fluently; uses multiple representations; applies to number line independently</td>
+          <td class="grade-b">Identifies equivalents using diagrams or number lines reliably; explains with some imprecision</td>
+          <td class="grade-c">Identifies simple equivalences (1/2 = 2/4) with concrete materials; needs prompting</td>
+          <td class="grade-d">Recognises some equivalences with teacher modelling; cannot generate independently</td>
+          <td class="grade-e">Does not demonstrate understanding of equivalent fractions</td>
+        </tr>
+        <tr>
+          <td><strong>Adding & Subtracting Fractions</strong></td>
+          <td class="grade-a">Adds/subtracts fractions fluently; represents as mixed numerals; extends to related denominators</td>
+          <td class="grade-b">Adds/subtracts correctly; attempts mixed numerals; limited success with related denominators</td>
+          <td class="grade-c">Adds with concrete/pictorial support; subtraction attempted with errors</td>
+          <td class="grade-d">Adds simple fractions (1/4 + 1/4) with concrete support</td>
+          <td class="grade-e">Unable to add fractions; requires prerequisite intervention</td>
+        </tr>
+        <tr>
+          <td><strong>Decimals (Year 4)</strong></td>
+          <td class="grade-a">Converts fractions ↔ decimals confidently (tenths + hundredths); orders on number line; explains place value connection</td>
+          <td class="grade-b">Converts tenths reliably; attempts hundredths with minor errors; locates on number line</td>
+          <td class="grade-c">Converts tenths with support; struggling with hundredths; needs assistance with number line</td>
+          <td class="grade-d">Recognises decimal notation but cannot convert</td>
+          <td class="grade-e">Does not demonstrate understanding of decimal notation</td>
+        </tr>
+        <tr>
+          <td><strong>Mathematical Communication</strong></td>
+          <td class="grade-a">Precise mathematical vocabulary consistently; justifies with multiple representations; explains clearly</td>
+          <td class="grade-b">Correct vocabulary most of the time; reasoning with minor gaps</td>
+          <td class="grade-c">Some mathematical vocabulary; explains orally but limited in writing</td>
+          <td class="grade-d">Everyday language only; explanation relies on demonstration</td>
+          <td class="grade-e">Minimal communication of mathematical thinking</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ADAPTATIONS -->
+  <div class="adaptations">
+    <div class="adapt-card eal">
+      <h3>EAL/D Students</h3>
+      <ul>
+        <li>Pre-teach key vocabulary with visual dictionary cards before each lesson</li>
+        <li>Sentence frames: "This fraction shows ___ because ___"</li>
+        <li>Bilingual anchor charts; allow home language for brainstorming</li>
+        <li>Concrete materials (fraction tiles, pattern blocks) before symbols</li>
+        <li>Accept oral explanation in place of written where appropriate</li>
+        <li>Minimum 20 seconds wait time after questions</li>
+        <li>Fraction wall always available as reference</li>
+      </ul>
+    </div>
+    <div class="adapt-card gifted">
+      <h3>Gifted / Advanced Students</h3>
+      <ul>
+        <li>Extend to comparing fractions with unlike denominators</li>
+        <li>Investigate improper fractions and mixed numerals beyond scope</li>
+        <li>Challenge: If 1/3 = 2/6 = 3/9, what is the pattern? Write a rule.</li>
+        <li>Introduce percentage as a third way of naming parts of a whole</li>
+        <li>Problem-posing: create your own Doorbell Rang style problems</li>
+        <li>Extend decimals to thousandths; connect to measurement (km, kg)</li>
+        <li>Open investigation: Which fractions can be written as terminating decimals?</li>
+      </ul>
+    </div>
+    <div class="adapt-card nep">
+      <h3>Students with NEPs</h3>
+      <ul>
+        <li>Consolidate halves and quarters before introducing thirds, fifths, sixths</li>
+        <li>Physical cookie-cutting (paper circles) to build equal-parts concept</li>
+        <li>Fraction wall always available as reference tool</li>
+        <li>Focus on Parts A and B of each lesson — not expected to reach extension</li>
+        <li>Modified success criteria: 3 "I can" statements rather than all 10</li>
+        <li>Pre-lesson micro-session: preview the concrete model</li>
+        <li>Reduce denominator range: halves, quarters, eighths only if needed</li>
+        <li>Peer support pairing with a student who has mastered the concept</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ASSESSMENT NOTES -->
+  <div class="rubric-section">
+    <h2>Assessment Summary</h2>
+    <table style="font-size:0.8rem">
+      <tr>
+        <td style="background:rgba(13,148,136,0.1);font-weight:600;color:var(--teal);padding:0.6rem 0.75rem;width:160px"><strong>Formative</strong></td>
+        <td style="padding:0.6rem 0.75rem">Cold Task (Week 1), observation notes (ongoing), Fractions Flip Book (Week 3), Concept Check Quiz (Week 4), Problem-Solving Task (Week 5), Decimal Observation Task (Week 6), Peer Assessment (Week 7)</td>
+      </tr>
+      <tr>
+        <td style="background:rgba(13,148,136,0.1);font-weight:600;color:var(--teal);padding:0.6rem 0.75rem"><strong>Summative</strong></td>
+        <td style="padding:0.6rem 0.75rem">Hot Task (Week 8) — identical to Cold Task; published persuasive piece with rubric; self-reflection with goal-setting</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p><strong>PickleNickAI — Fractions and Decimals Unit Output</strong></p>
+    <p>AC Mathematics v9 aligned | WA Schools | Years 3–4</p>
+    <p>Mentor Text: <em>The Doorbell Rang</em> by Pat Hutchins (1986), Greenwillow Books / HarperCollins</p>
+  </div>
+
+</div>
+
+</body>
+</html>

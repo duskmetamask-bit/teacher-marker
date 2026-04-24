@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Narrative Writing Unit — Leo and Ralph | Years 3–4</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --navy: #1a2a4a;
+    --navy-light: #2d4a7c;
+    --teal: #0d9488;
+    --teal-light: #14b8a6;
+    --amber: #f59e0b;
+    --amber-light: #fbbf24;
+    --rose: #e11d48;
+    --slate: #475569;
+    --slate-light: #94a3b8;
+    --bg: #f8fafc;
+    --white: #ffffff;
+    --border: #e2e8f0;
+    --text: #1e293b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: white;
+    padding: 2.5rem 2rem;
+    border-radius: 0 0 1.5rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .header h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+
+  .header .subtitle {
+    color: var(--amber-light);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .badge {
+    background: var(--teal);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .mentor-text {
+    margin-top: 1.25rem;
+    background: rgba(255,255,255,0.1);
+    border-left: 4px solid var(--amber);
+    padding: 0.75rem 1rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-size: 0.875rem;
+  }
+
+  .mentor-text strong { color: var(--amber-light); }
+
+  /* META GRID */
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .meta-card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    border: 1px solid var(--border);
+  }
+
+  .meta-card .label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--slate-light);
+    margin-bottom: 0.25rem;
+  }
+
+  .meta-card .value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  /* SUCCESS CRITERIA */
+  .success-criteria {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--teal);
+    margin-bottom: 0.75rem;
+  }
+
+  .success-criteria h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+
+  .criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .criteria-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--slate);
+  }
+
+  .criteria-item::before {
+    content: "✓";
+    color: var(--teal);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  /* WEEK SUMMARY TABLE */
+  .week-summary {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+    overflow-x: auto;
+  }
+
+  .week-summary h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    min-width: 600px;
+  }
+
+  th {
+    background: var(--navy);
+    color: white;
+    font-weight: 600;
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tr:nth-child(even) td { background: #f8fafc; }
+
+  .week-num {
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .week-focus {
+    font-weight: 600;
+    color: var(--slate);
+  }
+
+  .lesson-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .lesson-tag {
+    background: var(--teal);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .highlight-tag {
+    background: var(--amber);
+    color: var(--navy);
+  }
+
+  /* WEEK SECTIONS */
+  .week-section {
+    background: white;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .week-header {
+    background: var(--navy);
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .week-header h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .week-badge {
+    background: var(--teal);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  .week-body { padding: 1.25rem 1.5rem; }
+
+  /* LESSON CARDS */
+  .lesson-card {
+    background: var(--bg);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+  }
+
+  .lesson-card:last-child { margin-bottom: 0; }
+
+  .lesson-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .lesson-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .lesson-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .lesson-time, .lesson-type {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+  }
+
+  .lesson-time {
+    background: var(--amber);
+    color: var(--navy);
+  }
+
+  .lesson-type {
+    background: var(--navy);
+    color: white;
+  }
+
+  .lesson-type.guided { background: var(--teal); }
+  .lesson-type.independent { background: var(--slate); }
+  .lesson-type.assessment { background: var(--rose); }
+
+  /* LESSON TABLE */
+  .lesson-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.775rem;
+    margin-top: 0.75rem;
+  }
+
+  .lesson-table th {
+    background: var(--slate);
+    color: white;
+    font-size: 0.65rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .lesson-table td {
+    padding: 0.5rem 0.6rem;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .lesson-table tr td:first-child {
+    background: rgba(13,148,136,0.1);
+    font-weight: 600;
+    color: var(--teal);
+    width: 100px;
+    white-space: nowrap;
+  }
+
+  .differentiation {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(245,158,11,0.1);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-size: 0.775rem;
+  }
+
+  .differentiation strong {
+    color: var(--amber);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* RUBRIC TABLE */
+  .rubric-section {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+  }
+
+  .rubric-section h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  .rubric-table th {
+    background: var(--navy);
+    font-size: 0.65rem;
+  }
+
+  .rubric-table td:first-child {
+    background: rgba(26,42,74,0.05);
+    font-weight: 600;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .grade-a { background: rgba(16,185,129,0.15); font-weight: 600; color: #059669; }
+  .grade-b { background: rgba(59,130,246,0.15); color: #2563eb; }
+  .grade-c { background: rgba(245,158,11,0.15); color: #d97706; }
+  .grade-d { background: rgba(249,115,22,0.15); color: #ea580c; }
+  .grade-e { background: rgba(239,68,68,0.15); color: #dc2626; }
+
+  /* ADAPTATIONS */
+  .adaptations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .adapt-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+  }
+
+  .adapt-card h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .adapt-card.eal h3 { color: var(--teal); }
+  .adapt-card.gifted h3 { color: var(--navy); }
+  .adapt-card.nep h3 { color: var(--amber); }
+
+  .adapt-card ul {
+    list-style: none;
+    font-size: 0.775rem;
+    color: var(--slate);
+  }
+
+  .adapt-card li {
+    padding: 0.25rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .adapt-card.eal li::before { content: "→"; position: absolute; left: 0; color: var(--teal); }
+  .adapt-card.gifted li::before { content: "→"; position: absolute; left: 0; color: var(--navy); }
+  .adapt-card.nep li::before { content: "→"; position: absolute; left: 0; color: var(--amber); }
+
+  /* COLD/HOT TASK */
+  .task-card {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .task-card h2 {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--amber-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .task-card .task-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .task-card .task-desc {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    margin-bottom: 0.75rem;
+  }
+
+  .task-details {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+  }
+
+  .task-detail {
+    background: rgba(255,255,255,0.15);
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+  }
+
+  .task-detail strong { color: var(--amber-light); }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--slate-light);
+    font-size: 0.7rem;
+  }
+
+  /* PRINT */
+  @media print {
+    body { font-size: 11px; }
+    .header { border-radius: 0; }
+    .week-section { break-inside: avoid; }
+    .lesson-card { break-inside: avoid; }
+  }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.3rem; }
+    .meta-grid { grid-template-columns: 1fr 1fr; }
+    .week-header { flex-direction: column; align-items: flex-start; }
+    .lesson-top { flex-direction: column; }
+    .lesson-table { font-size: 0.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="subtitle">PickleNickAI — Sample Unit Output</div>
+        <h1>Narrative Writing Unit<br>Leo and Ralph</h1>
+      </div>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+        <span class="badge">Years 3–4</span>
+        <span class="badge" style="background:var(--amber)">8 Weeks</span>
+        <span class="badge" style="background:var(--rose)">24 Lessons</span>
+      </div>
+    </div>
+    <div class="mentor-text">
+      <strong>Mentor Text:</strong> *Leo and Ralph* by Peter Carnavas (2024) — Winner, 2025 Prime Minister's Literary Awards, Children's Literature. Published by University of Queensland Press.
+    </div>
+  </div>
+
+  <!-- META GRID -->
+  <div class="meta-grid">
+    <div class="meta-card">
+      <div class="label">Curriculum</div>
+      <div class="value">AC English v9</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Focus</div>
+      <div class="value">Imaginative Narrative</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Themes</div>
+      <div class="value">Friendship, Belonging, Identity</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Cold Task</div>
+      <div class="value">Week 1, Lesson 1</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Hot Task</div>
+      <div class="value">Week 8, Lesson 1</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Model</div>
+      <div class="value">Gradual Release (I→We→You)</div>
+    </div>
+  </div>
+
+  <!-- SUCCESS CRITERIA -->
+  <div class="success-criteria">
+    <div class="section-label">Learning Intention</div>
+    <h2>We are learning to write an imaginative narrative that explores themes of friendship, belonging and identity.</h2>
+    <div class="criteria-grid">
+      <div class="criteria-item">Plan a narrative with a beginning, middle and end</div>
+      <div class="criteria-item">Create a character with traits and feelings</div>
+      <div class="criteria-item">Use descriptive language to bring my story to life</div>
+      <div class="criteria-item">Show my character's emotions through actions and dialogue</div>
+      <div class="criteria-item">Use paragraphs to organise my narrative</div>
+    </div>
+  </div>
+
+  <!-- COLD TASK -->
+  <div class="task-card">
+    <h2>Pre-Assessment — Cold Task</h2>
+    <div class="task-name">Week 1, Lesson 1</div>
+    <div class="task-desc">Write a narrative about a child who has an imaginary friend. Your imaginary friend should be unusual or special to you.</div>
+    <div class="task-details">
+      <span class="task-detail"><strong>Time:</strong> 40 minutes</span>
+      <span class="task-detail"><strong>Year 3:</strong> 150–250 words</span>
+      <span class="task-detail"><strong>Year 4:</strong> 200–350 words</span>
+      <span class="task-detail"><strong>Same task as Hot Task (Week 8)</strong></span>
+    </div>
+  </div>
+
+  <!-- WEEK SUMMARY TABLE -->
+  <div class="week-summary">
+    <h2>8-Week Overview at a Glance</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Focus</th>
+          <th>Lessons</th>
+          <th>Highlights</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="week-num">Week 1</td>
+          <td class="week-focus">Introduction to Narrative</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag highlight-tag">Cold Task</span>
+              <span class="lesson-tag">What Makes a Narrative?</span>
+              <span class="lesson-tag">Creating Your Character</span>
+            </div>
+          </td>
+          <td>Pre-assessment, story structure, character profiles</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 2</td>
+          <td class="week-focus">Setting and Beginning</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag">Where and When?</span>
+              <span class="lesson-tag">Strong Openings</span>
+              <span class="lesson-tag">Planning Your Narrative</span>
+            </div>
+          </td>
+          <td>Setting descriptions, engaging openings, story maps</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 3</td>
+          <td class="week-focus">Building the Beginning</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag">Writing Your Beginning</span>
+              <span class="lesson-tag">Showing vs Telling</span>
+              <span class="lesson-tag">Dialogue</span>
+            </div>
+          </td>
+          <td>Drafting openings, emotion techniques, punctuation</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 4</td>
+          <td class="week-focus">The Problem</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag">What is the Problem?</span>
+              <span class="lesson-tag">Building Tension</span>
+              <span class="lesson-tag">Writer's Workshop</span>
+            </div>
+          </td>
+          <td>Story problems, story mountain, peer feedback</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 5</td>
+          <td class="week-focus">Resolution and Ending</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag">How Does It End?</span>
+              <span class="lesson-tag">Polishing the Middle</span>
+              <span class="lesson-tag">Paragraphs and Transitions</span>
+            </div>
+          </td>
+          <td>Resolutions, peer revision, paragraph structure</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 6</td>
+          <td class="week-focus">Editing and Polishing</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag">Grammar and Punctuation</span>
+              <span class="lesson-tag">Edit for Vocabulary</span>
+              <span class="lesson-tag">Publishing Plan</span>
+            </div>
+          </td>
+          <td>Editing checklist, word choice, publishing format</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 7</td>
+          <td class="week-focus">Publishing and Reflection</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag">Complete Published Narrative</span>
+              <span class="lesson-tag">Reading Conference</span>
+              <span class="lesson-tag">Self-Reflection</span>
+            </div>
+          </td>
+          <td>Final draft, author's chair, goal setting</td>
+        </tr>
+        <tr>
+          <td class="week-num">Week 8</td>
+          <td class="week-focus">Hot Task and Celebration</td>
+          <td>
+            <div class="lesson-tags">
+              <span class="lesson-tag highlight-tag">Hot Task</span>
+              <span class="lesson-tag">Comparing Our Work</span>
+              <span class="lesson-tag">Celebration</span>
+            </div>
+          </td>
+          <td>Post-assessment, growth analysis, unit celebration</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HOT TASK -->
+  <div class="task-card" style="background:linear-gradient(135deg, #0f766e 0%, #14b8a6 100%)">
+    <h2>Post-Assessment — Hot Task</h2>
+    <div class="task-name">Week 8, Lesson 1</div>
+    <div class="task-desc">Write a narrative about a child who has an imaginary friend. Your imaginary friend should be unusual or special to you.</div>
+    <div class="task-details">
+      <span class="task-detail"><strong>Time:</strong> 40 minutes</span>
+      <span class="task-detail"><strong>Year 3:</strong> 150–250 words</span>
+      <span class="task-detail"><strong>Year 4:</strong> 200–350 words</span>
+      <span class="task-detail"><strong>Same task as Cold Task (Week 1) — measure growth</strong></span>
+    </div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 1 — Introduction to Narrative</h3>
+      <span class="week-badge">Foundation Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Cold Task (Assessment)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type assessment">Assessment</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Hook (5 min)</td>
+            <td>Read <em>Leo and Ralph</em> pp. 1–10 aloud. Discuss: What do you notice about Leo? What do you notice about Ralph?</td>
+          </tr>
+          <tr>
+            <td>Task (35 min)</td>
+            <td><strong>Cold Task.</strong> Write a narrative about a child with an unusual or special imaginary friend. Year 3: 150–250 words. Year 4: 200–350 words. Same prompt as Hot Task in Week 8.</td>
+          </tr>
+        </table>
+        <div class="differentiation">
+          <strong>Differentiation:</strong> Word bank and sentence starters available for EAL/writing support students.
+        </div>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: What Makes a Narrative? (I Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">30 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Read + Think (15 min)</td>
+            <td>Read <em>Leo and Ralph</em> pp. 11–35. Stop and identify: Who is the main character? What do they want? What happens in the beginning?</td>
+          </tr>
+          <tr>
+            <td>Mini-Lesson (10 min)</td>
+            <td>Introduce: <strong>Beginning → Problem → Resolution</strong>. Use <em>Leo and Ralph</em> as the example. Students copy the structure into writing notebooks.</td>
+          </tr>
+          <tr>
+            <td>Share (5 min)</td>
+            <td>Students share one thing they noticed about how the story is structured.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Creating Your Character (We Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">35 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (10 min)</td>
+            <td>Model: "Leo loves space; he is quiet, struggles to fit in, and wants a friend." Build a character profile on the board: NAME / APPEARANCE / PERSONALITY / WHAT THEY WANT / WHAT THEY LOVE.</td>
+          </tr>
+          <tr>
+            <td>We Do (15 min)</td>
+            <td>Together, build a character for a shared class story using a character profile template.</td>
+          </tr>
+          <tr>
+            <td>You Do (10 min)</td>
+            <td>Brainstorm your own character for your unit story. Complete character profile template.</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 2 — Setting and Beginning</h3>
+      <span class="week-badge">Craft Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Where and When? (I Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Read (10 min)</td>
+            <td>Read <em>Leo and Ralph</em> pp. 36–60. Highlight how Carnavas describes Leo's bedroom, school, and town.</td>
+          </tr>
+          <tr>
+            <td>Mini-Lesson (10 min)</td>
+            <td><strong>Setting: WHOLE → SPECIFIC → SENSES.</strong><br>
+            Model: "The town was quiet" → "Leederville was a small town where everyone knew each other" → "In Leederville, you could hear the hum of the main street and smell the dust on the summer wind."</td>
+          </tr>
+          <tr>
+            <td>We Do (10 min)</td>
+            <td>Together, describe a setting using the 3-level approach.</td>
+          </tr>
+          <tr>
+            <td>You Do (10 min)</td>
+            <td>Draft the WHERE and WHEN of your narrative.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Strong Openings (I Do → We Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">35 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (10 min)</td>
+            <td>Show 3 opening lines — one boring, two engaging. Discuss what makes them work. <em>Leo and Ralph</em> opens with: "Leo loved space. He knew everything about it." Why does this work?</td>
+          </tr>
+          <tr>
+            <td>Mini-Lesson (5 min)</td>
+            <td>Types of strong openings: Start with a <strong>character's voice</strong> / Start with <strong>action</strong> / Start with a <strong>problem</strong>.</td>
+          </tr>
+          <tr>
+            <td>We Do (10 min)</td>
+            <td>Class writes 3 different openings for the shared class story.</td>
+          </tr>
+          <tr>
+            <td>You Do (10 min)</td>
+            <td>Write 2 different openings for your narrative.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Planning Your Narrative (We Do → You Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">35 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (5 min)</td>
+            <td>Show how to plan <em>Leo and Ralph</em> on a story map: BEGINNING → PROBLEM → ENDING.</td>
+          </tr>
+          <tr>
+            <td>We Do (10 min)</td>
+            <td>Class collaboratively plans a new story about an imaginary friend using a story map template.</td>
+          </tr>
+          <tr>
+            <td>You Do (20 min)</td>
+            <td>Students complete their own story maps. <em>Success Criteria Check:</em> Story map has beginning, problem and resolution.</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 3 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 3 — Building the Beginning</h3>
+      <span class="week-badge">Draft Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Writing Your Beginning (You Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type independent">Independent</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (5 min)</td>
+            <td>Review: Strong opening, character introduction, setting establishment.</td>
+          </tr>
+          <tr>
+            <td>You Do (30 min)</td>
+            <td>Draft the BEGINNING of your narrative (1–2 paragraphs).</td>
+          </tr>
+          <tr>
+            <td>Share (5 min)</td>
+            <td>2–3 students share their openings for feedback.</td>
+          </tr>
+        </table>
+        <div class="differentiation">
+          <strong>Differentiation:</strong> Scaffolding graphic organiser available. EAL students may use bilingual dictionaries.
+        </div>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Showing vs Telling Emotions (I Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (10 min)</td>
+            <td><strong>TELLING:</strong> "Leo was sad." <strong>SHOWING:</strong> "Leo's shoulders dropped. He stared at his shoes. 'I don't want to go,' he whispered." Model the difference using <em>Leo and Ralph</em>.</td>
+          </tr>
+          <tr>
+            <td>Mini-Lesson (10 min)</td>
+            <td><strong>Emotion thesaurus:</strong><br>
+            Sad → shoulders drop, voice goes quiet, pulls away from others<br>
+            Happy → bounces, laughs, talks fast, eyes light up<br>
+            Angry → voice rises, fists clench, walks away</td>
+          </tr>
+          <tr>
+            <td>We Do (10 min)</td>
+            <td>Transform 3 telling sentences into showing sentences together.</td>
+          </tr>
+          <tr>
+            <td>You Do (10 min)</td>
+            <td>Revise 1 paragraph of your beginning to SHOW emotions.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Dialogue (I Do → We Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">35 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (10 min)</td>
+            <td>Read <em>Leo and Ralph</em> pp. 61–80. Find examples of Ralph and Leo's dialogue. What do we learn about their friendship from what they say to each other?</td>
+          </tr>
+          <tr>
+            <td>Mini-Lesson (5 min)</td>
+            <td>Punctuation for dialogue: <strong>"Help me,"</strong> Leo said. <strong>"I can't do it alone,"</strong> said Ralph.</td>
+          </tr>
+          <tr>
+            <td>We Do (10 min)</td>
+            <td>Write 3 lines of dialogue between a child and their imaginary friend.</td>
+          </tr>
+          <tr>
+            <td>You Do (10 min)</td>
+            <td>Add at least one line of dialogue to your narrative beginning.</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 4 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 4 — The Problem</h3>
+      <span class="week-badge">Structure Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: What is the Problem? (I Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Read (15 min)</td>
+            <td>Read <em>Leo and Ralph</em> pp. 81–120. What goes wrong? What does Leo want that he can't have?</td>
+          </tr>
+          <tr>
+            <td>Mini-Lesson (10 min)</td>
+            <td><strong>Types of problems:</strong><br>
+            Character vs <strong>self</strong> (loneliness, fear)<br>
+            Character vs <strong>character</strong> (conflict with another person)<br>
+            Character vs <strong>world</strong> (moving, change)</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Decide what the PROBLEM is in your narrative. Write the problem in 2–3 sentences.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Building Tension (I Do → We Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (10 min)</td>
+            <td><strong>Story mountain:</strong> SETUP → RISING ACTION → CLIMAX. Map <em>Leo and Ralph</em> on the mountain.</td>
+          </tr>
+          <tr>
+            <td>We Do (15 min)</td>
+            <td>Together, plan the middle of the class story on the story mountain.</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Draft the SETUP and RISING ACTION of your narrative.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Writer's Workshop (You Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type independent">Independent</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Independent (35 min)</td>
+            <td>Conference with 4–6 students individually. Students draft the middle section of their narrative.</td>
+          </tr>
+          <tr>
+            <td>Share (5 min)</td>
+            <td>1 student shares a strong passage for class discussion.</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 5 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 5 — The Resolution and Ending</h3>
+      <span class="week-badge">Resolution Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: How Does It End? (I Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type">Explicit</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Read (15 min)</td>
+            <td>Read <em>Leo and Ralph</em> — final 40 pages. How does Leo's story end? Is it satisfying?</td>
+          </tr>
+          <tr>
+            <td>Mini-Lesson (10 min)</td>
+            <td><strong>Types of endings:</strong><br>
+            Circle back to the beginning (opening image returns)<br>
+            Character has changed (growth shown)<br>
+            Big emotional moment (climax with feeling)<br><br>
+            Carnavas uses CIRCLE BACK: "Leo loved space" → ending connects to space themes.</td>
+          </tr>
+          <tr>
+            <td>You Do (15 min)</td>
+            <td>Plan and draft the ENDING of your narrative.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Polishing the Middle (We Do → You Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (5 min)</td>
+            <td>Model revising one paragraph — add a showing emotion, add dialogue, add a sensory detail.</td>
+          </tr>
+          <tr>
+            <td>We Do (10 min)</td>
+            <td>Peer revision:交换 narratives. Give 2 stars and a wish.</td>
+          </tr>
+          <tr>
+            <td>You Do (25 min)</td>
+            <td>Revise your narrative based on feedback.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Paragraphs and Transitions (You Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">35 min</span>
+            <span class="lesson-type independent">Independent</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (5 min)</td>
+            <td>When does a new paragraph start? When reader needs a <strong>PAUSE</strong> or a <strong>SHIFT</strong> (time, place, speaker). Transition words: FIRST, NEXT, SUDDENLY, THEN, AFTER THAT, FINALLY.</td>
+          </tr>
+          <tr>
+            <td>You Do (30 min)</td>
+            <td>Read through full draft. Add paragraphs. Add transition words.</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 6 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 6 — Editing and Polishing</h3>
+      <span class="week-badge">Polish Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Edit for Grammar and Punctuation (You Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type independent">Independent</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Mini-Lesson (10 min)</td>
+            <td><strong>Editing checklist:</strong><br>
+            ✓ Capital letters at start of sentences and proper nouns<br>
+            ✓ Full stops, commas, question marks<br>
+            ✓ Variety in sentence starters<br>
+            ✓ No run-on sentences</td>
+          </tr>
+          <tr>
+            <td>You Do (30 min)</td>
+            <td>Edit your narrative using the checklist. Highlight each correction in a different colour.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Edit for Vocabulary (I Do → You Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">35 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>I Do (10 min)</td>
+            <td><strong>Dull → Vibrant:</strong><br>
+            "nice" → "warm and thoughtful"<br>
+            "said" → "whispered, shouted, replied, mumbled"<br>
+            "big" → "enormous, vast, towering"</td>
+          </tr>
+          <tr>
+            <td>You Do (25 min)</td>
+            <td>Highlight all "said" and "nice/big/small/good/bad" in your narrative. Replace with more specific words.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Publishing Plan (We Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">35 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Mini-Lesson (5 min)</td>
+            <td>Publishing options: Handwritten neat / Word processed / Illustrated version.</td>
+          </tr>
+          <tr>
+            <td>You Do (30 min)</td>
+            <td>Begin final draft — neat handwritten or word processed.</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 7 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 7 — Publishing and Reflection</h3>
+      <span class="week-badge">Reflection Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Complete Your Published Narrative (You Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type independent">Independent</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>You Do (40 min)</td>
+            <td>Complete final published version. Add illustration or cover art.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Reading Conference (We Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>We Do (40 min)</td>
+            <td><strong>Author's Chair:</strong> Students read excerpts aloud. Class gives specific feedback:<br>
+            "I liked the part where… because…"<br>
+            "The character really came alive when…"</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Self-Reflection (You Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type independent">Independent</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Self-Assessment (20 min)</td>
+            <td>Complete reflection: What did you do well? What is one thing to improve? Rate yourself against success criteria (1–4).</td>
+          </tr>
+          <tr>
+            <td>Goal Setting (20 min)</td>
+            <td>Write one writing goal for next term.</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 8 -->
+  <div class="week-section">
+    <div class="week-header">
+      <h3>Week 8 — Hot Task and Celebration</h3>
+      <span class="week-badge" style="background:var(--teal)">Assessment Week</span>
+    </div>
+    <div class="week-body">
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 1: Hot Task (Assessment)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type assessment">Assessment</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Hook (5 min)</td>
+            <td>Read <em>Leo and Ralph</em> — final pages again. Connect to unit journey.</td>
+          </tr>
+          <tr>
+            <td>Task (35 min)</td>
+            <td><strong>SAME TASK AS COLD TASK:</strong> Write a narrative about a child who has an imaginary friend. Year 3: 150–250 words. Year 4: 200–350 words.<br><br>
+            <em>Compare Cold Task → Hot Task using rubric. Note growth.</em></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 2: Comparing Our Work (We Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>We Do (20 min)</td>
+            <td>Compare a Cold Task sample → Hot Task sample. What improved? What changed? Annotate differences on the rubric.</td>
+          </tr>
+          <tr>
+            <td>Share (20 min)</td>
+            <td>Students share one specific improvement they noticed in their own writing.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-title">Lesson 3: Celebration (We Do)</div>
+          <div class="lesson-meta">
+            <span class="lesson-time">40 min</span>
+            <span class="lesson-type guided">Guided</span>
+          </div>
+        </div>
+        <table class="lesson-table">
+          <tr>
+            <td>Celebration (40 min)</td>
+            <td>Read a selection of Hot Task narratives aloud. Acknowledge individual improvements. Display narratives.</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RUBRIC -->
+  <div class="rubric-section">
+    <h2>Rubric — Narrative Writing (Years 3–4)</h2>
+    <p style="font-size:0.7rem;color:var(--slate);margin-bottom:1rem;">AC English v9 Alignment: AC9E3LY01 (Yr3) / AC9E4LY01 (Yr4)</p>
+    <table class="rubric-table" style="min-width:0">
+      <thead>
+        <tr>
+          <th>Criterion</th>
+          <th style="background:#059669">A — Excellent</th>
+          <th style="background:#2563eb">B — Strong</th>
+          <th style="background:#d97706">C — Satisfactory</th>
+          <th style="background:#ea580c">D — Developing</th>
+          <th style="background:#dc2626">E — Beginning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Narrative Structure</strong></td>
+          <td class="grade-a">Sophisticated, well-crafted beginning, middle and end. Problem clearly established and resolved with emotional depth.</td>
+          <td class="grade-b">Clear beginning, middle and end. Problem resolved satisfyingly.</td>
+          <td class="grade-c">Beginning, middle and end present. Problem resolved.</td>
+          <td class="grade-d">Structure present but uneven. Beginning or ending unclear.</td>
+          <td class="grade-e">Minimal structure. Difficult to follow.</td>
+        </tr>
+        <tr>
+          <td><strong>Character Development</strong></td>
+          <td class="grade-a">Character vividly drawn with distinct personality, motivations and emotions. Shows growth/change.</td>
+          <td class="grade-b">Character has clear traits and motivations. Some emotional development shown.</td>
+          <td class="grade-c">Character has at least 3 identifiable traits. Some showing of emotions.</td>
+          <td class="grade-d">Character underdeveloped or inconsistent. Mostly telling rather than showing.</td>
+          <td class="grade-e">Character flat or unclear.</td>
+        </tr>
+        <tr>
+          <td><strong>Setting & Atmosphere</strong></td>
+          <td class="grade-a">Setting vividly established with sensory detail. Distinct atmosphere created throughout.</td>
+          <td class="grade-b">Setting established with some sensory detail. Atmosphere mostly consistent.</td>
+          <td class="grade-c">Setting mentioned. Limited sensory detail. Some atmosphere.</td>
+          <td class="grade-d">Setting unclear or generic. Little atmosphere created.</td>
+          <td class="grade-e">No clear setting.</td>
+        </tr>
+        <tr>
+          <td><strong>Language Features</strong></td>
+          <td class="grade-a">Rich, precise vocabulary. Uses showing throughout. Dialogue purposeful and realistic.</td>
+          <td class="grade-b">Good word choices. Shows emotions through actions/dialogue. Dialogue advances story.</td>
+          <td class="grade-c">Some strong word choices. Some showing of emotions. Dialogue present.</td>
+          <td class="grade-d">Repetitive language. Mostly telling emotions. Dialogue limited or unnatural.</td>
+          <td class="grade-e">Limited vocabulary. No showing.</td>
+        </tr>
+        <tr>
+          <td><strong>Punctuation & Grammar</strong></td>
+          <td class="grade-a">Accurate throughout. Varied sentence structures. No spelling errors.</td>
+          <td class="grade-b">Minor errors. Good sentence variety.</td>
+          <td class="grade-c">Some errors in punctuation or grammar. Reasonable sentence variety.</td>
+          <td class="grade-d">Noticeable errors sometimes affect clarity. Limited sentence variety.</td>
+          <td class="grade-e">Significant errors affect clarity.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ADAPTATIONS -->
+  <div class="adaptations">
+    <div class="adapt-card eal">
+      <h3>🌿 EAL Students</h3>
+      <ul>
+        <li>Character profile template with visual prompts</li>
+        <li>Sentence starters for each paragraph component</li>
+        <li>Allow use of home language for brainstorming</li>
+        <li>Word bank displayed on classroom wall</li>
+        <li>One-on-one conference to clarify task</li>
+        <li>Visual word walls for key vocabulary</li>
+      </ul>
+    </div>
+    <div class="adapt-card gifted">
+      <h3>🚀 Gifted Students</h3>
+      <ul>
+        <li>Add a second character (imaginary friend's perspective)</li>
+        <li>Write the narrative from the imaginary friend's POV</li>
+        <li>Add a subplot</li>
+        <li>Extend to a chapter book format</li>
+        <li>Explore alternative tenses (first person, third person)</li>
+        <li>Create an illustrated picture book version</li>
+      </ul>
+    </div>
+    <div class="adapt-card nep">
+      <h3>🎯 Students with NEPs</h3>
+      <ul>
+        <li>Adjust word count expectations</li>
+        <li>Provide graphic organiser for story map</li>
+        <li>Allow oral retelling as alternative (transcribed)</li>
+        <li>Extra time for all writing tasks</li>
+        <li>Provide a peer buddy for editing support</li>
+        <li>Simplify success criteria to 3 key goals</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ASSESSMENT NOTES -->
+  <div class="rubric-section">
+    <h2>Assessment Summary</h2>
+    <table style="font-size:0.8rem">
+      <tr>
+        <td style="background:rgba(13,148,136,0.1);font-weight:600;color:var(--teal);padding:0.6rem 0.75rem;width:160px"><strong>Formative</strong></td>
+        <td style="padding:0.6rem 0.75rem">Story maps, exit tickets, writer's notebook, peer feedback, teacher conferences (Weeks 4, 6)</td>
+      </tr>
+      <tr>
+        <td style="background:rgba(13,148,136,0.1);font-weight:600;color:var(--teal);padding:0.6rem 0.75rem"><strong>Summative</strong></td>
+        <td style="padding:0.6rem 0.75rem">Cold Task → Hot Task comparison (same rubric, measure growth), published narrative with rubric, self-reflection with goal</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p><strong>PickleNickAI — Narrative Writing Unit Output</strong></p>
+    <p>AC English v9 aligned | WA Schools | Years 3–4</p>
+    <p>Mentor Text: <em>Leo and Ralph</em> by Peter Carnavas (2024), UQP</p>
+  </div>
+
+</div>
+
+</body>
+</html>
