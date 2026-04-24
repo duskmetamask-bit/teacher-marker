@@ -4,83 +4,303 @@
     "name": "WIEP",
     "fullName": "WIEP Writing Framework",
     "tagline": "Whole class → Individual → Edit → Polish",
-    "description": "WIEP is a structured writing framework developed within the Western Australian education context. The acronym stands for Whole class (shared construction), Individual attempt (independent drafting), Edit (review and revision), and Polish (final draft production). The model supports extended writing tasks through a clear production cycle.",
-    "whenToUse": "Use WIEP for any extended writing task from Year 1-6 — narratives, persuasive texts, reports, and poetry. It is most effective when students have already been introduced to the genre through shared writing. Best suited for English and Humanities subjects where sustained writing is required.",
+    "description": "WIEP is a structured writing framework developed within the Western Australian education context. The acronym stands for Whole class (shared construction), Individual attempt (independent drafting), Edit (review and revision), and Polish (final draft production). The model supports extended writing tasks through a clear production cycle and integrates the social and individual dimensions of writing.",
+    "whenToUse": "Use WIEP for any extended writing task from Year 1-6 — narratives, persuasive texts, reports, and poetry. It is most effective when students have already been introduced to the genre through shared writing. Best suited for English and Humanities subjects where sustained writing is required. Particularly valuable in Western Australian schools where WIEP is embedded in school literacy frameworks.",
     "structure": [
-      { "phase": "Whole Class", "duration": "20-30 min", "description": "The teacher leads shared construction of a text type, modelling the thought processes, structural moves and language features of the genre. Students contribute ideas and the teacher scribes, making thinking visible." },
-      { "phase": "Individual", "duration": "25-35 min", "description": "Students draft their own piece independently, applying the modelled structure and language patterns. The teacher conferences individually, asking probing questions rather than giving answers." },
-      { "phase": "Edit", "duration": "15-20 min", "description": "Students review their draft with a peer or in pairs using an editing checklist. Focus on structural improvements, clarity of ideas, and language choices — not punctuation or spelling at this stage." },
-      { "phase": "Polish", "duration": "15-20 min", "description": "Students produce their final draft with attention to presentation, handwriting/computer formatting, and final corrections. The piece is shared with an authentic audience — display, publication, or reading aloud." }
+      {
+        "phase": "Whole Class",
+        "duration": "20-30 min",
+        "description": "The teacher leads shared construction of a text type, modelling the thought processes, structural moves and language features of the genre. Students contribute ideas and the teacher scribes, making thinking visible. The negotiated text remains on display as a reference during the Individual phase."
+      },
+      {
+        "phase": "Individual",
+        "duration": "25-35 min",
+        "description": "Students draft their own piece independently, applying the modelled structure and language patterns. The teacher conferences individually, asking probing questions rather than giving answers. Do not over-scaffold — the shared construction is the scaffold, not a template to copy."
+      },
+      {
+        "phase": "Edit",
+        "duration": "15-20 min",
+        "description": "Students review their draft with a peer or in pairs using an editing checklist. Focus on structural improvements, clarity of ideas, and language choices — not punctuation or spelling at this stage. Content editing comes before convention editing."
+      },
+      {
+        "phase": "Polish",
+        "duration": "15-20 min",
+        "description": "Students produce their final draft with attention to presentation, handwriting/computer formatting, and final corrections. The piece is shared with an authentic audience — display, publication, or reading aloud. The Polish phase should reflect genuine improvement from the editing process."
+      }
     ],
     "ac9Aligned": true,
     "aitslStandard": "2.1, 2.5, 3.2",
-    "tags": ["Writing", "WA", "Genre-based", "Years 1-6"]
+    "tags": ["Writing", "WA", "Genre-based", "Years 1-6"],
+    "evidenceBase": [
+      "First Steps program (WA DoE, 1994) — classroom-based research across WA schools showed significant improvement in student writing quality",
+      "Hattie (2009): Writing quality interventions average effect size 0.44",
+      "Graham & Perin (2007) Writing Next: Collaborative writing (0.75), specific product goals (0.70), process writing approach (0.32)"
+    ],
+    "eALAdaptations": [
+      "During Whole Class, provide translated glossaries or vocabulary lists for key genre terminology",
+      "Allow EAL students to draft in their home language first, then translate key sections before editing",
+      "Provide sentence frames and paragraph templates during Individual phase to reduce language production load",
+      "In Edit phase, focus feedback for EAL students on meaning and content first, then one or two surface conventions"
+    ],
+    "giftedAdaptations": [
+      "Invite gifted students to take the scribe role or lead particular structural decisions during Whole Class",
+      "In Individual phase, provide a more complex or open-ended writing scenario — contested topic or dual-audience requirement",
+      "In Edit phase, extend gifted students to evaluate effectiveness — not just content and conventions but whether the piece does what was intended",
+      "Connect gifted students to genuine publication opportunities: school newsletter, competition submissions, community publications"
+    ],
+    "commonPitfalls": [
+      "Whole Class becoming teacher monologue instead of shared construction — students must contribute language, ideas, and decisions",
+      "Students copying the shared text in Individual phase — ensure the individual task has sufficient point of difference",
+      "Edit phase focused only on surface conventions instead of content and meaning first",
+      "Polish phase treated as copying-out without genuine improvement from the editing process",
+      "Using WIEP for non-writing tasks like conceptual learning or procedural skills"
+    ]
   },
   {
     "id": "gradual-release",
     "name": "GRR",
     "fullName": "Gradual Release of Responsibility",
     "tagline": "I Do → We Do → You Do",
-    "description": "The Gradual Release of Responsibility (GRR) model is a structured instructional framework that systematically transfers cognitive load from teacher to student. Originally articulated by Pearson and Gallagher (1983), the model follows the sequence: I Do (teacher models), We Do (shared practice), You Do (independent application).",
-    "whenToUse": "Use GRR when introducing a new skill, strategy or concept. It is particularly effective for literacy and numeracy instruction — teaching a reading strategy, introducing a mathematical concept, or modelling a writing craft technique. Ensure students have prerequisite knowledge before beginning the GRR sequence.",
+    "description": "The Gradual Release of Responsibility (GRR) model is a structured instructional framework that systematically transfers cognitive load from teacher to student. Originally articulated by Pearson and Gallagher (1983), the model follows the sequence: I Do (teacher models), We Do (shared practice), You Do (independent application). The model's central purpose is to ensure students are never thrown into independent work before they have the conceptual foundation and procedural knowledge to succeed.",
+    "whenToUse": "Use GRR when introducing a new skill, strategy or concept. It is particularly effective for literacy and numeracy instruction — teaching a reading strategy, introducing a mathematical concept, or modelling a writing craft technique. Fisher and Frey (2008) extended the framework to include structured collaborative phases. Ensure students have prerequisite knowledge before beginning the GRR sequence.",
     "structure": [
-      { "phase": "I Do", "duration": "10-15 min", "description": "The teacher explicitly models the skill or concept, thinking aloud to make invisible cognitive processes visible. The teacher is the primary source of information and demonstration. Precision and clarity are essential — students need to see expert performance." },
-      { "phase": "We Do", "duration": "15-20 min", "description": "The teacher and students engage with the task together. Responsibility is shared — the teacher provides guided support while students begin to participate actively. The teacher asks strategic questions, accepts incorrect answers as learning opportunities, and gradually reduces support." },
-      { "phase": "You Do", "duration": "20-30 min", "description": "Students work independently, applying the skill or concept without direct teacher support. This follows only when the teacher is confident students have the conceptual foundation and procedural knowledge to succeed. Independent work should be the reward of effective instruction." }
+      {
+        "phase": "I Do",
+        "duration": "10-15 min",
+        "description": "The teacher explicitly models the skill or concept, thinking aloud to make invisible cognitive processes visible. The teacher is the primary source of information and demonstration. Set clear learning intentions. Model the complete process, narrating each decision. Keep it focused on one skill or concept. Precision and clarity are essential — students need to see expert performance."
+      },
+      {
+        "phase": "We Do",
+        "duration": "15-20 min",
+        "description": "The teacher and students engage with the task together. Responsibility is shared — the teacher provides guided support while students begin to participate actively. Begin with shared practice, then move to collaborative pairs or small groups. Ask strategic questions that push students toward the thinking modelled. Provide corrective feedback immediately — misconceptions caught in this phase do not become entrenched."
+      },
+      {
+        "phase": "You Do",
+        "duration": "20-30 min",
+        "description": "Students work independently, applying the skill or concept without direct teacher support. This follows only when the teacher is confident students have the conceptual foundation. Monitor actively — if more than 30% of students struggle, return to guided instruction. Provide extension for students who demonstrate early mastery. Independent work should be the reward of effective instruction."
+      }
     ],
     "ac9Aligned": true,
     "aitslStandard": "2.1, 2.2, 3.2",
-    "tags": ["Literacy", "Numeracy", "Skill transfer", "All subjects"]
+    "tags": ["Literacy", "Numeracy", "Skill transfer", "All subjects"],
+    "evidenceBase": [
+      "Vygotsky's Zone of Proximal Development: Students learn best when working just beyond current capability with appropriate support",
+      "Hattie (2009): Direct instruction effect size 0.60; Teacher clarity effect size 0.75",
+      "Fisher & Frey (2008): Extended framework with structured collaborative phases before individual application",
+      "Cognitive Load Theory (Sweller, 1988): Explicit modelling reduces extraneous cognitive load for novices"
+    ],
+    "eALAdaptations": [
+      "During I Do, provide visual supports alongside oral explanation: diagrams, annotated worked examples, dual-language glossaries",
+      "In We Do, pair EAL students strategically with a supportive peer",
+      "Provide sentence starters and frames during You Do to reduce language production demands while maintaining rigour",
+      "Use comprehension checks with low-language demands (thumbs up/down, mini whiteboards, sorting tasks)"
+    ],
+    "giftedAdaptations": [
+      "During I Do, invite gifted students to predict the next step before the teacher reveals it",
+      "In We Do, provide a more complex parallel task once the core skill is demonstrated",
+      "In You Do, offer open-ended extension tasks that require applying the skill in a novel, ambiguous, or cross-disciplinary context",
+      "Compact the curriculum: if a gifted student demonstrates mastery in the I Do check-in, move directly to extension"
+    ],
+    "commonPitfalls": [
+      "Skipping straight to You Do — without guided practice, students lack the supported rehearsal needed to internalise the process",
+      "Conducting I Do as a passive lecture instead of visible, narrated thinking",
+      "We Do becoming another I Do — if the teacher does all the cognitive work, students are not being released",
+      "Moving to independent work on a fixed timeline rather than on evidence of student readiness",
+      "Using the same example in I Do and You Do — independent practice should test transfer, not recall"
+    ]
   },
   {
     "id": "5e-model",
     "name": "5E",
     "fullName": "5E Instructional Model",
     "tagline": "Engage → Explore → Explain → Elaborate → Evaluate",
-    "description": "The 5E model is an inquiry-based instructional framework that guides students through five sequential phases of learning: Engage, Explore, Explain, Elaborate, and Evaluate. Developed by Roger Bybee and colleagues at BSCS in 1987, the model is grounded in constructivist learning theory — learners actively construct meaning from experience rather than passively receiving information.",
-    "whenToUse": "Use 5E for science units, STEM investigations, and any inquiry-based unit where students need to construct conceptual understanding through guided experience. Particularly effective for science topics that involve processes, systems and cause-and-effect relationships. Allow adequate time — each phase should take at least one lesson.",
+    "description": "The 5E model is an inquiry-based instructional framework that guides students through five sequential phases of learning: Engage, Explore, Explain, Elaborate, and Evaluate. Developed by Roger Bybee and colleagues at BSCS in 1987, the model is grounded in constructivist learning theory — learners actively construct meaning from experience rather than passively receiving information. Unlike the Gradual Release model, which is primarily a skill-transfer framework, the 5E model is designed for conceptual understanding.",
+    "whenToUse": "Use 5E for science units, STEM investigations, and any inquiry-based unit where students need to construct conceptual understanding through guided experience. Particularly effective for science topics that involve processes, systems and cause-and-effect relationships. Best-fit subjects: Science (all year levels — the model was developed for science education), Mathematics (developing number sense or geometric reasoning), HASS (social phenomena, historical cause and effect), Technologies (design thinking cycles). Allow adequate time — each phase should take at least one lesson.",
     "structure": [
-      { "phase": "Engage", "duration": "10-15 min", "description": "Activate prior knowledge and generate interest before instruction. Use a puzzling question, hands-on demo, or real-world problem that connects to students' experiences. The goal is to make students want to know more, not to teach new content yet." },
-      { "phase": "Explore", "duration": "20-30 min", "description": "Students work with a phenomenon, investigation or problem that generates questions. They collect data, observe, and begin constructing understanding without direct instruction. The teacher acts as facilitator, asking questions and providing materials — not answers." },
-      { "phase": "Explain", "duration": "15-20 min", "description": "The teacher introduces formal vocabulary, concepts and explanations that build on student exploration. Students label their observations and connect their findings to established scientific understanding. Direct instruction follows discovery, making concepts more meaningful." },
-      { "phase": "Elaborate", "duration": "20-25 min", "description": "Students apply their understanding to new or more complex contexts. They extend the concept into different situations, make predictions, or design their own investigations. This phase challenges students to transfer learning beyond the original context." },
-      { "phase": "Evaluate", "duration": "15-20 min", "description": "Assessment is embedded throughout, but this phase provides a dedicated opportunity for students to demonstrate understanding. Both formative and summative evaluation approaches can be used — interviews, exit tickets, performance tasks, or tests." }
+      {
+        "phase": "Engage",
+        "duration": "10-15 min",
+        "description": "Activate prior knowledge and generate interest before instruction. Use a puzzling question, hands-on demo, or real-world problem that connects to students' experiences. The goal is to make students want to know more, not to teach new content yet. Do NOT correct misconceptions here — capture them. They are instructionally valuable and will be addressed in the Explain phase."
+      },
+      {
+        "phase": "Explore",
+        "duration": "20-30 min",
+        "description": "Students work with a phenomenon, investigation or problem that generates questions. They collect data, observe, and begin constructing understanding without direct instruction. The teacher acts as facilitator, asking questions and providing materials — not answers. This phase is deliberately uncomfortable for students accustomed to being told what to think. That discomfort is productive — it creates the cognitive need for explanation."
+      },
+      {
+        "phase": "Explain",
+        "duration": "15-20 min",
+        "description": "The teacher introduces formal vocabulary, concepts and explanations that build on student exploration. Students are now primed to receive explanation because they have encountered the phenomenon firsthand. Teacher explanation connects directly to students' Explore experiences. Students also share their own explanations and receive feedback. Key vocabulary is introduced in context, not in isolation."
+      },
+      {
+        "phase": "Elaborate",
+        "duration": "20-25 min",
+        "description": "Students apply their understanding to new or more complex contexts. They extend the concept into different situations, make predictions, or design their own investigations. This phase challenges students to transfer learning beyond the original context. Surface understanding is tested — concepts that were grasped in one context must now transfer."
+      },
+      {
+        "phase": "Evaluate",
+        "duration": "15-20 min",
+        "description": "Assessment is embedded throughout, but this phase provides a dedicated opportunity for students to demonstrate understanding. Both formative and summative approaches can be used — interviews, exit tickets, performance tasks, or tests. Students also self-assess against the learning intention."
+      }
     ],
     "ac9Aligned": true,
     "aitslStandard": "2.1, 3.2, 3.3",
-    "tags": ["Science", "STEM", "Inquiry", "Years 3-6"]
+    "tags": ["Science", "STEM", "Inquiry", "Years 3-6"],
+    "evidenceBase": [
+      "Constructivism (Piaget, Vygotsky): Learning is constructed through experience and social interaction",
+      "Hattie (2009): Conceptual change programs effect size 0.99; Problem-based learning (unstructured) 0.15",
+      "BSCS research (Bybee et al., 2006): Students in 5E-designed science programs outperformed comparison groups on conceptual understanding assessments"
+    ],
+    "eALAdaptations": [
+      "In Engage phase, use visual and concrete stimuli — photographs, objects, video — rather than relying solely on text-based provocations",
+      "During Explore, allow EAL students to record observations in their home language before translating key findings",
+      "Provide vocabulary pre-teaching for key technical terms before the Explain phase",
+      "Use sentence frames and scaffolded graphic organisers during Explain and Elaborate phases",
+      "Allow verbal demonstration of understanding as an alternative to written Evaluate tasks"
+    ],
+    "giftedAdaptations": [
+      "During Engage, invite gifted students to hypothesise mechanisms rather than simply activating prior knowledge",
+      "In Explore, provide a more complex or open-ended investigation alongside the standard task",
+      "During Explain, assign gifted students to research and present an aspect of the concept in greater depth",
+      "Elaborate tasks for gifted students should involve genuine ambiguity — no single correct answer",
+      "In Evaluate, require gifted students to make connections to other disciplines or evaluate the limitations of the concept itself"
+    ],
+    "commonPitfalls": [
+      "Skipping or rushing the Explore phase — the Explain phase only lands if students have experienced the phenomenon first",
+      "Explaining during the Explore phase — 'That's exactly what we're going to figure out. What do you think?'",
+      "Treating Evaluate as a final test only — embed formative checks throughout every phase",
+      "Poor task design in Explore — if the task does not generate genuine cognitive conflict, the subsequent Explain will not connect",
+      "Ignoring misconceptions surfaced in Engage — explicitly return to them in Explain and Elaborate phases",
+      "Using 5E for procedural skills — the model is poorly suited to teaching algorithms or handwriting"
+    ]
   },
   {
     "id": "direct-instruction",
     "name": "DI",
     "fullName": "Direct Instruction",
     "tagline": "Explicit teaching with immediate feedback",
-    "description": "Direct Instruction (DI) is an explicit, teacher-led instructional approach where the teacher models thinking and skill performance, then gradually releases responsibility to students through structured practice with immediate feedback. Effective DI is not 'teaching by telling' — it involves precise teacher modelling, strategic questioning, carefully scaffolded practice, and systematic error correction.",
-    "whenToUse": "Use Direct Instruction when students need to acquire specific knowledge or master a procedural skill efficiently. It is particularly effective for phonics, mathematics procedures, spelling rules, and grammatical concepts. Avoid DI for open-ended inquiry or initially introducing complex conceptual topics where students need to discover patterns.",
+    "description": "Direct Instruction (DI) is an explicit, teacher-led instructional approach where the teacher models thinking and skill performance, then gradually releases responsibility to students through structured practice with immediate feedback. Effective DI is not 'teaching by telling' — it involves precise teacher modelling, strategic questioning, carefully scaffolded practice, and systematic error correction. It is among the most studied and evidence-backed instructional approaches in education, particularly powerful for surface learning and early skill acquisition.",
+    "whenToUse": "Use Direct Instruction when students need to acquire specific knowledge or master a procedural skill efficiently. It is particularly effective for phonics, mathematics procedures, spelling rules, and grammatical concepts. The practical rule: teach it directly if it can be taught directly. Use inquiry when direct instruction cannot work — when the phenomenon is too complex, abstract, or counterintuitive for students to derive without expert guidance. Avoid DI for open-ended inquiry or initially introducing complex conceptual topics where students need to discover patterns.",
     "structure": [
-      { "phase": "Model", "duration": "10-15 min", "description": "The teacher demonstrates expert performance of the skill, thinking aloud to make the decision-making process visible. This includes showing what good performance looks like and explicitly identifying common errors or misconceptions." },
-      { "phase": "Guided Practice", "duration": "15-20 min", "description": "Students attempt the skill with teacher guidance and immediate corrective feedback. The teacher circulates, monitoring every student, asking questions, and providing specific error corrections. The goal is near-zero error rates before moving to independent work." },
-      { "phase": "Independent Practice", "duration": "20-30 min", "description": "Students work independently to consolidate the skill. Once students demonstrate high accuracy (typically 90%+), they can move to independent application. Distributed practice over multiple sessions is more effective than massed practice." }
+      {
+        "phase": "Opening",
+        "duration": "2-3 min",
+        "description": "Daily review of previously taught content (3-5 rapid-fire questions). State the learning intention: 'Today we are learning to...' and success criteria: 'You will know you have mastered this when you can...' Use whole-class response structures to activate prior knowledge and support retention."
+      },
+      {
+        "phase": "Model — I Do",
+        "duration": "5-8 min",
+        "description": "The teacher thinks aloud while demonstrating the skill. This is the most critical phase — the teacher must make implicit expert thinking explicit. State what you are doing before you do it. Show one step at a time, narrating each decision. Deliberately include an error and self-correct. Name the strategy, not just the procedure. Connect to prior learning. Modelling too quickly without narration is the most common DI failure."
+      },
+      {
+        "phase": "Guided Practice — We Do",
+        "duration": "10-15 min",
+        "description": "Students attempt the skill with teacher guidance and immediate corrective feedback. The teacher circulates, monitoring every student, asking questions, and providing specific error corrections. Single skill focus — do not combine multiple new skills. High ratio of student response opportunities. Scaffolding fades progressively. Use cold calling with think time, mini-whiteboard responses, or turn and talk."
+      },
+      {
+        "phase": "Independent Practice — You Do",
+        "duration": "15-20 min",
+        "description": "Students work without teacher support. 80-90% of tasks should be within students' current capability. The teacher continues to circulate and monitor, but does not intervene unless a significant proportion of students are making the same error. Include distributed practice of previously learned skills. Track error patterns for subsequent review sessions."
+      },
+      {
+        "phase": "Closing",
+        "duration": "3-5 min",
+        "description": "Summary: 'What did we learn today? Turn to your neighbour and explain the strategy we used.' Exit ticket: 1-3 questions that provide immediate data on who mastered the learning intention. Preview: 'Tomorrow we will build on this by...' Connect to the next lesson in the sequence. Skipping or truncating the closing loses the evidence of learning."
+      }
     ],
     "ac9Aligned": true,
     "aitslStandard": "2.2, 2.5, 3.2",
-    "tags": ["Explicit teaching", "Skills", "All subjects", "Years F-6"]
+    "tags": ["Explicit teaching", "Skills", "All subjects", "Years F-6"],
+    "evidenceBase": [
+      "Hattie (2009): Teacher credibility 0.90, Teacher clarity 0.75, Feedback 0.73, Spaced vs mass practice 0.71",
+      "National Institute for Direct Instruction (NIFDI): Decades of research on DI programs (Reading Mastery, Corrective Mathematics) demonstrate strong outcomes across ability levels",
+      "Rosenshine's Principles of Instruction (2012): Daily review, new material in small steps, teacher modelling, guided practice with feedback, independent practice, weekly/monthly review",
+      "Cognitive Load Theory (Sweller, 1988): DI reduces extraneous cognitive load by presenting information in an organised, sequential manner"
+    ],
+    "eALAdaptations": [
+      "Pre-teach technical vocabulary before the lesson — EAL students should not be learning content and language simultaneously",
+      "Use visual scaffolds during modelling — a partially completed worked example allows EAL students to track the narration against a visible template",
+      "Sentence frames during guided practice: 'The stimulus is... / The message travels from... to...'",
+      "Allow home language during paired guided practice — EAL students can discuss in home language before attempting English output",
+      "Reduce linguistic load during independent practice for maths/science procedures — allow diagram-based or numeric responses"
+    ],
+    "giftedAdaptations": [
+      "Compact the entry point — gifted students who demonstrate mastery should not sit through full DI; pre-assess and allow them to begin at extension work",
+      "Increase cognitive demand in independent practice — provide problems with greater complexity, multiple steps, or less scaffolded wording",
+      "Require justification and generalisation during guided practice: 'Can you explain why that strategy works? Would it work in every case?'",
+      "Allow alternative methods once the core strategy is modelled — require gifted students to explain why their method works mathematically",
+      "Connect to higher-order concepts in closing — invite gifted students to consider limitations of the strategy, its relationship to other domains, or its historical development"
+    ],
+    "commonPitfalls": [
+      "Modelling without thinking aloud — students learn to replicate procedures but not to think like experts",
+      "Insufficient guided practice before independent work — release signal is 'every student has demonstrated one correct response with feedback,' not 'most students seem okay'",
+      "Feedback that evaluates rather than corrects — effective feedback names the error, shows the correct response, and explains why",
+      "Treating all students as needing the same practice — differentiate the practice set for students at different levels",
+      "Rushing or skipping the closing phase — without closure, students do not consolidate learning",
+      "Assuming all content suits DI — DI is a poor fit for open-ended conceptual inquiry or creative tasks"
+    ]
   },
   {
     "id": "inquiry-learning",
     "name": "Inquiry",
     "fullName": "Inquiry-Based Learning",
     "tagline": "Question → Investigate → Create → Discuss",
-    "description": "Inquiry-based learning is an instructional approach in which students develop understanding by confronting genuinely puzzling questions, phenomena or problems they cannot resolve using their current knowledge. Rather than receiving information from a teacher, students design investigations, gather and interpret evidence, construct explanations, and communicate conclusions.",
-    "whenToUse": "Use inquiry when students have sufficient background knowledge to engage with a genuine question, and when time and resources allow for extended investigation. Works well for HASS research projects, science fair investigations, and project-based learning units. Ensure curriculum content is covered — inquiry should not be the default for all topics every term.",
+    "description": "Inquiry-based learning is an instructional approach in which students develop understanding by confronting genuinely puzzling questions, phenomena or problems they cannot resolve using their current knowledge. Rather than receiving information from a teacher, students design investigations, gather and interpret evidence, construct explanations, and communicate conclusions. The teacher acts as a guide and facilitator — posing productive questions, providing resources, and structuring opportunities for reflection, but not delivering the answer.",
+    "whenToUse": "Use inquiry when students have sufficient background knowledge to engage with a genuine question, and when time and resources allow for extended investigation. Works well for HASS research projects, science fair investigations, and project-based learning units. The quality of inquiry is determined by the quality of the driving question — a good question is genuinely puzzling, cannot be answered by Google alone, is open enough to allow multiple approaches, and is connected to curriculum goals. Ensure curriculum content is covered — inquiry should not be the default for all topics every term.",
     "structure": [
-      { "phase": "Wonder", "duration": "10-15 min", "description": "Students encounter a puzzling phenomenon, question or problem and generate genuine questions they want answered. The teacher facilitates discussion, helping students refine questions into investigable form without telling them the answers." },
-      { "phase": "Investigate", "duration": "30-60 min", "description": "Students design and conduct investigations, collect evidence, and gather data to answer their questions. They make observations, consult sources, conduct experiments or surveys, and record findings systematically." },
-      { "phase": "Create", "duration": "25-35 min", "description": "Students construct explanations and create products that communicate their findings. This may include written reports, presentations, models, artworks or multimedia. The creation process itself deepens understanding as students organise and synthesise their evidence." },
-      { "phase": "Discuss", "duration": "15-20 min", "description": "Students share their findings with an authentic audience — peers, other classes, or community members. They justify their reasoning, respond to questions, and consider alternative perspectives. The teacher facilitates discussion, not just presentation." }
+      {
+        "phase": "Wonder",
+        "duration": "10-15 min",
+        "description": "Students encounter a puzzling phenomenon, question or problem and generate genuine questions they want answered. The teacher facilitates discussion, helping students refine questions into investigable form without telling them the answers. The quality of the driving question determines the quality of the inquiry — use open-ended questions rather than factual recall questions."
+      },
+      {
+        "phase": "Investigate",
+        "duration": "30-60 min",
+        "description": "Students design and conduct investigations, collect evidence, and gather data to answer their questions. They make observations, consult sources, conduct experiments or surveys, and record findings systematically. The teacher scaffolds without resolving — posing more specific questions that break the problem into manageable steps rather than providing answers. Use structured collaboration with assigned roles (researcher, recorder, presenter, checker)."
+      },
+      {
+        "phase": "Create",
+        "duration": "25-35 min",
+        "description": "Students construct explanations and create products that communicate their findings. This may include written reports, presentations, models, artworks or multimedia. The creation process itself deepens understanding as students organise and synthesise their evidence. Use CER (Claim-Evidence-Reasoning) frameworks or similar structured formats to ensure reasoning is evidence-based."
+      },
+      {
+        "phase": "Discuss",
+        "duration": "15-20 min",
+        "description": "Students share their findings with an authentic audience — peers, other classes, or community members. They justify their reasoning, respond to questions, and consider alternative perspectives. The teacher facilitates discussion, not just presentation. Evaluate both the final product and the process skills — designing investigations, evaluating evidence, revising thinking are equally important learning outcomes."
+      }
     ],
     "ac9Aligned": true,
     "aitslStandard": "2.1, 3.1, 3.3",
-    "tags": ["HASS", "Science", "Project-based", "Years 4-6"]
+    "tags": ["HASS", "Science", "Project-based", "Years 4-6"],
+    "evidenceBase": [
+      "Hattie (2009): Problem-based learning (structured) effect size 0.15; Inquiry-based teaching 0.46; Conceptual change programs 0.99",
+      "Minner et al. (2013): Instructional approaches combining guided inquiry with explicit teaching outperform purely discovery-based or purely didactic approaches",
+      "Project-Based Learning (PBL Works / Buck Institute): Structured project-based learning demonstrates strong outcomes for engagement, retention, and transfer",
+      "Constructivism (Piaget, Vygotsky): Learners build understanding through active engagement with evidence"
+    ],
+    "eALAdaptations": [
+      "Visual and concrete scaffolding throughout — graphic organisers, annotated examples, labelled diagrams",
+      "Pre-teach key vocabulary at the beginning of the unit, not in the moment",
+      "Allow home language use during investigation and collaborative work",
+      "Provide sentence frames for explanation and argumentation: 'The evidence shows... because...'",
+      "Curate sources for readability — ensure sources are at an appropriate reading level or provide audio/video alternatives",
+      "Allow visual or oral products as alternatives to written reports — inquiry skills are more important than English production mode"
+    ],
+    "giftedAdaptations": [
+      "Open the driving question — gifted students can investigate more complex, ambiguous, or cross-disciplinary versions",
+      "Require higher-order reasoning — gifted students should evaluate evidence quality, identify bias, consider alternative explanations",
+      "Allow pursuit of genuine interest within the inquiry — tangential questions can be productive",
+      "Add complexity to the extension task — more variables, less scaffolded problems, problems with no single correct answer",
+      "Invite meta-cognition — gifted students can reflect on where their thinking changed and why",
+      "Allow acceleration into related concepts or adjacent disciplines"
+    ],
+    "commonPitfalls": [
+      "Inquiry without structure — simply giving students an open question is frustration, not inquiry",
+      "Treating all content as suited to inquiry — basic factual recall and foundational procedural skills are more efficiently taught directly",
+      "Running out of time for the full cycle — truncated inquiry captures the worst of both approaches",
+      "Assessment lagging behind instruction — build checkpoints into each phase",
+      "Conflating activity with learning — hands-on activity is not the same as inquiry learning",
+      "Teacher reluctance to let go of answers — guide with questions rather than provide answers"
+    ]
   }
 ]

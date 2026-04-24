@@ -5,17 +5,485 @@
     "shortName": "English",
     "strands": ["Language", "Literature", "Literacy"],
     "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
-    "description": "The Australian Curriculum v9 English F-6 covers Language, Literature and Literacy across Foundation to Year 6, developing listening, speaking, reading, viewing and writing skills through diverse texts.",
-    "crossCurriculum": ["Aboriginal and Torres Strait Islander Histories and Cultures", "Sustainability"]
+    "description": "The Australian Curriculum v9 English F-6 covers Language (understanding the English language system), Literature (engaging with literary texts), and Literacy (applying English knowledge across learning areas). Develops listening, speaking, reading, viewing and writing skills through diverse texts from Foundation to Year 6.",
+    "crossCurriculum": [
+      "Aboriginal and Torres Strait Islander Histories and Cultures",
+      "Asia and Australia's Engagement with Asia",
+      "Sustainability"
+    ],
+    "strandsData": {
+      "Language": {
+        "Foundation": [
+          { "code": "AC9EFLA01", "descriptor": "Understand how texts are composed of words and groups of words that create meaning" },
+          { "code": "AC9EFLA02", "descriptor": "Explore the effect of rhythm and rhyme in nursery rhymes and short poems" },
+          { "code": "AC9EFLA03", "descriptor": "Know that spoken sounds and words can be written and read" },
+          { "code": "AC9EFLA04", "descriptor": "Recognise and name all upper- and lower-case letters in sequence (alphabet)" },
+          { "code": "AC9EFLA05", "descriptor": "Recognise the sounds (phonemes) associated with letters and know common letter-sound correspondences" }
+        ],
+        "Year 1": [
+          { "code": "AC9E1LA01", "descriptor": "Understand that texts are made up of words and groups of words and that words have predictable relationships" },
+          { "code": "AC9E1LA02", "descriptor": "Recognise that each syllable has a vowel sound and use knowledge of syllables to decode unfamiliar words" },
+          { "code": "AC9E1LA03", "descriptor": "Know most letter-sound correspondences for single letters, including consonants and short vowels" },
+          { "code": "AC9E1LA04", "descriptor": "Recognise and name upper- and lower-case letters in sequence and relate each to the corresponding sound" },
+          { "code": "AC9E1LA05", "descriptor": "Understand that a sound can be represented by multiple letter combinations and that some combinations can represent multiple sounds" },
+          { "code": "AC9E1LA06", "descriptor": "Identify the roles and responsibilities of speakers and listeners in conversations" },
+          { "code": "AC9E1LA07", "descriptor": "Understand the difference between simple sentences and compound sentences using 'and'" },
+          { "code": "AC9E1LA08", "descriptor": "Recognise that capital letters are used for proper nouns and at the beginning of sentences" },
+          { "code": "AC9E1LA09", "descriptor": "Know that nouns can be proper, common and pronouns, and that nouns are used to name people, places, things and ideas" },
+          { "code": "AC9E1LA10", "descriptor": "Know that verbs represent actions, and that tense changes indicate time" }
+        ],
+        "Year 2": [
+          { "code": "AC9E2LA01", "descriptor": "Understand that word families are groups of words with common patterns of meaning and spelling" },
+          { "code": "AC9E2LA02", "descriptor": "Recognise syllables and use knowledge of syllable count to decode unfamiliar words" },
+          { "code": "AC9E2LA03", "descriptor": "Know most letter-sound correspondences, including long vowels and common digraphs" },
+          { "code": "AC9E2LA04", "descriptor": "Understand that sounds can be represented by multiple letter combinations and that some patterns can represent multiple sounds" },
+          { "code": "AC9E2LA05", "descriptor": "Understand how to use digraphs, long vowel spelling patterns and basic suffixes to decode unfamiliar words" },
+          { "code": "AC9E2LA06", "descriptor": "Understand the structure of sentences and how sentences connect through the use of pronouns, conjunctions and reference" },
+          { "code": "AC9E2LA07", "descriptor": "Understand the difference between simple and compound sentences using 'and', 'but', 'so'" },
+          { "code": "AC9E2LA08", "descriptor": "Understand that nouns can be extended with adjectives and prepositional phrases" },
+          { "code": "AC9E2LA09", "descriptor": "Understand the difference between statement, question, command and exclamation" },
+          { "code": "AC9E2LA10", "descriptor": "Understand that texts can have different purposes and structures" }
+        ],
+        "Year 3": [
+          { "code": "AC9E3LA01", "descriptor": "Understand that words can represent people, places, things and ideas (nouns) and that they can also represent actions and qualities (verbs and adjectives)" },
+          { "code": "AC9E3LA02", "descriptor": "Understand how morphemes and word families relate to each other" },
+          { "code": "AC9E3LA03", "descriptor": "Know and use spelling patterns including prefixes and suffixes" },
+          { "code": "AC9E3LA04", "descriptor": "Understand how to use phonic knowledge and morphological knowledge to decode unfamiliar words" },
+          { "code": "AC9E3LA05", "descriptor": "Understand that words can be grouped by the type of relationship they have (synonyms, antonyms, homophones)" },
+          { "code": "AC9E3LA06", "descriptor": "Understand the difference between main and subordinate clauses" },
+          { "code": "AC9E3LA07", "descriptor": "Understand that sentence structures can vary for purpose and effect" },
+          { "code": "AC9E3LA08", "descriptor": "Understand how quotation marks and dialogue are used in texts" },
+          { "code": "AC9E3LA09", "descriptor": "Understand that different types of texts have recognisable structural features" },
+          { "code": "AC9E3LA10", "descriptor": "Understand that paragraphs organise ideas in written texts" },
+          { "code": "AC9E3LA11", "descriptor": "Understand that language can be used to describe people, places and things (adjectives) and that choices depend on audience and purpose" }
+        ],
+        "Year 4": [
+          { "code": "AC9E4LA01", "descriptor": "Understand that the meaning of words can change based on context and that this affects their use" },
+          { "code": "AC9E4LA02", "descriptor": "Understand how knowledge of morphemes, word families and spelling patterns supports reading and spelling" },
+          { "code": "AC9E4LA03", "descriptor": "Know and use spelling patterns including prefixes, suffixes and root words" },
+          { "code": "AC9E4LA04", "descriptor": "Understand that vocabulary choices affect meaning and the overall impact of a text" },
+          { "code": "AC9E4LA05", "descriptor": "Understand the difference between main and subordinate clauses and how they are used for emphasis and effect" }
+        ],
+        "Year 5": [
+          { "code": "AC9E5LA01", "descriptor": "Understand that vocabulary choices affect meaning and the overall impact of a text on the audience" },
+          { "code": "AC9E5LA02", "descriptor": "Understand how knowledge of morphemes, word families, etymology and spelling patterns supports reading comprehension and spelling accuracy" },
+          { "code": "AC9E5LA03", "descriptor": "Know and use a wide range of spelling patterns, including prefixes, suffixes and root words" },
+          { "code": "AC9E5LA04", "descriptor": "Understand how to use a range of strategies to interpret unfamiliar vocabulary in context" },
+          { "code": "AC9E5LA05", "descriptor": "Understand that complex sentences can include multiple clauses and that clause structure varies for purpose and effect" },
+          { "code": "AC9E5LA06", "descriptor": "Understand how different types of sentences are used for different purposes" },
+          { "code": "AC9E5LA07", "descriptor": "Understand the use of tense, aspect and voice in shaping meaning" },
+          { "code": "AC9E5LA08", "descriptor": "Understand that paragraphs and other text features help to organise ideas for the reader" }
+        ],
+        "Year 6": [
+          { "code": "AC9E6LA01", "descriptor": "Understand how vocabulary choices affect meaning and how language is used to position the audience" },
+          { "code": "AC9E6LA02", "descriptor": "Understand how knowledge of morphemes, word families, etymology and spelling patterns supports deep vocabulary development" },
+          { "code": "AC9E6LA03", "descriptor": "Know and use a wide range of spelling patterns, including prefixes, suffixes, root words and etymological origins" },
+          { "code": "AC9E6LA04", "descriptor": "Understand how to use a wide range of strategies to interpret and understand complex vocabulary in context" },
+          { "code": "AC9E6LA05", "descriptor": "Understand how complex sentences can include multiple clauses and that clause structure varies for purpose and effect" },
+          { "code": "AC9E6LA06", "descriptor": "Understand the use of tense, aspect, voice and modality to shape meaning" },
+          { "code": "AC9E6LA07", "descriptor": "Understand how paragraphs function to organise ideas and how paragraphs relate to each other" },
+          { "code": "AC9E6LA08", "descriptor": "Understand that authors use language to position readers and that this affects interpretation" }
+        ]
+      },
+      "Literature": {
+        "Foundation": [
+          { "code": "AC9EFLE01", "descriptor": "Recognise and appreciate that texts can be read and heard in different ways" },
+          { "code": "AC9EFLE02", "descriptor": "Identify features of literary texts, including characters and events, and use the name of text types (for example: story, rhyme, song)" }
+        ],
+        "Year 1": [
+          { "code": "AC9E1LE01", "descriptor": "Identify the purpose and intended audience of imaginative, informative and persuasive texts" },
+          { "code": "AC9E1LE02", "descriptor": "Describe the characters and settings in imaginative texts and explain how characters respond to events" },
+          { "code": "AC9E1LE03", "descriptor": "Recount key events in texts and identify the main idea" },
+          { "code": "AC9E1LE04", "descriptor": "Recognise and discuss the effect of imaginative language, including rhyme, rhythm and patterns" },
+          { "code": "AC9E1LE05", "descriptor": "Identify structural features of familiar text types, including stories, informative texts and poems" }
+        ],
+        "Year 2": [
+          { "code": "AC9E2LE01", "descriptor": "Identify the purpose and intended audience of imaginative, informative and persuasive texts" },
+          { "code": "AC9E2LE02", "descriptor": "Describe the characters, settings and events in imaginative texts, and explain how characters respond to events" },
+          { "code": "AC9E2LE03", "descriptor": "Identify and describe the main idea and supporting ideas in informative texts" },
+          { "code": "AC9E2LE04", "descriptor": "Recognise that imaginative texts use language to create images and express ideas" },
+          { "code": "AC9E2LE05", "descriptor": "Discuss the features of different text types, including stories, reports and poetry" }
+        ],
+        "Year 3": [
+          { "code": "AC9E3LE01", "descriptor": "Identify the purpose and intended audience of imaginative, informative and persuasive texts" },
+          { "code": "AC9E3LE02", "descriptor": "Describe the characters, settings and events in imaginative texts and explain how characters respond to events" },
+          { "code": "AC9E3LE03", "descriptor": "Identify the main idea and supporting ideas in informative texts" },
+          { "code": "AC9E3LE04", "descriptor": "Recognise that imaginative texts use language to create images and express ideas" },
+          { "code": "AC9E3LE05", "descriptor": "Discuss the features of different text types, including stories, reports and poetry" }
+        ],
+        "Year 4": [
+          { "code": "AC9E4LE01", "descriptor": "Identify the purpose and intended audience of imaginative, informative and persuasive texts" },
+          { "code": "AC9E4LE02", "descriptor": "Describe the characters, settings and events in imaginative texts and explain how characters respond to events" },
+          { "code": "AC9E4LE03", "descriptor": "Identify the main idea and supporting ideas in informative texts" },
+          { "code": "AC9E4LE04", "descriptor": "Recognise that imaginative texts use language to create images and express ideas" },
+          { "code": "AC9E4LE05", "descriptor": "Discuss the features of different text types, including stories, reports and poetry" }
+        ],
+        "Year 5": [
+          { "code": "AC9E5LE01", "descriptor": "Identify the purpose and intended audience of imaginative, informative and persuasive texts" },
+          { "code": "AC9E5LE02", "descriptor": "Describe how characters, settings and events in imaginative texts are developed and how characters respond to events" },
+          { "code": "AC9E5LE03", "descriptor": "Identify the main idea and supporting ideas in informative texts and evaluate the reliability of sources" },
+          { "code": "AC9E5LE04", "descriptor": "Recognise how imaginative texts use language to create images, express ideas and create mood" },
+          { "code": "AC9E5LE05", "descriptor": "Analyse the structural and language features of different text types" }
+        ],
+        "Year 6": [
+          { "code": "AC9E6LE01", "descriptor": "Identify the purpose and intended audience of imaginative, informative and persuasive texts" },
+          { "code": "AC9E6LE02", "descriptor": "Describe how characters, settings and events in imaginative texts are developed and how characters respond to events" },
+          { "code": "AC9E6LE03", "descriptor": "Identify the main idea and supporting ideas in informative texts and evaluate the reliability and relevance of sources" },
+          { "code": "AC9E6LE04", "descriptor": "Recognise how imaginative texts use language to create images, express ideas, create mood and position readers" },
+          { "code": "AC9E6LE05", "descriptor": "Analyse the structural and language features of different text types and explain how they shape meaning" }
+        ]
+      },
+      "Literacy": {
+        "Foundation": [
+          { "code": "AC9EFLY01", "descriptor": "Identify some differences between imaginative and informative texts" },
+          { "code": "AC9EFLY02", "descriptor": "Listen to and respond to texts, drawing on personal experience and making connections with familiar objects and events" },
+          { "code": "AC9EFLY03", "descriptor": "Create and present short spoken and written texts, using familiar words and simple sentences" },
+          { "code": "AC9EFLY04", "descriptor": "Read simple sentences with emerging accuracy, fluency and understanding" },
+          { "code": "AC9EFLY05", "descriptor": "Use learned sound-letter correspondences to spell words with short vowels and common consonants" },
+          { "code": "AC9EFLY06", "descriptor": "Write upper- and lower-case letters using correct letter formation" },
+          { "code": "AC9EFLY07", "descriptor": "Construct simple sentences using correct case and punctuation" },
+          { "code": "AC9EFLY08", "descriptor": "Participate in reading and writing activities, including shared reading and guided writing, with support" },
+          { "code": "AC9EFLY09", "descriptor": "Use vocabulary with emerging confidence, including high-frequency words and topic-specific terms" }
+        ],
+        "Year 1": [
+          { "code": "AC9E1LY01", "descriptor": "Read and understand short texts with simple sentences and some unfamiliar vocabulary" },
+          { "code": "AC9E1LY02", "descriptor": "Use phonological and semantic information to read and understand texts, including sounding out unfamiliar words" },
+          { "code": "AC9E1LY03", "descriptor": "Read texts with increasing fluency, accuracy and expression" },
+          { "code": "AC9E1LY04", "descriptor": "Read aloud with developing fluency and confidence" },
+          { "code": "AC9E1LY05", "descriptor": "Use spelling knowledge to attempt the spelling of unfamiliar words" },
+          { "code": "AC9E1LY06", "descriptor": "Write short texts with appropriate word choice, simple sentences and correct punctuation" },
+          { "code": "AC9E1LY07", "descriptor": "Use grammatical features including correct tense, subject-verb agreement and simple conjunction" },
+          { "code": "AC9E1LY08", "descriptor": "Create short written and multimodal texts for a specific purpose and audience" },
+          { "code": "AC9E1LY09", "descriptor": "Listen and respond to texts, making connections with personal experience" },
+          { "code": "AC9E1LY10", "descriptor": "Participate in spoken situations, including conversations and group discussions" },
+          { "code": "AC9E1LY11", "descriptor": "Discuss ideas and experiences using vocabulary from reading and other learning experiences" },
+          { "code": "AC9E1LY12", "descriptor": "Identify how texts make connections between ideas and people" },
+          { "code": "AC9E1LY13", "descriptor": "Plan and organise short spoken and written texts for particular purposes" },
+          { "code": "AC9E1LY14", "descriptor": "Re-read and edit texts for meaning, appropriate vocabulary and sentence structure" },
+          { "code": "AC9E1LY15", "descriptor": "Use speaking and listening to share ideas and information in structured situations" }
+        ],
+        "Year 2": [
+          { "code": "AC9E2LY01", "descriptor": "Read and understand texts with varied sentence structures and increasing vocabulary" },
+          { "code": "AC9E2LY02", "descriptor": "Use knowledge of letter-sound correspondences, digraphs and spelling patterns to decode" },
+          { "code": "AC9E2LY03", "descriptor": "Read texts with developing fluency, accuracy and confidence" },
+          { "code": "AC9E2LY04", "descriptor": "Use semantic and syntactic information to confirm attempts to decode" },
+          { "code": "AC9E2LY05", "descriptor": "Use spelling knowledge to spell familiar and unfamiliar words" },
+          { "code": "AC9E2LY06", "descriptor": "Write texts with increasing complexity, appropriate structure and accurate grammar" },
+          { "code": "AC9E2LY07", "descriptor": "Create written and multimodal texts for different purposes and audiences" },
+          { "code": "AC9E2LY08", "descriptor": "Use punctuation to clarify meaning, including periods, question marks and exclamation marks" },
+          { "code": "AC9E2LY09", "descriptor": "Participate in spoken interactions, including conversations and group discussions" },
+          { "code": "AC9E2LY10", "descriptor": "Analyse ideas and information in informative texts" },
+          { "code": "AC9E2LY11", "descriptor": "Discuss characters and events in literary texts and make connections" },
+          { "code": "AC9E2LY12", "descriptor": "Plan, draft and publish written and multimodal texts with appropriate structure and accurate grammar" }
+        ],
+        "Year 3": [
+          { "code": "AC9E3LY02", "descriptor": "Read and understand texts with varied sentence structures, varied vocabulary and some unfamiliar content" },
+          { "code": "AC9E3LY03", "descriptor": "Use knowledge of letter-sound correspondences, morphemes and context to decode" },
+          { "code": "AC9E3LY04", "descriptor": "Read texts with developing fluency, accuracy and independence" },
+          { "code": "AC9E3LY05", "descriptor": "Use spelling knowledge to spell familiar and unfamiliar words accurately" },
+          { "code": "AC9E3LY06", "descriptor": "Write texts for different purposes with accurate grammar, coherent structure and appropriate punctuation" },
+          { "code": "AC9E3LY07", "descriptor": "Use paragraphs to organise written ideas" },
+          { "code": "AC9E3LY08", "descriptor": "Create written and multimodal texts for different purposes and audiences" },
+          { "code": "AC9E3LY09", "descriptor": "Participate in spoken interactions, making contributions and building on others' ideas" },
+          { "code": "AC9E3LY10", "descriptor": "Analyse ideas and information in informative texts" },
+          { "code": "AC9E3LY11", "descriptor": "Respond to literature, discussing themes, characters and ideas" },
+          { "code": "AC9E3LY12", "descriptor": "Plan, draft and publish written and multimodal texts with accurate grammar and coherent structure" }
+        ],
+        "Year 4": [
+          { "code": "AC9E4LY01", "descriptor": "Read and understand texts with varied sentence structures, varied vocabulary and increasingly unfamiliar content" },
+          { "code": "AC9E4LY02", "descriptor": "Use knowledge of letter-sound correspondences, morphemes and context to decode complex words" },
+          { "code": "AC9E4LY03", "descriptor": "Read texts with developing fluency, accuracy and independence" },
+          { "code": "AC9E4LY04", "descriptor": "Use spelling knowledge to spell familiar and unfamiliar words accurately" },
+          { "code": "AC9E4LY05", "descriptor": "Write texts for different purposes with accurate grammar, coherent structure and appropriate punctuation" },
+          { "code": "AC9E4LY06", "descriptor": "Use paragraphs to organise written ideas for different purposes" },
+          { "code": "AC9E4LY07", "descriptor": "Create written and multimodal texts for different purposes and audiences" },
+          { "code": "AC9E4LY08", "descriptor": "Participate in spoken interactions, making contributions and building on others' ideas" },
+          { "code": "AC9E4LY09", "descriptor": "Analyse ideas and information in informative texts" },
+          { "code": "AC9E4LY10", "descriptor": "Respond to literature, discussing themes, characters and ideas" },
+          { "code": "AC9E4LY11", "descriptor": "Plan, draft and publish written and multimodal texts with accurate grammar and coherent structure" },
+          { "code": "AC9E4LY12", "descriptor": "Understand how to use reference materials, including dictionaries and thesauruses" }
+        ],
+        "Year 5": [
+          { "code": "AC9E5LY01", "descriptor": "Read and understand a range of texts with varied sentence structures, varied vocabulary and increasingly unfamiliar content" },
+          { "code": "AC9E5LY02", "descriptor": "Use knowledge of morphemes, word families, etymology and context to interpret and understand unfamiliar vocabulary" },
+          { "code": "AC9E5LY03", "descriptor": "Read texts with developing fluency, accuracy and independence across a range of text types" },
+          { "code": "AC9E5LY04", "descriptor": "Use spelling knowledge to spell familiar and unfamiliar words accurately, including words with complex patterns" },
+          { "code": "AC9E5LY05", "descriptor": "Write texts for different purposes with accurate grammar, coherent structure and appropriate punctuation" },
+          { "code": "AC9E5LY06", "descriptor": "Use paragraphs to organise written ideas for different purposes" },
+          { "code": "AC9E5LY07", "descriptor": "Create written and multimodal texts for different purposes and audiences" },
+          { "code": "AC9E5LY08", "descriptor": "Participate in spoken interactions, making contributions and building on others' ideas" },
+          { "code": "AC9E5LY09", "descriptor": "Analyse ideas and information in informative texts, identifying point of view and bias" },
+          { "code": "AC9E5LY10", "descriptor": "Respond to and interpret literature, discussing themes, characterisation and ideas" },
+          { "code": "AC9E5LY11", "descriptor": "Plan, draft and publish written and multimodal texts with accurate grammar, coherent structure and appropriate punctuation" },
+          { "code": "AC9E5LY12", "descriptor": "Use a range of reference materials, including dictionaries, thesauruses and digital resources" }
+        ],
+        "Year 6": [
+          { "code": "AC9E6LY01", "descriptor": "Read and understand a range of texts with varied sentence structures, varied vocabulary and complex content" },
+          { "code": "AC9E6LY02", "descriptor": "Use knowledge of morphemes, word families, etymology, context and literary references to interpret and understand complex vocabulary" },
+          { "code": "AC9E6LY03", "descriptor": "Read texts with developing fluency, accuracy and independence across a range of text types and complexity" },
+          { "code": "AC9E6LY04", "descriptor": "Use spelling knowledge to spell familiar and unfamiliar words accurately, including words with complex patterns and etymological origins" },
+          { "code": "AC9E6LY05", "descriptor": "Write texts for different purposes with accurate grammar, coherent structure and appropriate punctuation" },
+          { "code": "AC9E6LY06", "descriptor": "Use paragraphs and complex sentences to organise written ideas for different purposes" },
+          { "code": "AC9E6LY07", "descriptor": "Create written and multimodal texts for different purposes and audiences" },
+          { "code": "AC9E6LY08", "descriptor": "Participate in spoken interactions, making contributions and building on others' ideas" },
+          { "code": "AC9E6LY09", "descriptor": "Analyse ideas and information in informative texts, identifying point of view, bias and intended audience" },
+          { "code": "AC9E6LY10", "descriptor": "Respond to and interpret literature, discussing themes, characterisation, ideas and language choices" },
+          { "code": "AC9E6LY11", "descriptor": "Plan, draft and publish written and multimodal texts with accurate grammar, coherent structure and appropriate punctuation" },
+          { "code": "AC9E6LY12", "descriptor": "Use a wide range of reference materials, including dictionaries, thesauruses, digital resources and web-based tools" }
+        ]
+      }
+    }
   },
   {
     "id": "maths-f-6",
     "name": "Mathematics",
     "shortName": "Maths",
-    "strands": ["Number", "Algebra", "Measurement", "Geometry", "Statistics", "Probability"],
+    "strands": ["Number", "Algebra", "Measurement", "Space", "Statistics", "Probability"],
     "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
-    "description": "The Australian Curriculum v9 Mathematics F-6 covers Number, Algebra, Measurement, Space, Statistics and Probability. Develops fluency, reasoning and problem-solving across six strands from Foundation to Year 6.",
-    "crossCurriculum": ["Sustainability", "Aboriginal and Torres Strait Islander Histories and Cultures"]
+    "description": "The Australian Curriculum v9 Mathematics F-6 covers Number, Algebra, Measurement, Space, Statistics and Probability. Develops fluency, reasoning and problem-solving through the six strands from Foundation to Year 6, integrating mathematical thinking with real-world contexts.",
+    "crossCurriculum": [
+      "Sustainability",
+      "Aboriginal and Torres Strait Islander Histories and Cultures",
+      "Asia and Australia's Engagement with Asia"
+    ],
+    "strandsData": {
+      "Number": {
+        "Foundation": [
+          { "code": "AC9FN01", "descriptor": "Name, represent and order numbers to at least 20" },
+          { "code": "AC9FN02", "descriptor": "Subitise small collections (instantly judge quantity without counting)" },
+          { "code": "AC9FN03", "descriptor": "Compare the size of collections to at least 20" },
+          { "code": "AC9FN04", "descriptor": "Partition and combine collections up to 20" },
+          { "code": "AC9FN05", "descriptor": "Represent practical situations that involve addition and subtraction" }
+        ],
+        "Year 1": [
+          { "code": "AC9M1N01", "descriptor": "Count to at least 100" },
+          { "code": "AC9M1N02", "descriptor": "Read and write numerals to at least 100" },
+          { "code": "AC9M1N03", "descriptor": "Recognise patterns to 20" },
+          { "code": "AC9M1N04", "descriptor": "Compare and order collections to at least 50" },
+          { "code": "AC9M1N05", "descriptor": "Partition collections to at least 20" },
+          { "code": "AC9M1N06", "descriptor": "Use a range of strategies to add and subtract within 20" },
+          { "code": "AC9M1N07", "descriptor": "Recognise Australian coins" }
+        ],
+        "Year 2": [
+          { "code": "AC9M2N01", "descriptor": "Count to at least 1000" },
+          { "code": "AC9M2N02", "descriptor": "Read and write three-digit numbers" },
+          { "code": "AC9M2N03", "descriptor": "Use place value to partition three-digit numbers" },
+          { "code": "AC9M2N04", "descriptor": "Compare and order three-digit numbers" },
+          { "code": "AC9M2N05", "descriptor": "Use a range of strategies to add and subtract within 100" },
+          { "code": "AC9M2N06", "descriptor": "Recall multiplication facts for 2, 5 and 10" },
+          { "code": "AC9M2N07", "descriptor": "Recognise and explain the connection between multiplication and division" },
+          { "code": "AC9M2N08", "descriptor": "Use money — recognise combinations to $2" }
+        ],
+        "Year 3": [
+          { "code": "AC9M3N01", "descriptor": "Recognise, represent and order numbers to at least 10 000" },
+          { "code": "AC9M3N02", "descriptor": "Partition, rename and represent three-digit numbers" },
+          { "code": "AC9M3N03", "descriptor": "Use efficient mental and written strategies for addition and subtraction" },
+          { "code": "AC9M3N04", "descriptor": "Recall multiplication facts for 2, 3, 5 and 10" },
+          { "code": "AC9M3N05", "descriptor": "Recall division facts for 2, 3, 5 and 10" },
+          { "code": "AC9M3N06", "descriptor": "Represent money values in various ways" },
+          { "code": "AC9M3N07", "descriptor": "Calculate change from transactions" }
+        ],
+        "Year 4": [
+          { "code": "AC9M4N01", "descriptor": "Recognise, represent and order numbers to at least 10 000" },
+          { "code": "AC9M4N02", "descriptor": "Use place value to partition and rename numbers" },
+          { "code": "AC9M4N03", "descriptor": "Use efficient mental and written strategies for all four operations" },
+          { "code": "AC9M4N04", "descriptor": "Recall multiplication facts to 10 x 10" },
+          { "code": "AC9M4N05", "descriptor": "Use estimation to check calculations" },
+          { "code": "AC9M4N06", "descriptor": "Represent money values in various ways" },
+          { "code": "AC9M4N07", "descriptor": "Recognise decimal notation for tenths and hundredths" }
+        ],
+        "Year 5": [
+          { "code": "AC9M5N01", "descriptor": "Use place value to at least 1 000 000" },
+          { "code": "AC9M5N02", "descriptor": "Use equivalent fractions, decimals and percentages" },
+          { "code": "AC9M5N03", "descriptor": "Solve problems using all four operations with whole numbers and decimals" },
+          { "code": "AC9M5N04", "descriptor": "Use efficient mental and written strategies for all four operations" },
+          { "code": "AC9M5N05", "descriptor": "Check the reasonableness of calculations" }
+        ],
+        "Year 6": [
+          { "code": "AC9M6N01", "descriptor": "Use place value for large numbers and decimals" },
+          { "code": "AC9M6N02", "descriptor": "Use equivalent fractions, decimals and percentages" },
+          { "code": "AC9M6N03", "descriptor": "Solve problems involving all four operations with fractions, decimals and percentages" },
+          { "code": "AC9M6N04", "descriptor": "Use ratios in practical situations" },
+          { "code": "AC9M6N05", "descriptor": "Use efficient mental and written strategies for all four operations" }
+        ]
+      },
+      "Algebra": {
+        "Foundation": [
+          { "code": "AC9FA01", "descriptor": "Recognise, copy and continue repeating patterns" },
+          { "code": "AC9FA02", "descriptor": "Sort and classify objects into groups" }
+        ],
+        "Year 1": [
+          { "code": "AC9M1A01", "descriptor": "Recognise, continue and create pattern sequences" },
+          { "code": "AC9M1A02", "descriptor": "Solve practical problems involving addition and subtraction" }
+        ],
+        "Year 2": [
+          { "code": "AC9M2A01", "descriptor": "Solve practical addition and subtraction problems" },
+          { "code": "AC9M2A02", "descriptor": "Continue and create patterns with addition and subtraction" },
+          { "code": "AC9M2A03", "descriptor": "Describe patterns in number sequences" }
+        ],
+        "Year 3": [
+          { "code": "AC9M3A01", "descriptor": "Add and subtract multiples of 10 and 100" },
+          { "code": "AC9M3A02", "descriptor": "Solve problems using number sentences" },
+          { "code": "AC9M3A03", "descriptor": "Identify missing numbers in addition and subtraction equations" }
+        ],
+        "Year 4": [
+          { "code": "AC9M4A01", "descriptor": "Find unknown values in number sentences" },
+          { "code": "AC9M4A02", "descriptor": "Continue and create number patterns" },
+          { "code": "AC9M4A03", "descriptor": "Use equivalence in number sentences" }
+        ],
+        "Year 5": [
+          { "code": "AC9M5A01", "descriptor": "Use equivalence to continue and create number patterns" },
+          { "code": "AC9M5A02", "descriptor": "Find unknown values in equations" },
+          { "code": "AC9M5A03", "descriptor": "Solve word problems using number sentences" }
+        ],
+        "Year 6": [
+          { "code": "AC9M6A01", "descriptor": "Continue and create number patterns" },
+          { "code": "AC9M6A02", "descriptor": "Solve equations using algebra" },
+          { "code": "AC9M6A03", "descriptor": "Use ordered pairs to describe position" }
+        ]
+      },
+      "Measurement": {
+        "Foundation": [
+          { "code": "AC9FM01", "descriptor": "Identify and compare the mass of objects" },
+          { "code": "AC9FM02", "descriptor": "Identify the duration of events" },
+          { "code": "AC9FM03", "descriptor": "Compare length, capacity and mass" }
+        ],
+        "Year 1": [
+          { "code": "AC9M1M01", "descriptor": "Measure length using informal units" },
+          { "code": "AC9M1M02", "descriptor": "Describe duration using direct and indirect comparisons" },
+          { "code": "AC9M1M03", "descriptor": "Tell time to the half hour" },
+          { "code": "AC9M1M04", "descriptor": "Compare mass using balance scales" }
+        ],
+        "Year 2": [
+          { "code": "AC9M2M01", "descriptor": "Measure length using informal units" },
+          { "code": "AC9M2M02", "descriptor": "Measure mass using balance scales" },
+          { "code": "AC9M2M03", "descriptor": "Tell time to the quarter hour" },
+          { "code": "AC9M2M04", "descriptor": "Compare and order duration of events" }
+        ],
+        "Year 3": [
+          { "code": "AC9M3M01", "descriptor": "Measure in metres, centimetres and millimetres" },
+          { "code": "AC9M3M02", "descriptor": "Measure mass in kilograms and grams" },
+          { "code": "AC9M3M03", "descriptor": "Measure capacity in litres and millilitres" },
+          { "code": "AC9M3M04", "descriptor": "Tell time to the minute" },
+          { "code": "AC9M3M05", "descriptor": "Solve problems involving duration" }
+        ],
+        "Year 4": [
+          { "code": "AC9M4M01", "descriptor": "Use scaled instruments for measurement" },
+          { "code": "AC9M4M02", "descriptor": "Use appropriate units for length, mass and capacity" },
+          { "code": "AC9M4M03", "descriptor": "Convert between units of length, mass and capacity" },
+          { "code": "AC9M4M04", "descriptor": "Calculate perimeter and area of rectangles" },
+          { "code": "AC9M4M05", "descriptor": "Solve problems involving time duration" }
+        ],
+        "Year 5": [
+          { "code": "AC9M5M01", "descriptor": "Choose and use appropriate metric units for length, area, mass and capacity" },
+          { "code": "AC9M5M02", "descriptor": "Calculate perimeter and area of rectangles" },
+          { "code": "AC9M5M03", "descriptor": "Solve problems involving duration" },
+          { "code": "AC9M5M04", "descriptor": "Connect volume and capacity" }
+        ],
+        "Year 6": [
+          { "code": "AC9M6M01", "descriptor": "Connect decimal representations to the metric system" },
+          { "code": "AC9M6M02", "descriptor": "Solve problems involving length, mass, capacity and volume" },
+          { "code": "AC9M6M03", "descriptor": "Solve problems involving perimeter, area and volume" },
+          { "code": "AC9M6M04", "descriptor": "Calculate angles on a straight line and at a point" }
+        ]
+      },
+      "Space": {
+        "Foundation": [
+          { "code": "AC9FS01", "descriptor": "Name and sort 2D shapes" },
+          { "code": "AC9FS02", "descriptor": "Locate positions in space" },
+          { "code": "AC9FS03", "descriptor": "Describe the location of an object from two perspectives" }
+        ],
+        "Year 1": [
+          { "code": "AC9M1S01", "descriptor": "Sort and name 2D shapes" },
+          { "code": "AC9M1S02", "descriptor": "Locate positions in space" },
+          { "code": "AC9M1S03", "descriptor": "Recognise 3D objects in the environment" }
+        ],
+        "Year 2": [
+          { "code": "AC9M2S01", "descriptor": "Describe and draw 2D shapes" },
+          { "code": "AC9M2S02", "descriptor": "Describe line symmetry" },
+          { "code": "AC9M2S03", "descriptor": "Describe features of 3D objects" }
+        ],
+        "Year 3": [
+          { "code": "AC9M3S01", "descriptor": "Identify right angles, acute angles and obtuse angles" },
+          { "code": "AC9M3S02", "descriptor": "Compare angles to a right angle" },
+          { "code": "AC9M3S03", "descriptor": "Describe and compare 2D shapes by their properties" },
+          { "code": "AC9M3S04", "descriptor": "Locate and describe points on a grid" }
+        ],
+        "Year 4": [
+          { "code": "AC9M4S01", "descriptor": "Explain and compare geometric properties" },
+          { "code": "AC9M4S02", "descriptor": "Apply enlargement transformation" },
+          { "code": "AC9M4S03", "descriptor": "Interpret grid reference systems" }
+        ],
+        "Year 5": [
+          { "code": "AC9M5S01", "descriptor": "Estimate and measure angles in degrees" },
+          { "code": "AC9M5S02", "descriptor": "Use coordinates to locate positions" },
+          { "code": "AC9M5S03", "descriptor": "Describe translations, reflections and rotations" },
+          { "code": "AC9M5S04", "descriptor": "Apply geometric properties to solve problems" }
+        ],
+        "Year 6": [
+          { "code": "AC9M6S01", "descriptor": "Classify triangles and quadrilaterals" },
+          { "code": "AC9M6S02", "descriptor": "Apply geometric properties to solve problems" },
+          { "code": "AC9M6S03", "descriptor": "Describe results of translations, reflections and rotations" }
+        ]
+      },
+      "Statistics": {
+        "Foundation": [
+          { "code": "AC9FST01", "descriptor": "Collect and sort data into categories" }
+        ],
+        "Year 1": [
+          { "code": "AC9M1ST01", "descriptor": "Collect and record data" }
+        ],
+        "Year 2": [
+          { "code": "AC9M2ST01", "descriptor": "Collect, classify and represent data" },
+          { "code": "AC9M2ST02", "descriptor": "Interpret data displays" }
+        ],
+        "Year 3": [
+          { "code": "AC9M3ST01", "descriptor": "Collect, compare and interpret data" },
+          { "code": "AC9M3ST02", "descriptor": "Describe data using comparative language" }
+        ],
+        "Year 4": [
+          { "code": "AC9M4ST01", "descriptor": "Collect and interpret data" },
+          { "code": "AC9M4ST02", "descriptor": "Construct data displays" }
+        ],
+        "Year 5": [
+          { "code": "AC9M5ST01", "descriptor": "Collect, interpret and represent data" },
+          { "code": "AC9M5ST02", "descriptor": "Interpret and compare data displays" }
+        ],
+        "Year 6": [
+          { "code": "AC9M6ST01", "descriptor": "Interpret and compare data displays" },
+          { "code": "AC9M6ST02", "descriptor": "Calculate mean, median and range" },
+          { "code": "AC9M6ST03", "descriptor": "Pose questions and collect data" }
+        ]
+      },
+      "Probability": {
+        "Foundation": [
+          { "code": "AC9FP01", "descriptor": "Describe the likelihood of everyday events" }
+        ],
+        "Year 1": [
+          { "code": "AC9M1P01", "descriptor": "Describe the outcome of familiar events as 'likely' or 'unlikely'" }
+        ],
+        "Year 2": [
+          { "code": "AC9M2P01", "descriptor": "Describe the likelihood of outcomes in everyday events" }
+        ],
+        "Year 3": [
+          { "code": "AC9M3P01", "descriptor": "Conduct chance experiments" },
+          { "code": "AC9M3P02", "descriptor": "Describe possible outcomes and likelihood" }
+        ],
+        "Year 4": [
+          { "code": "AC9M4P01", "descriptor": "Describe probabilities using fractions, decimals and percentages" },
+          { "code": "AC9M4P02", "descriptor": "Conduct probability experiments" }
+        ],
+        "Year 5": [
+          { "code": "AC9M5P01", "descriptor": "List outcomes of chance experiments" },
+          { "code": "AC9M5P02", "descriptor": "Recognise that probabilities range from 0 to 1" }
+        ],
+        "Year 6": [
+          { "code": "AC9M6P01", "descriptor": "Describe probabilities using fractions, decimals and percentages" },
+          { "code": "AC9M6P02", "descriptor": "Conduct probability experiments" },
+          { "code": "AC9M6P03", "descriptor": "Compare observed frequencies with expected frequencies" }
+        ]
+      }
+    }
   },
   {
     "id": "science-f-6",
@@ -23,7 +491,7 @@
     "shortName": "Science",
     "strands": ["Biological Sciences", "Chemical Sciences", "Earth & Space Sciences", "Physical Sciences"],
     "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
-    "description": "The Australian Curriculum v9 Science F-6 explores Biological, Chemical, Earth and Space, and Physical sciences. Students develop inquiry skills and understanding of the natural world through hands-on investigation.",
+    "description": "The Australian Curriculum v9 Science F-6 explores Biological, Chemical, Earth and Space, and Physical sciences. Students develop inquiry skills and understanding of the natural world through hands-on investigation, building scientific literacy from Foundation to Year 6.",
     "crossCurriculum": ["Sustainability", "Aboriginal and Torres Strait Islander Histories and Cultures"]
   },
   {
@@ -32,7 +500,7 @@
     "shortName": "HASS",
     "strands": ["History", "Geography", "Civics & Citizenship", "Economics & Business"],
     "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
-    "description": "The Australian Curriculum v9 HASS F-6 covers History, Geography, Civics and Citizenship, and Economics and Business. Develops understanding of society, environment and civic participation.",
+    "description": "The Australian Curriculum v9 HASS F-6 covers History, Geography, Civics and Citizenship, and Economics and Business. Develops understanding of society, environment and civic participation through inquiry-based learning.",
     "crossCurriculum": ["Aboriginal and Torres Strait Islander Histories and Cultures", "Sustainability"]
   },
   {
@@ -41,7 +509,7 @@
     "shortName": "Technologies",
     "strands": ["Digital Technologies", "Design & Technologies"],
     "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
-    "description": "The Australian Curriculum v9 Technologies F-6 covers Digital Technologies and Design & Technologies. Students learn to create digital solutions and design technologies for real-world problems.",
+    "description": "The Australian Curriculum v9 Technologies F-6 covers Digital Technologies and Design & Technologies. Students learn to create digital solutions and design technologies for real-world problems through project-based learning.",
     "crossCurriculum": ["Sustainability"]
   },
   {
@@ -50,7 +518,7 @@
     "shortName": "The Arts",
     "strands": ["Visual Arts", "Music", "Drama", "Dance"],
     "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
-    "description": "The Australian Curriculum v9 The Arts F-6 covers Visual Arts, Music, Drama and Dance. Students develop creativity, expression and artistic skills across the four arts disciplines.",
+    "description": "The Australian Curriculum v9 The Arts F-6 covers Visual Arts, Music, Drama and Dance. Students develop creativity, expression and artistic skills across the four arts disciplines through making, performing and responding.",
     "crossCurriculum": ["Aboriginal and Torres Strait Islander Histories and Cultures"]
   },
   {
@@ -59,7 +527,7 @@
     "shortName": "HPE",
     "strands": ["Health", "Physical Education"],
     "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
-    "description": "The Australian Curriculum v9 HPE F-6 covers Health and Physical Education. Students develop knowledge, skills and attitudes for healthy, active lives and positive wellbeing.",
+    "description": "The Australian Curriculum v9 HPE F-6 covers Health and Physical Education. Students develop knowledge, skills and attitudes for healthy, active lives and positive wellbeing through movement, health learning and safety.",
     "crossCurriculum": ["Sustainability"]
   },
   {
@@ -68,7 +536,7 @@
     "shortName": "Languages",
     "strands": ["Italian", "Japanese", "Mandarin", "Indonesian"],
     "yearLevels": ["Foundation", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"],
-    "description": "The Australian Curriculum v9 Languages F-6 covers Italian, Japanese, Mandarin and Indonesian. Students develop communicative competence and intercultural understanding in the target language.",
+    "description": "The Australian Curriculum v9 Languages F-6 covers Italian, Japanese, Mandarin and Indonesian. Students develop communicative competence and intercultural understanding in the target language through listening, speaking, reading and writing.",
     "crossCurriculum": ["Asia and Australia's Engagement with Asia"]
   }
 ]
