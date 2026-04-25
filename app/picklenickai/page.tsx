@@ -7,12 +7,13 @@ import LibraryTab from "@/components/LibraryTab";
 import CurriculumTab from "@/components/CurriculumTab";
 import FrameworksTab from "@/components/FrameworksTab";
 import AssessmentsTab from "@/components/AssessmentsTab";
+import AutoMarkingTab from "@/components/AutoMarkingTab";
 import AdminTab from "@/components/AdminTab";
 import ProfileTab from "@/components/ProfileTab";
 import TeacherOnboarding from "@/components/TeacherOnboarding";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
-type TabId = "chat" | "library" | "curriculum" | "frameworks" | "assessments" | "admin" | "profile";
+type TabId = "chat" | "library" | "curriculum" | "frameworks" | "assessments" | "auto-marking" | "admin" | "profile";
 
 interface TeacherProfile {
   name: string;
@@ -161,6 +162,8 @@ export default function PickleNickAIPage() {
             <ErrorBoundary title="Frameworks error"><FrameworksTab /></ErrorBoundary>
           ) : activeTab === "assessments" ? (
             <ErrorBoundary title="Assessments error"><AssessmentsTab /></ErrorBoundary>
+          ) : activeTab === "auto-marking" ? (
+            <ErrorBoundary title="Auto-Marking error"><AutoMarkingTab /></ErrorBoundary>
           ) : activeTab === "admin" ? (
             <ErrorBoundary title="Admin error"><AdminTab /></ErrorBoundary>
           ) : activeTab === "profile" ? (
