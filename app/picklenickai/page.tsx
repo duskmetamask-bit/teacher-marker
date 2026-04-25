@@ -7,13 +7,11 @@ import LibraryTab from "@/components/LibraryTab";
 import CurriculumTab from "@/components/CurriculumTab";
 import FrameworksTab from "@/components/FrameworksTab";
 import AssessmentsTab from "@/components/AssessmentsTab";
-import AutoMarkingTab from "@/components/AutoMarkingTab";
 import AdminTab from "@/components/AdminTab";
 import ProfileTab from "@/components/ProfileTab";
 import TeacherOnboarding from "@/components/TeacherOnboarding";
-import ErrorBoundary from "@/components/ErrorBoundary";
 
-type TabId = "chat" | "library" | "curriculum" | "frameworks" | "assessments" | "auto-marking" | "admin" | "profile";
+type TabId = "chat" | "library" | "curriculum" | "frameworks" | "assessments" | "admin" | "profile";
 
 interface TeacherProfile {
   name: string;
@@ -21,6 +19,17 @@ interface TeacherProfile {
   subjects: string[];
 }
 
+const SESSION_KEY = "picklenickai-session";
+
+function getOrCreateSessionId(): string {
+  if (typeof window === "undefined") return "";
+  let id = localStorage.getItem(SESSION_KEY);
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem(SESSION_KEY, id);
+  }
+  return id;
+}
 
 export default function PickleNickAIPage() {
   const [sessionId, setSessionId] = useState<string>("");
@@ -29,21 +38,20 @@ export default function PickleNickAIPage() {
   const [activeTab, setActiveTab] = useState<TabId>("chat");
 
   useEffect(() => {
-    const id = sessionStorage.getItem("picklenickai-session") || crypto.randomUUID();
-    sessionStorage.setItem("picklenickai-session", id);
+    const id = getOrCreateSessionId();
     setSessionId(id);
 
     fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "checkProfile" }),
+      body: JSON.stringify({ sessionId: id, messages: [], checkProfile: true }),
     })
-      .then((r) => r.ok ? r.json() : { profile: null })
+      .then((r) => r.json())
       .then((data) => {
-        if (data.profile?.yearLevels?.length > 0 || data.profile?.subjects?.length > 0) {
+        if (data.profile?.name) {
           setProfile({
-            name: data.profile.name || "",
-            yearLevels: data.profile.yearLevels || [],
+            name: data.profile.name,
+            yearLevels: data.profile.year_levels || [],
             subjects: data.profile.subjects || [],
           });
         }
@@ -52,40 +60,22 @@ export default function PickleNickAIPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  // Re-check profile after onboarding wizard redirects back
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("onboarded") === "1") {
-      fetch("/api/chat", {
+  async function handleOnboardingComplete(p: TeacherProfile) {
+    try {
+      await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "checkProfile" }),
-      })
-        .then((r) => r.ok ? r.json() : { profile: null })
-        .then((data) => {
-          if (data.profile?.yearLevels?.length > 0 || data.profile?.subjects?.length > 0) {
-            setProfile({
-              name: data.profile.name || "",
-              yearLevels: data.profile.yearLevels || [],
-              subjects: data.profile.subjects || [],
-            });
-            window.history.replaceState({}, "", "/picklenickai");
-          }
-        })
-        .catch(() => {
-          // Profile fetch failed — stay on current state, don't clear URL
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
-  }, []);
+        body: JSON.stringify({ action: "saveProfile", sessionId, profile: p }),
+      });
+    } catch {}
+    setProfile(p);
+  }
 
   if (loading) {
     return (
       <div
         style={{
-          background: "var(--header-bg, #0f172a)",
+          background: "#0d0f1a",
           minHeight: "100vh",
           display: "flex",
           alignItems: "center",
@@ -95,7 +85,7 @@ export default function PickleNickAIPage() {
         <div style={{ textAlign: "center" }}>
           <div
             style={{
-              background: "linear-gradient(135deg, var(--accent), var(--accent-light))",
+              background: "linear-gradient(135deg, #6366f1, #22d3ee)",
               width: 56,
               height: 56,
               borderRadius: 16,
@@ -110,22 +100,20 @@ export default function PickleNickAIPage() {
           >
             PN
           </div>
-          <p style={{ color: "var(--muted, #94a3b8)", fontSize: "var(--text-sm)" }}>
-            Loading PickleNickAI...
-          </p>
+          <p style={{ color: "#99a3c7", fontSize: "0.875rem" }}>Loading PickleNickAI...</p>
         </div>
       </div>
     );
   }
 
   if (!profile) {
-    return <TeacherOnboarding />;
+    return <TeacherOnboarding onComplete={handleOnboardingComplete} />;
   }
 
   return (
     <div
       style={{
-        background: "var(--header-bg, #0f172a)",
+        background: "#0d0f1a",
         minHeight: "100vh",
         display: "flex",
       }}
@@ -138,7 +126,7 @@ export default function PickleNickAIPage() {
           marginLeft: 0,
           overflowY: "auto",
           minHeight: "100vh",
-          background: "var(--header-bg, #0f172a)",
+          background: "#0d0f1a",
         }}
         className="main-content"
       >
@@ -153,21 +141,19 @@ export default function PickleNickAIPage() {
 
         <div style={{ display: activeTab === "chat" ? "flex" : "block", flexDirection: "column", minHeight: "100dvh" }}>
           {activeTab === "chat" ? (
-            <ErrorBoundary title="Chat error"><ChatTab teacherProfile={profile} sessionId={sessionId} /></ErrorBoundary>
+            <ChatTab teacherProfile={profile} sessionId={sessionId} />
           ) : activeTab === "library" ? (
-            <ErrorBoundary title="Library error"><LibraryTab /></ErrorBoundary>
+            <LibraryTab />
           ) : activeTab === "curriculum" ? (
-            <ErrorBoundary title="Curriculum error"><CurriculumTab /></ErrorBoundary>
+            <CurriculumTab />
           ) : activeTab === "frameworks" ? (
-            <ErrorBoundary title="Frameworks error"><FrameworksTab /></ErrorBoundary>
+            <FrameworksTab />
           ) : activeTab === "assessments" ? (
-            <ErrorBoundary title="Assessments error"><AssessmentsTab /></ErrorBoundary>
-          ) : activeTab === "auto-marking" ? (
-            <ErrorBoundary title="Auto-Marking error"><AutoMarkingTab /></ErrorBoundary>
+            <AssessmentsTab />
           ) : activeTab === "admin" ? (
-            <ErrorBoundary title="Admin error"><AdminTab /></ErrorBoundary>
+            <AdminTab />
           ) : activeTab === "profile" ? (
-            <ErrorBoundary title="Profile error"><ProfileTab profile={profile} /></ErrorBoundary>
+            <ProfileTab profile={profile} />
           ) : null}
         </div>
       </main>

@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { C, shadows, transition, radius } from "@/lib/design";
-import { BadgeRow } from "./Badge";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
@@ -10,10 +9,6 @@ interface Message {
   id: string;
   role: "user" | "assistant";
   content: string;
-  ac9Codes?: string[];
-  aitslStandards?: string[];
-  showGuardrail?: boolean;
-  savedAsUnit?: boolean;
 }
 
 interface TeacherProfile {
@@ -27,62 +22,7 @@ interface ChatTabProps {
   sessionId: string;
 }
 
-// ─── Unit Parser ──────────────────────────────────────────────────────
-
-function parseUnitFromResponse(
-  content: string,
-  ac9Codes: string[]
-): { title: string; yearLevel: string | null; subject: string | null; ac9Codes: string[]; content: unknown } | null {
-  const lines = content.split("\n");
-
-  // Title: first # heading
-  let title = "";
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (trimmed.startsWith("# ")) {
-      title = trimmed.slice(2).trim();
-      break;
-    }
-    if (trimmed.startsWith("## ") && !title) {
-      title = trimmed.slice(3).trim();
-    }
-  }
-  if (!title) {
-    // Fallback: first non-empty line as title
-    for (const line of lines) {
-      const trimmed = line.trim();
-      if (trimmed && !trimmed.startsWith("-") && !trimmed.startsWith("*") && !trimmed.startsWith("|")) {
-        title = trimmed.slice(0, 60);
-        break;
-      }
-    }
-  }
-  if (!title) return null;
-
-  // Year level: look for "Year N" or "Year N-M" patterns
-  const yearMatch = content.match(/\b(Year\s*\d+(?:[-–]\d+)?|Pre-Primary|Foundation)\b/i);
-  const yearLevel = yearMatch ? yearMatch[0].replace(/\s+/g, " ") : null;
-
-  // Subject: look for known subject keywords
-  const subjectKeywords = ["Mathematics", "English", "Science", "HASS", "Technologies", "The Arts", "HPE", "Health", "Languages"];
-  let subject: string | null = null;
-  for (const kw of subjectKeywords) {
-    if (content.includes(kw)) {
-      subject = kw === "Health" ? "HPE" : kw;
-      break;
-    }
-  }
-
-  return {
-    title,
-    yearLevel,
-    subject,
-    ac9Codes,
-    content: { markdown: content },
-  };
-}
-
-// ─── Suggested Prompts ────────────────────────────────────────────────
+// ─── Suggested Prompts ──────────────────────────────────────────────
 
 const SUGGESTED_PROMPTS = [
   {
@@ -335,14 +275,20 @@ function renderMarkdown(text: string): React.ReactNode {
 // ─── Streaming Markdown ──────────────────────────────────────────────
 
 function renderMarkdownStream(text: string): { __html: string } {
+  // Progressive markdown-to-HTML for streaming
+  // This renders partial markdown as valid HTML
   const escaped = text
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 
+  // Bold
   let html = escaped.replace(/\*\*([^*]*)\*\*/g, "<strong>$1</strong>");
+  // Italic
   html = html.replace(/\*([^*]*)\*/g, "<em>$1</em>");
+  // Inline code
   html = html.replace(/`([^`]+)`/g, '<code style="background:#1c1f35;color:#22d3ee;padding:1px 5px;border-radius:4px;font-size:0.88em;font-family:monospace">$1</code>');
+  // Line breaks → paragraphs
   html = html.replace(/\n/g, "<br/>");
 
   return { __html: html };
@@ -382,7 +328,7 @@ function TypingIndicator() {
   );
 }
 
-// ─── Streaming Div ───────────────────────────────────────────────────
+// ─── Streaming Div (avoids dangerouslySetInnerHTML TS issue) ─────────
 
 function StreamingDiv({
   content,
@@ -408,163 +354,14 @@ function StreamingDiv({
   );
 }
 
-// ─── Toast ─────────────────────────────────────────────────────────
-
-function Toast({
-  message,
-  visible,
-}: {
-  message: string;
-  visible: boolean;
-}) {
-  if (!visible) return null;
-  return (
-    <div
-      style={{
-        position: "fixed",
-        bottom: 80,
-        left: "50%",
-        transform: "translateX(-50%)",
-        background: C.success,
-        color: "#fff",
-        padding: "10px 20px",
-        borderRadius: radius.full,
-        fontSize: 13,
-        fontWeight: 600,
-        boxShadow: shadows.md,
-        zIndex: 100,
-        animation: "fadeUp 0.3s ease-out",
-      }}
-    >
-      {message}
-    </div>
-  );
-}
-
-// ─── Save as Unit Button ────────────────────────────────────────────
-
-function SaveAsUnitButton({
-  messageId,
-  content,
-  ac9Codes,
-  onSave,
-  saved,
-}: {
-  messageId: string;
-  content: string;
-  ac9Codes: string[];
-  onSave: (unitId: string) => void;
-  saved: boolean;
-}) {
-  const [loading, setLoading] = useState(false);
-
-  async function handleSave() {
-    setLoading(true);
-    try {
-      const unitData = parseUnitFromResponse(content, ac9Codes);
-      if (!unitData) {
-        alert("Could not parse a unit from this response. Make sure it has a heading and subject/year level.");
-        setLoading(false);
-        return;
-      }
-      const res = await fetch("/api/units", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(unitData),
-      });
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error ?? "Save failed");
-      }
-      const data = await res.json();
-      onSave(data.unit.id);
-    } catch (err) {
-      alert(err instanceof Error ? err.message : "Failed to save unit");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  if (saved) {
-    return (
-      <div
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 4,
-          background: `${C.success}20`,
-          color: C.success,
-          border: `1px solid ${C.success}50`,
-          borderRadius: radius.sm,
-          padding: "4px 10px",
-          fontSize: 11,
-          fontWeight: 600,
-        }}
-      >
-        <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-          <path d="M3 8l3 3 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-        Saved
-      </div>
-    );
-  }
-
-  return (
-    <button
-      onClick={handleSave}
-      disabled={loading}
-      style={{
-        background: C.surface2,
-        color: C.primary,
-        border: `1px solid ${C.border}`,
-        borderRadius: radius.sm,
-        padding: "4px 10px",
-        fontSize: 11,
-        fontWeight: 600,
-        cursor: loading ? "not-allowed" : "pointer",
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 4,
-        transition: "all 0.15s ease",
-        opacity: loading ? 0.6 : 1,
-      }}
-      onMouseEnter={(e) => {
-        if (!loading) {
-          e.currentTarget.style.background = `${C.primary}15`;
-          e.currentTarget.style.borderColor = C.primary;
-        }
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = C.surface2;
-        e.currentTarget.style.borderColor = C.border;
-      }}
-    >
-      {loading ? (
-        "Saving..."
-      ) : (
-        <>
-          <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-            <path d="M8 2v9M5 8l3 3 3-3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          Save as Unit
-        </>
-      )}
-    </button>
-  );
-}
-
 // ─── Message Bubble ───────────────────────────────────────────────────
 
 function MessageBubble({
   message,
   isStreaming = false,
-  onSaveAsUnit,
-  savedUnitId,
 }: {
   message: Message;
   isStreaming?: boolean;
-  onSaveAsUnit: (messageId: string, unitId: string) => void;
-  savedUnitId: string | null;
 }) {
   const isUser = message.role === "user";
 
@@ -581,10 +378,6 @@ function MessageBubble({
           from { opacity: 0; transform: translateY(6px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes streamGlow {
-          0%, 100% { box-shadow: 0 0 0 1px rgba(99,102,241,0.15), 0 4px 16px rgba(99,102,241,0.1); }
-          50% { box-shadow: 0 0 0 2px rgba(99,102,241,0.3), 0 4px 20px rgba(99,102,241,0.2); }
-        }
       `}</style>
       <div
         style={{
@@ -595,35 +388,17 @@ function MessageBubble({
           border: isUser ? "none" : `1px solid ${C.border}`,
           borderRadius: isUser ? "18px 18px 6px 18px" : "18px 18px 18px 6px",
           padding: "12px 16px",
-          boxShadow: isUser
-            ? "0 4px 16px rgba(99,102,241,0.25)"
-            : isStreaming
-              ? undefined
-              : shadows.md,
+          boxShadow: isUser ? "0 4px 16px rgba(99,102,241,0.25)" : shadows.md,
           color: isUser ? "#fff" : C.text,
           fontSize: 14,
           lineHeight: 1.65,
           wordBreak: "break-word",
-          animation: isStreaming ? "streamGlow 2s ease-in-out infinite" : "none",
         }}
       >
         {isUser ? (
           <p style={{ margin: 0, whiteSpace: "pre-wrap" }}>{message.content}</p>
         ) : (
           <StreamingDiv content={message.content} isStreaming={isStreaming} />
-        )}
-
-        {/* Save as Unit button — shown after streaming completes */}
-        {!isUser && !isStreaming && message.content.length > 50 && (
-          <div style={{ marginTop: 10, paddingTop: 10, borderTop: `1px solid ${C.border}` }}>
-            <SaveAsUnitButton
-              messageId={message.id}
-              content={message.content}
-              ac9Codes={message.ac9Codes ?? []}
-              onSave={(unitId) => onSaveAsUnit(message.id, unitId)}
-              saved={savedUnitId === message.id}
-            />
-          </div>
         )}
       </div>
     </div>
@@ -632,86 +407,58 @@ function MessageBubble({
 
 // ─── Main Component ───────────────────────────────────────────────────
 
+const MSGS_KEY = "picklenickai-messages";
+
 export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [streamingContent, setStreamingContent] = useState("");
-  const [ac9Codes, setAc9Codes] = useState<string[]>([]);
-  const [savedUnitIds, setSavedUnitIds] = useState<Record<string, string>>({});
-  const [toast, setToast] = useState({ visible: false, message: "" });
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
   const isStreamingRef = useRef(false);
 
-  // ── Restore history from DB ──────────────────────────────────────
+  // Load messages from localStorage on mount
   useEffect(() => {
-    async function loadHistory() {
-      try {
-        const res = await fetch("/api/generations");
-        if (!res.ok) throw new Error("Failed to load history");
-        const data = await res.json();
-        const gens = data.generations ?? [];
-
-        if (gens.length === 0) {
-          setWelcomeMessage();
+    try {
+      const saved = localStorage.getItem(MSGS_KEY + sessionId);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setMessages(parsed);
           return;
         }
-
-        // Build messages from generations
-        const msgs: Message[] = [];
-        for (const gen of gens) {
-          if (gen.type === "user") {
-            msgs.push({
-              id: gen.id,
-              role: "user",
-              content: gen.prompt,
-            });
-          } else if (gen.type === "assistant" && gen.output) {
-            msgs.push({
-              id: gen.id,
-              role: "assistant",
-              content: gen.output,
-              ac9Codes: gen.ac9Codes ?? [],
-            });
-          }
-        }
-
-        if (msgs.length === 0) {
-          setWelcomeMessage();
-          return;
-        }
-
-        setMessages(msgs);
-      } catch {
-        setWelcomeMessage();
       }
-    }
+    } catch {}
 
-    function setWelcomeMessage() {
-      if (teacherProfile?.name) {
-        setMessages([
-          {
-            id: crypto.randomUUID(),
-            role: "assistant",
-            content: `Hi ${teacherProfile.name}! I'm PickleNickAI, your expert teaching assistant.\n\nI know you teach ${teacherProfile.yearLevels.join(", ")} and cover ${teacherProfile.subjects.join(", ")}.\n\nI have deep knowledge of the Australian Curriculum v9, WA context, AITSL standards, and evidence-based teaching methodologies. Ask me for:\n- Complete unit plans\n- Lesson plans (WIEP, 5E, Direct Instruction, Inquiry)\n- A-E rubrics and assessment design\n- Differentiation for EAL, gifted, and students with adjustments\n- Curriculum mapping and AC9 codes\n\nWhat can I help you with today?`,
-          },
-        ]);
-      } else {
-        setMessages([
-          {
-            id: crypto.randomUUID(),
-            role: "assistant",
-            content: "Hi! I'm PickleNickAI, your expert teaching assistant for Australian schools.\n\nI know the Australian Curriculum v9 inside-out, WA and eastern-states context, AITSL standards, and evidence-based teaching methodologies. Ask me for anything — unit plans, lesson plans, rubrics, differentiation strategies, or curriculum advice.\n\nWhat are you working on today?",
-          },
-        ]);
-      }
+    // Default welcome message
+    if (teacherProfile?.name) {
+      setMessages([
+        {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          content: `Hi ${teacherProfile.name}! I'm PickleNickAI, your expert teaching assistant.\n\nI know you teach ${teacherProfile.yearLevels.join(", ")} and cover ${teacherProfile.subjects.join(", ")}.\n\nI have deep knowledge of the Australian Curriculum v9, WA context, AITSL standards, and evidence-based teaching methodologies. Ask me for:\n- Complete unit plans\n- Lesson plans (WIEP, 5E, Direct Instruction, Inquiry)\n- A-E rubrics and assessment design\n- Differentiation for EAL, gifted, and students with adjustments\n- Curriculum mapping and AC9 codes\n\nWhat can I help you with today?`,
+        },
+      ]);
+    } else {
+      setMessages([
+        {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          content:
+            "Hi! I'm PickleNickAI, your expert teaching assistant for Australian schools.\n\nI know the Australian Curriculum v9 inside-out, WA and eastern-states context, AITSL standards, and evidence-based teaching methodologies. Ask me for anything — unit plans, lesson plans, rubrics, differentiation strategies, or curriculum advice.\n\nWhat are you working on today?",
+        },
+      ]);
     }
-
-    loadHistory();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Persist messages to localStorage
+  useEffect(() => {
+    if (messages.length > 0) {
+      localStorage.setItem(MSGS_KEY + sessionId, JSON.stringify(messages));
+    }
+  }, [messages, sessionId]);
 
   // Auto-scroll to bottom on new messages
   useEffect(() => {
@@ -726,22 +473,10 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
     }
   }, [input]);
 
-  function showToast(message: string) {
-    setToast({ visible: true, message });
-    setTimeout(() => setToast({ visible: false, message: "" }), 3000);
-  }
-
-  function handleSaveAsUnit(messageId: string, unitId: string) {
-    setSavedUnitIds((prev) => ({ ...prev, [messageId]: unitId }));
-    showToast("Unit saved to library ✓");
-  }
-
   const sendMessage = useCallback(
     async (overrideText?: string) => {
       const text = (overrideText ?? input).trim();
       if (!text || loading) return;
-
-      setAc9Codes([]);
 
       const userMsg: Message = {
         id: crypto.randomUUID(),
@@ -754,26 +489,23 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
       setLoading(true);
       isStreamingRef.current = true;
 
-      // Save user message to DB
-      await fetch("/api/generations", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "user", prompt: text }),
-      }).catch(() => {});
-
       // Add placeholder for streaming response
       const assistantId = crypto.randomUUID();
-      setMessages((prev) => [...prev, { id: assistantId, role: "assistant", content: "", ac9Codes: [], aitslStandards: [], showGuardrail: false }]);
+      setMessages((prev) => [...prev, { id: assistantId, role: "assistant", content: "" }]);
       setStreamingContent("");
 
       try {
         const controller = new AbortController();
         abortRef.current = controller;
 
-        const res = await fetch("/api/chat/stream", {
+        const res = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: text }),
+          body: JSON.stringify({
+            messages: newMessages.map((m) => ({ role: m.role, content: m.content })),
+            sessionId,
+            stream: true,
+          }),
           signal: controller.signal,
         });
 
@@ -796,52 +528,14 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
                 try {
                   const parsed = JSON.parse(line.slice(6));
                   if (parsed === "[DONE]") break;
-
-                  // Token — server sends {stage: "thinking", content: "..."}
-                  if (parsed.stage === "thinking" && typeof parsed.content === "string") {
-                    fullResponse += parsed.content;
+                  if (typeof parsed === "string") {
+                    fullResponse += parsed;
                     setStreamingContent(fullResponse);
                     setMessages((prev) => {
                       const updated = [...prev];
                       const idx = updated.findIndex((m) => m.id === assistantId);
                       if (idx !== -1) {
                         updated[idx] = { ...updated[idx], content: fullResponse };
-                      }
-                      return updated;
-                    });
-                  }
-
-                  // AC9 codes — server sends {stage: "done", ac9_codes: [...]}
-                  if (parsed.stage === "done" && Array.isArray(parsed.ac9_codes)) {
-                    setAc9Codes((prev) => [...new Set([...prev, ...parsed.ac9_codes])]);
-                    setMessages((prev) => {
-                      const updated = [...prev];
-                      const idx = updated.findIndex((m) => m.id === assistantId);
-                      if (idx !== -1) {
-                        updated[idx] = { ...updated[idx], ac9Codes: [...new Set([...(updated[idx].ac9Codes || []), ...parsed.ac9_codes])] };
-                      }
-                      return updated;
-                    });
-                  }
-
-                  // Done — server sends {stage: "done", content: "", ac9_codes: [...]}
-                  if (parsed.stage === "done") {
-                    isStreamingRef.current = false;
-                    setStreamingContent("");
-
-                    // Save assistant response to DB
-                    const finalCodes = Array.isArray(parsed.ac9_codes) ? parsed.ac9_codes : [];
-                    await fetch("/api/generations", {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({ type: "assistant", prompt: text, output: fullResponse, ac9Codes: finalCodes }),
-                    }).catch(() => {});
-
-                    setMessages((prev) => {
-                      const updated = [...prev];
-                      const idx = updated.findIndex((m) => m.id === assistantId);
-                      if (idx !== -1) {
-                        updated[idx] = { ...updated[idx], content: fullResponse, ac9Codes: finalCodes };
                       }
                       return updated;
                     });
@@ -857,9 +551,10 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
         setMessages((prev) => {
           const updated = [...prev];
           const idx = updated.findIndex((m) => m.id === assistantId);
-          if (idx !== -1 && !updated[idx].content) {
+          if (idx !== -1) {
             updated[idx] = { ...updated[idx], content: fullResponse };
           }
+          localStorage.setItem(MSGS_KEY + sessionId, JSON.stringify(updated));
           return updated;
         });
       } catch (err) {
@@ -867,8 +562,20 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
         setStreamingContent("");
 
         if (err instanceof Error && err.name === "AbortError") {
-          setMessages((prev) => prev.filter((m) => m.id !== assistantId));
+          // Stream was cancelled — keep partial response
+          setMessages((prev) => {
+            const updated = [...prev];
+            const idx = updated.findIndex((m) => m.id === assistantId);
+            if (idx !== -1 && updated[idx].content) {
+              localStorage.setItem(MSGS_KEY + sessionId, JSON.stringify(updated));
+            } else {
+              // Remove empty placeholder
+              return prev.filter((m) => m.id !== assistantId);
+            }
+            return updated;
+          });
         } else {
+          // Remove placeholder and show error
           setMessages((prev) => prev.filter((m) => m.id !== assistantId));
           setMessages((prev) => [
             ...prev,
@@ -895,6 +602,7 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
   }
 
   function clearChat() {
+    localStorage.removeItem(MSGS_KEY + sessionId);
     setMessages([]);
     if (teacherProfile?.name) {
       setMessages([
@@ -909,7 +617,8 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
         {
           id: crypto.randomUUID(),
           role: "assistant",
-          content: "Hi! I'm PickleNickAI, your expert teaching assistant for Australian schools.\n\nAsk me for unit plans, lesson plans, rubrics, differentiation strategies, or curriculum advice.\n\nWhat are you working on today?",
+          content:
+            "Hi! I'm PickleNickAI, your expert teaching assistant for Australian schools.\n\nAsk me for unit plans, lesson plans, rubrics, differentiation strategies, or curriculum advice.\n\nWhat are you working on today?",
         },
       ]);
     }
@@ -947,46 +656,26 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
             justifyContent: "space-between",
           }}
         >
+          {/* Agent identity */}
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             {/* Avatar */}
-            <div style={{ position: "relative", width: 42, height: 42, flexShrink: 0 }}>
-              <style>{`
-                @keyframes avatarGlow {
-                  0% { background-position: 0% 50%; }
-                  50% { background-position: 100% 50%; }
-                  100% { background-position: 0% 50%; }
-                }
-              `}</style>
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: radius.md + 2,
-                  padding: 2,
-                  background: "linear-gradient(135deg, #6366f1, #22d3ee, #a855f7, #6366f1)",
-                  backgroundSize: "300% 300%",
-                  animation: "avatarGlow 4s ease infinite",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: radius.md,
-                  background: "linear-gradient(135deg, #1a1f3d, #2d3561)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <span style={{
-                  background: "linear-gradient(135deg, #6366f1, #22d3ee)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  fontWeight: 800,
-                  fontSize: 15,
-                }}>P</span>
-              </div>
+            <div
+              style={{
+                background: "linear-gradient(135deg, #6366f1, #22d3ee)",
+                width: 38,
+                height: 38,
+                borderRadius: radius.md,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 13,
+                fontWeight: 700,
+                color: "#fff",
+                flexShrink: 0,
+                boxShadow: "0 0 16px rgba(99,102,241,0.35)",
+              }}
+            >
+              PN
             </div>
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -1001,6 +690,7 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
                 >
                   PickleNickAI
                 </h1>
+                {/* Online indicator */}
                 <div
                   style={{
                     width: 7,
@@ -1012,7 +702,14 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
                 />
               </div>
               {teacherProfile?.name ? (
-                <p style={{ color: C.text3, fontSize: 11, margin: 0, marginTop: 1 }}>
+                <p
+                  style={{
+                    color: C.text3,
+                    fontSize: 11,
+                    margin: 0,
+                    marginTop: 1,
+                  }}
+                >
                   {teacherProfile.name} · {teacherProfile.yearLevels.join(", ")}
                 </p>
               ) : (
@@ -1024,23 +721,7 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
           </div>
 
           {/* Actions */}
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 5,
-                background: "rgba(92,100,144,0.12)",
-                border: "1px solid rgba(92,100,144,0.25)",
-                borderRadius: radius.full,
-                padding: "4px 10px",
-                fontSize: 10,
-                color: "#7c8599",
-              }}
-            >
-              <span>🔒</span>
-              <span style={{ fontWeight: 500 }}>Private</span>
-            </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             {messages.length > 1 && (
               <button
                 onClick={clearChat}
@@ -1096,7 +777,7 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
             gap: 16,
           }}
         >
-          {/* Suggested prompts */}
+          {/* Empty state — suggested prompts */}
           {messages.length === 1 && !loading && (
             <div style={{ animation: "fadeUp 0.4s ease-out" }}>
               <style>{`
@@ -1105,7 +786,15 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
                   to { opacity: 1; transform: translateY(0); }
                 }
               `}</style>
-              <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 16 }}>
+              {/* Prompt pills */}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 8,
+                  marginBottom: 16,
+                }}
+              >
                 <p
                   style={{
                     color: C.text3,
@@ -1168,34 +857,22 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
           )}
 
           {/* Messages */}
-          {messages.map((msg) => {
-            const isUser = msg.role === "user";
-            const isLastAssistant = msg.id === messages[messages.length - 1]?.id;
-            return (
-              <div key={msg.id}>
-                {!isUser && (
-                  <div style={{ marginBottom: 8 }}>
-                    <BadgeRow
-                      ac9Codes={msg.ac9Codes}
-                      aitslStandards={msg.aitslStandards}
-                      showPrivacy={true}
-                      showGuardrail={msg.showGuardrail}
-                    />
-                  </div>
-                )}
-                <MessageBubble
-                  message={msg}
-                  isStreaming={isLastAssistant && loading && streamingContent !== ""}
-                  onSaveAsUnit={handleSaveAsUnit}
-                  savedUnitId={savedUnitIds[msg.id] ?? null}
-                />
-              </div>
-            );
-          })}
+          {messages.map((msg) => (
+            <MessageBubble
+              key={msg.id}
+              message={msg}
+              isStreaming={msg.id === messages[messages.length - 1]?.id && loading && streamingContent !== ""}
+            />
+          ))}
 
           {/* Loading indicator */}
           {loading && messages[messages.length - 1]?.content === "" && (
-            <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-start",
+              }}
+            >
               <div
                 style={{
                   background: C.surface,
@@ -1223,7 +900,12 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
           flexShrink: 0,
         }}
       >
-        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+        <div
+          style={{
+            maxWidth: 800,
+            margin: "0 auto",
+          }}
+        >
           <div
             style={{
               background: C.surface,
@@ -1327,9 +1009,6 @@ export default function ChatTab({ teacherProfile, sessionId }: ChatTabProps) {
           </p>
         </div>
       </div>
-
-      {/* ── Toast ── */}
-      <Toast visible={toast.visible} message={toast.message} />
     </div>
   );
 }

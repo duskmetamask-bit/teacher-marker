@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type TabId = "chat" | "library" | "curriculum" | "frameworks" | "assessments" | "auto-marking" | "admin" | "profile";
+type TabId = "chat" | "library" | "curriculum" | "frameworks" | "assessments" | "admin" | "profile";
 
 interface Tab {
   id: TabId;
@@ -58,17 +58,6 @@ const TABS: Tab[] = [
     icon: (
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path d="M8 1.5l1.8 3.6 4 .6-2.9 2.8.7 4L8 10.8l-3.6 1.7.7-4L2.2 5.7l4-.6L8 1.5z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
-      </svg>
-    ),
-  },
-  {
-    id: "auto-marking",
-    label: "Auto-Marking",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <rect x="2" y="2" width="12" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.4"/>
-        <path d="M5 14h6M8 11v3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-        <path d="M5 6l2 2 4-4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
   },

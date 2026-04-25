@@ -67,8 +67,8 @@ STUDENT WORK:
     const visionContent = visionResponse.choices[0]?.message?.content || "";
 
     // Parse out the two sections
-    const guideMatch = visionContent.match(/MARKING GUIDE:(.*?)STUDENT WORK:/s);
-    const workMatch = visionContent.match(/STUDENT WORK:(.*?)(?:---|$)/s);
+    const guideMatch = visionContent.match(/MARKING GUIDE:([\s\S]*?)STUDENT WORK:/);
+    const workMatch = visionContent.match(/STUDENT WORK:([\s\S]*?)(?:---|$)/);
 
     markingGuideText = guideMatch?.[1]?.trim() || "";
     studentWorkText = workMatch?.[1]?.trim() || "";

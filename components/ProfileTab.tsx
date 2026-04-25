@@ -4,7 +4,6 @@ import { useState } from "react";
 import Button from "./ui/Button";
 import Badge from "./ui/Badge";
 import Card from "./ui/Card";
-import { C, radius } from "@/lib/design";
 
 interface TeacherProfile {
   name: string;

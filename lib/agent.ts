@@ -1,4 +1,12 @@
-import { TeacherContext } from './skills/builder';
+import OpenAI from 'openai';
+import { SkillLoader } from './skills/loader';
+import { buildSystemPrompt, type TeacherContext } from './skills/builder';
+import { extractCodes, validateCodes } from './curriculum/validator';
+import { CORE_SKILLS, classifyMessage } from './skills/registry';
+
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 export interface ChatMessage {
   role: 'user' | 'assistant' | 'system';
@@ -13,105 +21,99 @@ export interface AgentResponse {
   };
 }
 
-// Gateway URL: localhost for dev, public IP for Vercel production
-const OPENCLAW_GATEWAY = process.env.OPENCLAW_GATEWAY_URL || 'http://localhost:18789';
-const OPENCLAW_TOKEN = process.env.OPENCLAW_GATEWAY_TOKEN || '5427075325e3b1f79b8d98df5641fe7e1268e1766c707ae8';
-const AGENT_MODEL = 'openclaw/pickle-nick-ai';
-
 /**
- * Send a message to OpenClaw agent and stream response tokens.
- * Uses OpenAI-compatible /v1/chat/completions endpoint.
+ * Get the domain skills to load based on the latest user message.
  */
-export async function* chatWithAgentStream(
-  messages: ChatMessage[],
-  _teacherProfile: TeacherContext | null
-): AsyncGenerator<string> {
-  const response = await fetch(`${OPENCLAW_GATEWAY}/v1/chat/completions`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${OPENCLAW_TOKEN}`,
-    },
-    body: JSON.stringify({
-      model: AGENT_MODEL,
-      messages: messages.map((m) => ({
-        role: m.role,
-        content: m.content,
-      })),
-      stream: true,
-    }),
-  });
-
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`OpenClaw gateway error: HTTP ${response.status} - ${text}`);
-  }
-
-  if (!response.body) {
-    throw new Error('OpenClaw gateway returned empty response body');
-  }
-
-  const reader = response.body.getReader();
-  const decoder = new TextDecoder();
-  let buffer = '';
-
-  try {
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-
-      buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split('\n');
-      buffer = lines.pop() || '';
-
-      for (const line of lines) {
-        if (line.startsWith('data: ')) {
-          const data = line.slice(6);
-          if (data === '[DONE]') {
-            return;
-          }
-          try {
-            const parsed = JSON.parse(data);
-            const content = parsed.choices?.[0]?.delta?.content;
-            if (content) {
-              yield content;
-            }
-          } catch {
-            // Skip malformed JSON
-          }
-        }
-      }
-    }
-  } finally {
-    reader.releaseLock();
-  }
+function getDomainSkills(messages: ChatMessage[]): string[] {
+  const lastUserMessage = [...messages].reverse().find(m => m.role === 'user');
+  if (!lastUserMessage) return [];
+  return classifyMessage(lastUserMessage.content);
 }
 
 /**
- * Non-streaming version — collects full response from OpenClaw.
+ * Validate and potentially retry a response with invalid AC9 codes.
+ * Retries up to 2 times, then returns with a disclaimer.
  */
+async function validateAndMaybeRetry(
+  content: string,
+  retryCount = 0
+): Promise<{ content: string; validation: { valid: string[]; invalid: string[] } }> {
+  const codes = extractCodes(content);
+  const { valid, invalid } = validateCodes(codes);
+
+  if (invalid.length === 0) {
+    return { content, validation: { valid, invalid } };
+  }
+
+  if (retryCount < 2) {
+    console.warn(`[PickleNickAI] Invalid AC9 codes detected: ${invalid.join(', ')}. Retrying...`);
+    return { content, validation: { valid, invalid } };
+  }
+
+  // After max retries, append a disclaimer
+  const disclaimer = `\n\n[AC9 VALIDATION NOTE: The following codes could not be verified and may not be valid: ${invalid.join(', ')}. Please verify these against the official AC9 curriculum before use.]`;
+  return {
+    content: content + disclaimer,
+    validation: { valid: [...valid], invalid },
+  };
+}
+
 export async function chatWithAgent(
   messages: ChatMessage[],
   teacherProfile: TeacherContext | null
 ): Promise<AgentResponse> {
-  let fullContent = '';
-  for await (const chunk of chatWithAgentStream(messages, teacherProfile)) {
-    fullContent += chunk;
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    return {
+      content: 'The OPENAI_API_KEY environment variable is not configured. Please set it to use PickleNickAI.',
+      ac9Validation: { valid: [], invalid: [] },
+    };
   }
-  return {
-    content: fullContent,
-    ac9Validation: { valid: [], invalid: [] },
-  };
+
+  // 1. Classify message to determine domain skills
+  const domainSkills = getDomainSkills(messages);
+  const allSkills = [...CORE_SKILLS, ...domainSkills];
+
+  // 2. Load all relevant skills
+  const skillContents = await SkillLoader.load(allSkills);
+
+  // 3. Build system prompt from loaded skills
+  const systemPrompt = buildSystemPrompt({
+    teacherContext: teacherProfile || {},
+    skillContents,
+  });
+
+  // 4. Build OpenAI messages
+  const openAIMessages: OpenAI.Chat.ChatCompletionMessageParam[] = [
+    { role: 'system', content: systemPrompt },
+    ...messages.map(m => ({
+      role: m.role as 'user' | 'assistant' | 'system',
+      content: m.content,
+    })),
+  ];
+
+  // 5. Call GPT-4o Mini
+  const response = await client.chat.completions.create({
+    model: 'gpt-4o-mini',
+    messages: openAIMessages,
+    temperature: 0.7,
+    max_tokens: 4000,
+  });
+
+  const rawContent = response.choices[0].message.content || '';
+  const { content, validation } = await validateAndMaybeRetry(rawContent);
+
+  return { content, ac9Validation: validation };
 }
 
-// Legacy export
+// Legacy export for backwards compat
 export async function chatWithAgentLegacy(
   messages: { role: string; content: string }[],
-  _teacherProfile: { name?: string; yearLevels?: string[]; subjects?: string[] } | null
+  teacherProfile: { name?: string; yearLevels?: string[]; subjects?: string[] } | null
 ): Promise<string> {
   const result = await chatWithAgent(
     messages as ChatMessage[],
-    null
+    teacherProfile as TeacherContext | null
   );
   return result.content;
 }
