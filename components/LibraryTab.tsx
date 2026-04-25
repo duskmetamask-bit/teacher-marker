@@ -791,7 +791,6 @@ const SAMPLE_UNITS: SampleUnit[] = [
     weeks: 8,
     lessons: 24,
   },
-];
   {
     id: "hass-civics-F",
     title: "Civics and Citizenship — Foundation",
@@ -1608,7 +1607,17 @@ function FilterPills({
   onChange,
 }: {
   label: string;
-  options: string[];
+  options: string[  {
+    id: "hass-civics-Y5",
+    title: "Civics and Citizenship — Year 5",
+    yearLevel: "Year 5",
+    subject: "HASS",
+    description: "8-week civics unit on democracy, the Australian Constitution, and federal, state and local government. Students investigate how laws are made, the role of Parliament, and citizen participation.",
+    url: "/units/hass-civics-Y5.html",
+    weeks: 8,
+    lessons: 24,
+  },
+];
   selected: string;
   onChange: (v: string) => void;
 }) {
