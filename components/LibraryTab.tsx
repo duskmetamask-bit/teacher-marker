@@ -823,16 +823,6 @@ const SAMPLE_UNITS: SampleUnit[] = [
     lessons: 24,
   },
   {
-    id: "hass-history-Y4",
-    title: "History — Year 4",
-    yearLevel: "Year 4",
-    subject: "HASS",
-    description: "8-week history unit on Australian colonial history and the journey of a colony. Students explore life in the colonies, significant events, and the contributions of diverse peoples.",
-    url: "/units/hass-history-Y4.html",
-    weeks: 8,
-    lessons: 24,
-  },
-  {
     id: "hass-history-Y5",
     title: "History — Year 5",
     yearLevel: "Year 5",
