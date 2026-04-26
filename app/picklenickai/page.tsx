@@ -7,11 +7,12 @@ import LibraryTab from "@/components/LibraryTab";
 import CurriculumTab from "@/components/CurriculumTab";
 import FrameworksTab from "@/components/FrameworksTab";
 import AssessmentsTab from "@/components/AssessmentsTab";
+import AutoMarkingTab from "@/components/AutoMarkingTab";
 import AdminTab from "@/components/AdminTab";
 import ProfileTab from "@/components/ProfileTab";
 import TeacherOnboarding from "@/components/TeacherOnboarding";
 
-type TabId = "chat" | "library" | "curriculum" | "frameworks" | "assessments" | "admin" | "profile";
+type TabId = "chat" | "library" | "curriculum" | "frameworks" | "assessments" | "mark" | "admin" | "profile";
 
 interface TeacherProfile {
   name: string;
@@ -25,7 +26,7 @@ function getOrCreateSessionId(): string {
   if (typeof window === "undefined") return "";
   let id = localStorage.getItem(SESSION_KEY);
   if (!id) {
-    id = crypto.randomUUID();
+    id = Date.now().toString(36) + Math.random().toString(36).slice(2);
     localStorage.setItem(SESSION_KEY, id);
   }
   return id;
@@ -41,17 +42,13 @@ export default function PickleNickAIPage() {
     const id = getOrCreateSessionId();
     setSessionId(id);
 
-    fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionId: id, messages: [], checkProfile: true }),
-    })
+    fetch("/api/teachers/onboarding")
       .then((r) => r.json())
       .then((data) => {
         if (data.profile?.name) {
           setProfile({
             name: data.profile.name,
-            yearLevels: data.profile.year_levels || [],
+            yearLevels: data.profile.yearLevels || [],
             subjects: data.profile.subjects || [],
           });
         }
@@ -62,11 +59,15 @@ export default function PickleNickAIPage() {
 
   async function handleOnboardingComplete(p: TeacherProfile) {
     try {
-      await fetch("/api/chat", {
+      const res = await fetch("/api/teachers/onboarding", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "saveProfile", sessionId, profile: p }),
+        body: JSON.stringify(p),
       });
+      if (!res.ok) {
+        const err = await res.json();
+        console.error("Onboarding failed:", err.error);
+      }
     } catch {}
     setProfile(p);
   }
@@ -150,6 +151,8 @@ export default function PickleNickAIPage() {
             <FrameworksTab />
           ) : activeTab === "assessments" ? (
             <AssessmentsTab />
+          ) : activeTab === "mark" ? (
+            <AutoMarkingTab />
           ) : activeTab === "admin" ? (
             <AdminTab />
           ) : activeTab === "profile" ? (

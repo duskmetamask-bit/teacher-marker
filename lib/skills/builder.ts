@@ -15,7 +15,15 @@ interface BuildSystemPromptParams {
 /**
  * Build the full system prompt for PickleNickAI by composing
  * loaded skill contents with teacher context and validation rules.
+ * Truncates skill content to fit within the model's context window.
  */
+const MAX_SKILL_CHARS = 2500; // ~600 tokens per skill, safe for 4K context window
+
+function truncate(content: string, maxChars: number): string {
+  if (content.length <= maxChars) return content;
+  return content.slice(0, maxChars) + '\n\n[... truncated for context ...]';
+}
+
 export function buildSystemPrompt(params: BuildSystemPromptParams): string {
   const { teacherContext, skillContents, sessionPurpose } = params;
 
@@ -29,7 +37,7 @@ Subjects: ${(teacherContext.subjects || []).join(', ') || 'not specified'}
     : '';
 
   const skillSection = skillContents.length > 0
-    ? skillContents.map((content, i) => `[SKILL ${i + 1}]:\n\n${content}`).join('\n\n')
+    ? skillContents.map((content, i) => `[SKILL ${i + 1}]:\n\n${truncate(content, MAX_SKILL_CHARS)}`).join('\n\n')
     : '/* no skills loaded */';
 
   const purposeNote = sessionPurpose

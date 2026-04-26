@@ -1,5 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma, DEMO_TEACHER_ID } from "@/lib/auth";
+import { getPrisma, DEMO_TEACHER_ID } from "@/lib/auth";
+
+export async function GET() {
+  try {
+    const prisma = getPrisma();
+    const teacher = await prisma.teacher.findUnique({
+      where: { id: DEMO_TEACHER_ID },
+    });
+    if (!teacher || !teacher.onboarded) {
+      return NextResponse.json({ profile: null });
+    }
+    return NextResponse.json({
+      profile: {
+        name: teacher.name,
+        yearLevels: teacher.yearLevels,
+        subjects: teacher.subjects,
+      },
+    });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Failed to fetch profile";
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -12,6 +34,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "At least one subject is required" }, { status: 400 });
     }
 
+    const prisma = getPrisma();
     const teacher = await prisma.teacher.upsert({
       where: { id: DEMO_TEACHER_ID },
       create: {

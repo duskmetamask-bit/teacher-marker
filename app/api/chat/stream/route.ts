@@ -1,12 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
+import OpenAI from "openai";
 import { classifyMessage, CORE_SKILLS } from "@/lib/skills/registry";
 import { SkillLoader } from "@/lib/skills/loader";
 import { buildSystemPrompt, TeacherContext } from "@/lib/skills/builder";
 import { validateFromText } from "@/lib/curriculum/validator";
-import { prisma, DEMO_TEACHER_ID } from "@/lib/auth";
+import { prisma, getPrisma, DEMO_TEACHER_ID } from "@/lib/auth";
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const OPENAI_MODEL = process.env.LLM_MODEL || "gpt-4o-mini";
+const NIM_API_KEY = process.env.NIM_API_KEY;
+const NIM_MODEL = process.env.LLM_MODEL || "nvidia/nemotron-mini-4b-instruct";
+
+const client = new OpenAI({
+  apiKey: NIM_API_KEY,
+  baseURL: "https://integrate.api.nvidia.com/v1",
+});
 
 interface StreamEvent {
   stage: "classifying" | "loading_skills" | "thinking" | "validating" | "done";
@@ -19,8 +25,8 @@ function sse(event: StreamEvent): string {
 }
 
 export async function POST(req: NextRequest) {
-  if (!OPENAI_API_KEY) {
-    return NextResponse.json({ error: "OPENAI_API_KEY not configured" }, { status: 500 });
+  if (!NIM_API_KEY) {
+    return NextResponse.json({ error: "NIM_API_KEY not configured" }, { status: 500 });
   }
 
   const teacherId = DEMO_TEACHER_ID;
@@ -59,19 +65,30 @@ export async function POST(req: NextRequest) {
             content: `Loaded ${loadedCount} skill${loadedCount !== 1 ? "s" : ""}`,
           })));
 
-          // ─── Stage 3: Thinking (GPT-4o Mini) ─────────────────────────
+          // ─── Stage 3: Thinking (NIM model) ─────────────────────────
           controller.enqueue(encoder.encode(sse({ stage: "thinking", content: "Building your response..." })));
 
-          // Load teacher profile from database
-          const teacher = await prisma.teacher.findUnique({
-            where: { id: teacherId },
-            select: { name: true, yearLevels: true, subjects: true },
-          });
+          // Load teacher profile from database (optional — fails gracefully)
+          let teacherName: string | undefined;
+          let teacherYearLevels: string[] = [];
+          let teacherSubjects: string[] = [];
+
+          try {
+            const teacher = await prisma.teacher.findUnique({
+              where: { id: teacherId },
+              select: { name: true, yearLevels: true, subjects: true },
+            });
+            teacherName = teacher?.name ?? undefined;
+            teacherYearLevels = teacher?.yearLevels ?? [];
+            teacherSubjects = teacher?.subjects ?? [];
+          } catch {
+            // DB unavailable — continue without teacher context
+          }
 
           const teacherContext: TeacherContext = {
-            name: teacher?.name ?? undefined,
-            yearLevels: teacher?.yearLevels ?? [],
-            subjects: teacher?.subjects ?? [],
+            name: teacherName,
+            yearLevels: teacherYearLevels,
+            subjects: teacherSubjects,
           };
 
           const systemPrompt = buildSystemPrompt({
@@ -82,63 +99,37 @@ export async function POST(req: NextRequest) {
           // Collect the full response for AC9 validation
           let fullContent = "";
 
-          const gptResponse = await fetch("https://api.openai.com/v1/chat/completions", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${OPENAI_API_KEY}`,
-            },
-            body: JSON.stringify({
-              model: OPENAI_MODEL,
-              messages: [
-                { role: "system", content: systemPrompt },
-                { role: "user", content: message },
-              ],
-              stream: true,
-            }),
+          const gptResponse = await client.chat.completions.create({
+            model: NIM_MODEL,
+            messages: [
+              { role: "system", content: systemPrompt },
+              { role: "user", content: message },
+            ],
+            stream: true,
           });
 
-          if (!gptResponse.ok) {
-            controller.enqueue(encoder.encode(sse({ stage: "done", content: "Error: GPT API returned " + gptResponse.status })));
+          if (!gptResponse) {
+            controller.enqueue(encoder.encode(sse({ stage: "done", content: "Error: Empty response from AI" })));
             controller.close();
             return;
           }
 
-          if (!gptResponse.body) {
-            controller.enqueue(encoder.encode(sse({ stage: "done", content: "Error: Empty response from GPT" })));
-            controller.close();
-            return;
-          }
+          // NIM returns an async iterable with .iterator, not .body.getReader()
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const asyncIter = gptResponse as any;
 
-          const reader = gptResponse.body.getReader();
-          const decoder = new TextDecoder();
-          let buffer = "";
-
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-
-            buffer += decoder.decode(value, { stream: true });
-            const lines = buffer.split("\n");
-            buffer = lines.pop() || "";
-
-            for (const line of lines) {
-              if (!line.startsWith("data: ")) continue;
-              const data = line.slice(6).trim();
-              if (data === "[DONE]") continue;
-              if (data === "") continue;
-
-              try {
-                const parsed = JSON.parse(data);
-                const content = parsed.choices?.[0]?.delta?.content;
-                if (content) {
-                  fullContent += content;
-                  controller.enqueue(encoder.encode(sse({ stage: "thinking", content })));
-                }
-              } catch {
-                // Skip malformed JSON
+          try {
+            for await (const chunk of asyncIter) {
+              const content = chunk.choices?.[0]?.delta?.content;
+              if (content) {
+                fullContent += content;
+                controller.enqueue(encoder.encode(sse({ stage: "thinking", content })));
               }
             }
+          } catch (err) {
+            controller.enqueue(encoder.encode(sse({ stage: "done", content: "Error: Stream failed" })));
+            controller.close();
+            return;
           }
 
           // ─── Stage 4: Validating AC9 codes ───────────────────────────
@@ -146,17 +137,19 @@ export async function POST(req: NextRequest) {
 
           const { valid, invalid } = validateFromText(fullContent);
 
-          // Log generation to database
-          await prisma.generation.create({
-            data: {
-              teacherId,
-              type: "chat",
-              prompt: message,
-              ac9Codes: valid,
-            },
-          }).catch(() => {
+          // Log generation to database (optional — fails gracefully)
+          try {
+            await getPrisma().generation.create({
+              data: {
+                teacherId,
+                type: "chat",
+                prompt: message,
+                ac9Codes: valid,
+              },
+            });
+          } catch {
             // Non-fatal — don't break the stream
-          });
+          }
 
           // Send AC9 codes result
           controller.enqueue(encoder.encode(sse({
