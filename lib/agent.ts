@@ -4,9 +4,15 @@ import { buildSystemPrompt, type TeacherContext } from './skills/builder';
 import { extractCodes, validateCodes } from './curriculum/validator';
 import { CORE_SKILLS, classifyMessage } from './skills/registry';
 
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+let _client: OpenAI | null = null;
+function getClient(): OpenAI {
+  if (!_client) {
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) throw new Error('OPENAI_API_KEY not set');
+    _client = new OpenAI({ apiKey });
+  }
+  return _client;
+}
 
 export interface ChatMessage {
   role: 'user' | 'assistant' | 'system';
@@ -93,7 +99,7 @@ export async function chatWithAgent(
   ];
 
   // 5. Call GPT-4o Mini
-  const response = await client.chat.completions.create({
+  const response = await getClient().chat.completions.create({
     model: 'gpt-4o-mini',
     messages: openAIMessages,
     temperature: 0.7,

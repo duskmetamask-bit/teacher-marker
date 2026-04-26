@@ -9,10 +9,15 @@ import { prisma, getPrisma, DEMO_TEACHER_ID } from "@/lib/auth";
 const NIM_API_KEY = process.env.NIM_API_KEY;
 const NIM_MODEL = process.env.LLM_MODEL || "nvidia/nemotron-mini-4b-instruct";
 
-const client = new OpenAI({
-  apiKey: NIM_API_KEY,
-  baseURL: "https://integrate.api.nvidia.com/v1",
-});
+let _client: OpenAI | null = null;
+function getClient(): OpenAI {
+  if (!_client) {
+    const apiKey = process.env.NIM_API_KEY;
+    if (!apiKey) throw new Error('NIM_API_KEY not set');
+    _client = new OpenAI({ apiKey, baseURL: "https://integrate.api.nvidia.com/v1" });
+  }
+  return _client;
+}
 
 interface StreamEvent {
   stage: "classifying" | "loading_skills" | "thinking" | "validating" | "done";
@@ -99,7 +104,7 @@ export async function POST(req: NextRequest) {
           // Collect the full response for AC9 validation
           let fullContent = "";
 
-          const gptResponse = await client.chat.completions.create({
+          const gptResponse = await getClient().chat.completions.create({
             model: NIM_MODEL,
             messages: [
               { role: "system", content: systemPrompt },

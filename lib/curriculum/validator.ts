@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
+import { join } from 'path';
 
-const AC9_VALID_PATH = '/home/dusk/.openclaw/vault/dawn-vault/shared/PROJECTS/pickle-nick-ai/ac9-code-validation.md';
+const AC9_VALID_PATH = join(process.cwd(), 'lib', 'curriculum', 'ac9-code-validation.md');
 
 const VALID_CODES = new Set(
   readFileSync(AC9_VALID_PATH, 'utf-8')

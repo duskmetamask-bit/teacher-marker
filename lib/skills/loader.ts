@@ -1,7 +1,7 @@
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
-const VAULT_PATH = '/home/dusk/.openclaw/vault/dawn-vault/shared/skills';
+const VAULT_PATH = join(__dirname, 'vault');
 
 interface SkillContent {
   name: string;
