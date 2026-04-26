@@ -1,3 +1,5 @@
 .vercel
 node_modules
 .next
+lib/skills/vault
+lib/curriculum/ac9-code-validation.md
